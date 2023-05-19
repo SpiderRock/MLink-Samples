@@ -1,0 +1,19 @@
+Stripe,Ticker source
+I1, CIDX
+I2, DJI
+I3, RUT
+I4, MIAX
+I, [I1:I4]
+J1, OTC 
+J2, MFQS
+J3, CUSIP 
+J4, ISIN 
+J, [J1:J4]
+V, CFE
+X1, CME 
+X2, CBOT 
+X3, NYMEX 
+X4, COMEX 
+X, [X1:X4]
+
+

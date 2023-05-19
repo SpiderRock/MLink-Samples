@@ -1,0 +1,1108 @@
+[
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveImpliedQuote",
+            "mNum": 1010,
+            "schemaHash": "676ED92444B74907",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptLiveRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveImpliedQuoteAdj",
+            "mNum": 1011,
+            "schemaHash": "6C05C402A61F93A0",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptLiveRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveAtmVol",
+            "mNum": 1020,
+            "schemaHash": "1FC00598397D9A93",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "OptAnalytics"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveSurfaceCurve",
+            "mNum": 1030,
+            "schemaHash": "07E5CE1C41CB0A26",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "OptAnalytics"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveSurfaceFixedGrid",
+            "mNum": 1035,
+            "schemaHash": "143BAF36A1864BBC",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "OptAnalytics"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "LiveSurfaceFixedTerm",
+            "mNum": 1040,
+            "schemaHash": "44A3CC2DA038CD92",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "OptAnalytics"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionRiskFactor",
+            "mNum": 1070,
+            "schemaHash": "7FDD72D67F8F4C65",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptLiveRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureMinuteBar",
+            "mNum": 1135,
+            "schemaHash": "6B8527842729C82B",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockMinuteBar",
+            "mNum": 1150,
+            "schemaHash": "02393DC059A90567",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrAwayExecution",
+            "mNum": 1425,
+            "schemaHash": "5062E786FF74BE63",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "ClientFirmConfig",
+            "mNum": 1825,
+            "schemaHash": "1E8F413E12D77329",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientConfig"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "UserConfig",
+            "mNum": 1850,
+            "schemaHash": "56E8D1CC8F340EFF",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientConfig"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "ExternAggGroupReport",
+            "mNum": 2245,
+            "schemaHash": "42F4BB47557D4C12",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrLiquidityRequest",
+            "mNum": 2430,
+            "schemaHash": "3307FD10B0BF649F",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptLiquidityRequest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrAuctionState",
+            "mNum": 2500,
+            "schemaHash": "4B8F3C0097316CF4",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptExchAuction"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureBookQuote",
+            "mNum": 2555,
+            "schemaHash": "1C8F950B134E1B12",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureMarketSummary",
+            "mNum": 2565,
+            "schemaHash": "7878F094F53EAE34",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FuturePrint",
+            "mNum": 2570,
+            "schemaHash": "5E2BC53F51D6941A",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OpraPrintType",
+            "mNum": 2715,
+            "schemaHash": "699E26E895151DBD",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "OptSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionNbboQuote",
+            "mNum": 2745,
+            "schemaHash": "07BDB2E3FC9ABC20",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionPrint",
+            "mNum": 2760,
+            "schemaHash": "680A47CBB46FBFF0",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionPrintSet",
+            "mNum": 2775,
+            "schemaHash": "5EDBC5E3B32A1891",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "OptSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionMarketSummary",
+            "mNum": 2805,
+            "schemaHash": "5B4A55788F72B7BA",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockBookQuote",
+            "mNum": 2960,
+            "schemaHash": "48FFE80DD19E0E1C",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockExchImbalanceV2",
+            "mNum": 2980,
+            "schemaHash": "00A5D4AC2214B566",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtExchImbalance"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockMarketSummary",
+            "mNum": 3000,
+            "schemaHash": "23D3464DCDA96DBC",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtSummaryData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockPrint",
+            "mNum": 3005,
+            "schemaHash": "1A5BC8449DF75C96",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtMktData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureCloseMark",
+            "mNum": 3080,
+            "schemaHash": "2F13BE0B77C45A9F",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureOpenMark",
+            "mNum": 3085,
+            "schemaHash": "31B429CBEEF5F105",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionCloseMark",
+            "mNum": 3100,
+            "schemaHash": "20EFAD0AD8BCCECC",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionOpenMark",
+            "mNum": 3105,
+            "schemaHash": "460302790363A260",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockCloseMark",
+            "mNum": 3125,
+            "schemaHash": "69064EBBBBADD972",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockOpenMark",
+            "mNum": 3130,
+            "schemaHash": "25CB384DC95EC0E7",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "EqtMarkData"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkAdmin",
+            "mNum": 3288,
+            "schemaHash": "403EE7F1E13838B9",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkLogon",
+            "mNum": 3289,
+            "schemaHash": "2C400CA54D512240",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkQuery",
+            "mNum": 3310,
+            "schemaHash": "2A228C6C7805EB30",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkResponse",
+            "mNum": 3315,
+            "schemaHash": "069950082EBD41B3",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkSignalReady",
+            "mNum": 3316,
+            "schemaHash": "2599C1638C24A0DA",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkDataAck",
+            "mNum": 3317,
+            "schemaHash": "30E3681AE3D9DCF5",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkWs"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkApiKey",
+            "mNum": 3319,
+            "schemaHash": "489CD8B16ABAFA24",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "QueryResult",
+            "mNum": 3320,
+            "schemaHash": "0C420138794F520E",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MLinkCount",
+            "mNum": 3321,
+            "schemaHash": "075D11D78E6C98AE",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MsgTickerKey",
+            "mNum": 3323,
+            "schemaHash": "76ADF9BDC6A99543",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MsgExpiryKey",
+            "mNum": 3324,
+            "schemaHash": "78EC8C8F7E994D76",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MsgOptionKey",
+            "mNum": 3325,
+            "schemaHash": "42411CB2A6BC7898",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "MsgDesc",
+            "mNum": 3330,
+            "schemaHash": "6C7C1D400547F193",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FieldDesc",
+            "mNum": 3331,
+            "schemaHash": "497A73044ABCFA00",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SummaryNumeric",
+            "mNum": 3332,
+            "schemaHash": "5513E7A6EC20E3CC",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SummaryString",
+            "mNum": 3333,
+            "schemaHash": "6EAE38F6960A3717",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "GetOptionPrice",
+            "mNum": 3334,
+            "schemaHash": "3B5B2C7A919A14F1",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "RiskCalc"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "GetOptionVolatility",
+            "mNum": 3335,
+            "schemaHash": "056249119824329F",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "RiskCalc"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "PostAck",
+            "mNum": 3339,
+            "schemaHash": "4CB9F645360816C3",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "MLinkRest"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrAccntCancel",
+            "mNum": 3855,
+            "schemaHash": "0AA556D6613634FF",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrBrokerCancel",
+            "mNum": 3860,
+            "schemaHash": "112A54F6E35560AC",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrMLegBrkrEvent",
+            "mNum": 3895,
+            "schemaHash": "61F0138D7666D494",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrMLegBrkrState",
+            "mNum": 3900,
+            "schemaHash": "536F482883C55A37",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrParentBrkrEvent",
+            "mNum": 3935,
+            "schemaHash": "74F1AF36AC81F4E6",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrParentBrkrState",
+            "mNum": 3940,
+            "schemaHash": "5DB523DF17C4A778",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrParentCancel",
+            "mNum": 3950,
+            "schemaHash": "38E6AF4EC6D0AB4F",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrParentExecution",
+            "mNum": 3955,
+            "schemaHash": "50F199D93F8CFFE8",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SpdrParentLimit",
+            "mNum": 3960,
+            "schemaHash": "69C15E8C9ECBA68D",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "ClientTrading"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FuturePrintProbability",
+            "mNum": 4125,
+            "schemaHash": "5454C92D8A6F10E3",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureQuoteProbability",
+            "mNum": 4130,
+            "schemaHash": "7D04648291259DAE",
+            "hasTKey": "No",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "FutProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionPrintProbability",
+            "mNum": 4135,
+            "schemaHash": "73A5250D2E8DABA9",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionQuoteProbability",
+            "mNum": 4140,
+            "schemaHash": "786B51079A04D693",
+            "hasTKey": "No",
+            "hasEKey": "No",
+            "hasOKey": "Yes",
+            "mCat": "OptProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockPrintProbability",
+            "mNum": 4150,
+            "schemaHash": "40CA3C5605162B9A",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "StkProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockQuoteProbability",
+            "mNum": 4155,
+            "schemaHash": "0A4C8065506F643B",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "StkProbModel"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "CCodeDefinition",
+            "mNum": 4210,
+            "schemaHash": "32536FE6C338D516",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ProductDefinition"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptExpiryDefinition",
+            "mNum": 4230,
+            "schemaHash": "47D233611933F53B",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "ProductDefinition"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "ProductDefinitionV2",
+            "mNum": 4235,
+            "schemaHash": "1AE0E4F2AD8380A5",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ProductDefinition"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "RootDefinition",
+            "mNum": 4240,
+            "schemaHash": "0461AFA311868726",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ProductDefinition"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "TickerDefinition",
+            "mNum": 4250,
+            "schemaHash": "205F9164DE69AECF",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ProductDefinition"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "AccountRiskRecordV5",
+            "mNum": 4620,
+            "schemaHash": "20114A350292A518",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FuturePositionRecordV5",
+            "mNum": 4650,
+            "schemaHash": "78D2DF7E3DF7692A",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "FutureRiskSummaryV5",
+            "mNum": 4660,
+            "schemaHash": "73883727BE99320A",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionPositionRecordV5",
+            "mNum": 4680,
+            "schemaHash": "52F7016CDBDC154D",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "Yes",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "StockPositionRecordV5",
+            "mNum": 4725,
+            "schemaHash": "54D3437077D5FF0E",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "SymbolRiskSummaryV5",
+            "mNum": 4740,
+            "schemaHash": "6BC997BBB2F0FE76",
+            "hasTKey": "Yes",
+            "hasEKey": "No",
+            "hasOKey": "No",
+            "mCat": "ClientRisk"
+        }
+    },
+    {
+        "header": {
+            "mTyp": "MsgDesc"
+        },
+        "message": {
+            "name": "OptionAtmMinuteBarData",
+            "mNum": 6548,
+            "schemaHash": "059736AB50AAE3CC",
+            "hasTKey": "Yes",
+            "hasEKey": "Yes",
+            "hasOKey": "No",
+            "mCat": "OptAnalytics"
+        }
+    }
+]

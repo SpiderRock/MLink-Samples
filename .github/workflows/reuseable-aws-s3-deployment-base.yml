@@ -1,0 +1,57 @@
+name: Reuseable AWS S3 Cloudfront & S3 Deployment Base
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        required: true
+        type: string
+      app_path:
+        required: true
+        type: string
+      s3_bucket:
+        required: true
+        type: string
+      cloudfront_dist_id:
+        required: true
+        type: string
+      node_version:
+        required: false
+        type: string
+        default: 16.20
+    secrets:
+        aws_secret_key: 
+          required: true
+        aws_access_key:
+          required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js ${{ inputs.node_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node_version }}
+          
+      - name: Build ${{ inputs.app_name }}
+        run: npm run build
+        working-directory: ${{ inputs.app_path }}
+
+      - uses: shallwefootball/s3-upload-action@master
+        name: Upload Artifact for ${{ inputs.app_name }} to S3
+        with:
+          aws_key_id: ${{ secrets.aws_access_key }}
+          aws_secret_access_key: ${{ secrets.aws_secret_key }}
+          aws_bucket: ${{ inputs.s3_bucket }}
+          source_dir: '${{ inputs.app_path }}/build'
+          destination_dir: ${{ inputs.app_name }}
+
+      - name: Invalidate CloudFront Distribution path for /${{ inputs.app_name }}
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: "/${{ inputs.app_name }}"
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.aws_secret_key }}
