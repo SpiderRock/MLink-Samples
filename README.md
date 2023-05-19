@@ -1,9 +1,10 @@
 <img src="https://data-portal.spiderrock.net/imgs/SpiderRock-Horizontal-Logo.png" width="400" alt="SpiderRock">
 
-The SpiderRock MLink API provides access to live-data objects within the SpiderRock system. This repo provides documentation and code samples for how developers can connect to MLink and consume the data returned.
+The SpiderRock MLink API provides access to live-data objects (Real-Time and delayed data feeds) within the SpiderRock system. This repo provides documentation and code samples for how developers can connect to MLink and consume the data returned.
 
 MLink provides the several options:
-* 23 tokens for scoped access of message types
+* 6 product categories each with associated tokens to stream or query SR data
+* 23 tokens for scoped access to message types
 * 3 message delivery protocols: JSON, Framed JSON or Protobuf
 * Query-based (REST) or streaming (Websocket) connections
 * Real-time or delayed data
@@ -24,17 +25,9 @@ Messages are organized into Message Types that are grouped and permissioned by t
 | FutMarkData           | Futures open and close (settlement) marks |
 | OptMarkData           | Options open and close marks (includes surface marks and closing greeks) |
 | EqtExchImbalance      | Stock market auction imbalances |
-| StkProbModel          | Stock probability models |
-| FutProbModel          | Futures probability models |
-| OptProbModel          | Options probability models |
 | OptAnalytics          | Options surfaces, at-the-money volatility and related |
 | OptLiveRisk           | Options implied quotes and risk slides |
 | ProductDefinition     | Production definitions for all instruments |
-| ClientTrading         | Create, monitor, cancel, and modify SpiderRock algo parent orders |
-| ClientRisk            | Positions and risk markup including start-of-day positions and day trades |
-| OptLiquidityRequest   | SpiderRock ATS liquidity (auction) notices |
-| OptExchAuction        | Options exchange auction notices |
-| RiskCalc              | Options price and volatility calculator messages |
 | MLinkWs               | MLink WebSocket admin messages |
 | MLinkRest             | MLink HTTP/REST admin messages |
 
