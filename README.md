@@ -209,6 +209,10 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 - :ne: is not equal
 - %26 is an AND statement
 - | is an OR statement
+- SW is starts with
+- EW is ends with
+- CV is contains values
+- NV is does not contain value 
 
 #### Commands:
 
@@ -217,6 +221,7 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 | getapikey   | creates/updates MLink API Key |
 | getmsgtypes | returns all available message types |
 | getschema   | returns a single message schema |
+| getlayout   | returns msgLayour and FieldLayout |
 | getsummary  | returns message type summmary |
 | gettkeyset  | returns all available TickerKeys for a message type |
 | getekeyset  | returns all available ExpiryKeys for a message type and TickerKey |
