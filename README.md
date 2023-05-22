@@ -227,7 +227,7 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 | getekeyset  | returns all available ExpiryKeys for a message type and TickerKey |
 | getokeyset  | returns all available Option Keys for a message type and ExpiryKey |
 | getmsg      | returns a single message by PrimaryKey |
-| getmsgs     | returns all available messages for a message type |
+| getmsgs     | returns all available messages for a message type (can be coupled with okey, tkey, ekey) |
 | getcount    | returns the count of records for a messagetype |
 | postmsgs    | process/post all messages in the request body |
 
@@ -247,7 +247,7 @@ Get field definitions for a message:
 
 Filtering by an Option Key:
 
-`https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsg&msgtype=OptionNbboQuote&okey=AA-NMS-EQT-2023-07-23-1-C`
+`https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&okey=AA-NMS-EQT-2023-07-23-1-C`
 
 Filtering by a View:
 
