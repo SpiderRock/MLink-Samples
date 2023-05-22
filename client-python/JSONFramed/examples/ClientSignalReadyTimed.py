@@ -22,7 +22,7 @@ async def send_signal(websocket):
             },
             "message": {
                 "queryLabel": "SignalReadyExampleTimed",
-                "MsgType": [{"msgType": 3107}],
+                "MsgType": [],
                 "msgNameFilter": "MLinkSignalReady",
             }
         }
@@ -50,7 +50,7 @@ async def query_mlink(authentication_key):
                         "queryLabel": "SignalReadyExampleTimed",
                         "queryType": "IncrSubscription",
                         "activeLatency": -1,
-                        "MsgType":[{"msgType":2960}], 
+                        "MsgType":[], 
                         "msgNameFilter": "StockBookQuote",
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }

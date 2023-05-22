@@ -25,9 +25,9 @@ async def query_mlink(authentication_key):
                     "message": { 
                         "queryLabel":"ExampleImpliedQuote",
                         "queryType":"FullQuery",
-                        "MsgType":[{"msgType":1010}],
+                        "MsgType":[],
                         "msgNameFilter": "LiveImpliedQuote",
-                        "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"SPY","dt":"2023-04-05","xx":400,"cp":"Put"}}]
+                        "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"SPY","dt":"2023-06-23","xx":400,"cp":"Put"}}]
                     }
                 }
                 t = time.time_ns()

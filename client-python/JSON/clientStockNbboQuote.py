@@ -37,7 +37,7 @@ async def query_mlink(authentication_key):
                     "message": {
                         "queryLabel": "ExampleStockNbbo",
                         "queryType": "FullQuery",
-                        "MsgType": [{"msgType": 2960}],
+                        "MsgType": [],
                         "msgNameFilter": "StockBookQuote",
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }

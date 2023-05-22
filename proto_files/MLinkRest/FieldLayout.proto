@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+
+    
+message FieldLayout {
+
+
+    MessageMetadata _meta = 1;
+    
+    string name = 100; // field name (should match name in FieldDesc)
+    uint32 f_num = 103;
+    FieldControl f_ctrl = 109; // None = should not be visible; View = view only; Edit = View/Edit; Hide = Suppress on UI
+    string label = 112; // display label (used as needed)
+    string group = 116; // display group (used to group fields in the edit form)
+    string format = 119; // default display format string; eg. "#,###.00";
+    double min_v = 122; // number range bounds (if field is a numeric type) [enforced on edit]
+    double max_v = 125;
+    string v_set = 128; // JSON block containing a list of values the field can take [ "apple", "orange" , ... ] [enforced on edit] (string or enum)
+    int32 c_pos = 131; // column position (grid column order) [-1 means do not display in grid]
+    int32 c_color = 134; // column color number (color palette number)
+    string r_color_set = 137; // eg. [ "apple":1, "orange":2 ]  if this cell contains (case insensitive) 'apple' use color #1 for the entire row.
+}
+
+

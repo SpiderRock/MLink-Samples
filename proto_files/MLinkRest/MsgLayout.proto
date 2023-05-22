@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+
+    
+message MsgLayout {
+
+
+    MessageMetadata _meta = 1;
+    
+    string name = 100; // message name
+    uint32 m_num = 103; // protobuf message number
+    string actions = 106; // 'SIURD'
+}
+
+

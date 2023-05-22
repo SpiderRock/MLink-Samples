@@ -38,7 +38,7 @@ async def query_mlink(authentication_key):
                     "message": {
                         "queryLabel": "ExampleStockNbbo",
                         "queryType": "FullSubscription",
-                        "MsgType": [{"msgType": 2960, "view":"bidprice1|askprice1", "where":"bidprice1:lt:40 & askprice1:lt:40"}],
+                        "MsgType": [{"view":"bidprice1|askprice1", "where":"bidprice1:lt:40 & askprice1:lt:40"}],
                         "msgNameFilter": "StockBookQuote"
                     }
                 }
