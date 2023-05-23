@@ -9,6 +9,8 @@ import { MLinkConfig } from '../../config';
 import { contentStyle } from './ActionPanel.style';
 import { CONN_STATUS } from '../InputPanel/ConnectionPanel/ConnectionPanel';
 import { DisplayOption } from '../InputPanel/DisplayPanel/DisplayPanel';
+import { msgTypeObject } from '../../types';
+import { isPresent } from '../../utils/ActionPanelValidator';
 
 export const ActionPanel: React.FC = () => {
   const [errorVisibility, setErrorMessageVisbility] = useState<boolean>(false);
@@ -18,7 +20,8 @@ export const ActionPanel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [viewFilter, setViewFilter] = useState<string>('');
   const [showInitialContent, setShowInitialContent] = useState<boolean>(true);
-  const [msgTypes, setMsgTypes] = useState<string[]>([]);
+  const [msgTypes, setMsgTypes] = useState<msgTypeObject>({});
+  const [msgTokens, setMsgTokens] = useState<string[]>([]);
   //Connection Panel
   const [urlValue, setUrlValue] = useState<string>('');
   const [keyValue, setKeyValue] = useState<string>('');
@@ -38,16 +41,28 @@ export const ActionPanel: React.FC = () => {
     const baseAPIService = new BaseApiService(config);
     baseAPIService.getMsgTypes()
       .then((json) => {
-        let msgTypeArray = [];
+        let msgTypeArray : {[key : string] : string[]} = {};
+        let msgTokenArray : string[] = [];
         // eslint-disable-next-line
         for (const [_key, value] of Object.entries(json)) {
-          let msgType = value['message']['name'];
-          if (msgType !== null && msgType !== undefined && msgType !== '') {
-            msgTypeArray.push(msgType);
+          let msgType : string = value['message']['name'];
+          let msgToken : string = value['message']['mToken'];
+
+          if (isPresent(msgType) && isPresent(msgToken)) {
+
+            if (msgToken in msgTypeArray){
+              msgTypeArray[msgToken].push(msgType)
+            }
+            else{
+              msgTypeArray[msgToken] = [msgType]
+              msgTokenArray.push(msgToken)
+            }
+            
           }
         }
         setConnectStatus(CONN_STATUS.CONNECTED);
-        setMsgTypes(msgTypeArray.sort());
+        setMsgTypes(msgTypeArray);
+        setMsgTokens(msgTokenArray.sort());
       })
       .catch(error => {
         setConnectStatus(CONN_STATUS.DISCONNECTED);
@@ -139,6 +154,7 @@ export const ActionPanel: React.FC = () => {
         setErrorMessage={setErrorMessage}
         setViewFilter={setViewFilter}
         msgTypes={msgTypes}
+        msgTokens={msgTokens}
         urlValue={urlValue}
         setUrlValue={setUrlValue}
         keyValue={keyValue}
