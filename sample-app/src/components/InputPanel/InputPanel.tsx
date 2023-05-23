@@ -5,9 +5,11 @@ import { useState } from 'react';
 import { isEmpty } from '../../utils/InputPanelValidator';
 import { ConnectionPanel } from './ConnectionPanel/ConnectionPanel';
 import { DisplayPanel } from './DisplayPanel/DisplayPanel';
+import { msgTypeObject } from '../../types';
 
 export interface InputPanelProps {
-  msgTypes: string[];
+  msgTypes: msgTypeObject;
+  msgTokens: string[];
   handleClickRequest: (msgType: string, where: string | undefined) => void;
   setViewFilter: (viewFilter: string) => void;
   setErrorMessageVisbility: (visible: boolean) => void;
@@ -26,12 +28,12 @@ export interface InputPanelProps {
 }
 
 export const InputPanel: React.FunctionComponent<InputPanelProps> = ({
-  msgTypes, handleClickRequest, setErrorMessageVisbility, setErrorMessage, setViewFilter,
+  msgTypes, msgTokens, handleClickRequest, setErrorMessageVisbility, setErrorMessage, setViewFilter,
   urlValue, setUrlValue, keyValue, setKeyValue, passValue, setPassValue, connectStatus,
   limitResults, setLimitResults, displayResults, setDisplayResults
 }) => {
   const [whereFilter, setWhereFilter] = useState<string>('');
-  const [selectedMsgType, setSelectedMsgType] = useState<string>('');
+  const [selectedMsgType, setSelectedMsgType] = useState<string>('default');
 
   const handleClick = () => {
     setErrorMessageVisbility(false);
@@ -58,7 +60,9 @@ export const InputPanel: React.FunctionComponent<InputPanelProps> = ({
       />
       <div style={verticalSeparator} />
       <ParamFilter
-        selectableOptions={msgTypes}
+        selectableMsgOptions={msgTypes}
+        selectableTokenOptions={msgTokens}
+        selectedMessageType={selectedMsgType}
         setViewFilter={setViewFilter}
         setWhereFilter={setWhereFilter}
         setSelectedMsgType={setSelectedMsgType}
