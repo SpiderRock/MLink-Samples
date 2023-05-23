@@ -6,7 +6,7 @@ export const appStyle: React.CSSProperties = {
   flexDirection: 'column',
   fontFamily: fontDetails.fontFamily,
   fontSize: fontDetails.fontSize,
-  color: greySlate.white,
+  color: greySlate.grey08,
   maxHeight: '100vh',
   minHeight: '100vh',
   backgroundColor: greySlate.grey01,

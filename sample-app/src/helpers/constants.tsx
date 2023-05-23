@@ -1,8 +1,3 @@
-export const fontDetails = {
-  fontFamily: 'Roboto, Arial, sans-serif',
-  fontSize: '14px'
-}
-
 export const greySlate = {
   grey01: '#1C2129',
   grey02: '#222530',
@@ -21,3 +16,28 @@ export const greySlate = {
 export const blueSlate = {
   actionBlue: '#3683CC',
 };
+
+export const fontDetails = {
+  fontFamily: 'Roboto, Arial, sans-serif',
+  fontSize: '14px',
+}
+
+export const fieldStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '5px',
+};
+
+export const labelStyle: React.CSSProperties = {
+  fontWeight: 'bold',
+}
+
+export const sectionStyle = (sectionWidth: number) => {
+  const style: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: sectionWidth,
+    gap: '20px',
+  }
+  return style;
+}
