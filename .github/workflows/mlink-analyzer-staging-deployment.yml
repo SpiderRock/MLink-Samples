@@ -14,8 +14,8 @@ jobs:
     with:
       app_name: mlink-analyzer
       app_path: sample-app/
-      s3_bucket: ${{ secrets.CMNCMP_STAGING_S3_REACT_APP_DEPLOYMENT_BUCKET }}
-      cloudfront_dist_id: ${{ secrets.CMNCMP_STAGING_REACT_APP_CLOUDFRONT_DIST }}
     secrets:
       aws_access_key: ${{ secrets.CMNCMP_STAGING_S3_DEPLOY_ACCESS_KEY }}
       aws_secret_key: ${{ secrets.CMNCMP_STAGING_S3_DEPLOY_SECRET_KEY }}
+      s3_bucket: ${{ secrets.CMNCMP_STAGING_S3_REACT_APP_DEPLOYMENT_BUCKET }}
+      cloudfront_dist_id: ${{ secrets.CMNCMP_STAGING_REACT_APP_CLOUDFRONT_DIST }}

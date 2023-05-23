@@ -9,12 +9,6 @@ on:
       app_path:
         required: true
         type: string
-      s3_bucket:
-        required: true
-        type: string
-      cloudfront_dist_id:
-        required: true
-        type: string
       node_version:
         required: false
         type: string
@@ -23,6 +17,10 @@ on:
         aws_secret_key: 
           required: true
         aws_access_key:
+          required: true
+        s3_bucket:
+          required: true
+        cloudfront_dist_id:
           required: true
 
 jobs:
@@ -43,14 +41,14 @@ jobs:
         with:
           aws_key_id: ${{ secrets.aws_access_key }}
           aws_secret_access_key: ${{ secrets.aws_secret_key }}
-          aws_bucket: ${{ inputs.s3_bucket }}
+          aws_bucket: ${{ secrets.s3_bucket }}
           source_dir: '${{ inputs.app_path }}/build'
           destination_dir: ${{ inputs.app_name }}
 
       - name: Invalidate CloudFront Distribution path for /${{ inputs.app_name }}
         uses: chetan/invalidate-cloudfront-action@v2
         env:
-          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          DISTRIBUTION: ${{ secrets.cloudfront_dist_id }}
           PATHS: "/${{ inputs.app_name }}"
           AWS_REGION: "us-east-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key }}
