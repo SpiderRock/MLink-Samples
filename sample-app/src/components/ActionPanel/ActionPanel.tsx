@@ -9,6 +9,7 @@ import { MLinkConfig } from '../../config';
 import { contentStyle } from './ActionPanel.style';
 import { CONN_STATUS } from '../InputPanel/ConnectionPanel/ConnectionPanel';
 import { DisplayOption } from '../InputPanel/DisplayPanel/DisplayPanel';
+import { msgTypeObject } from '../../types';
 
 export const ActionPanel: React.FC = () => {
   const [errorVisibility, setErrorMessageVisbility] = useState<boolean>(false);
@@ -18,7 +19,8 @@ export const ActionPanel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [viewFilter, setViewFilter] = useState<string>('');
   const [showInitialContent, setShowInitialContent] = useState<boolean>(true);
-  const [msgTypes, setMsgTypes] = useState<string[]>([]);
+  const [msgTypes, setMsgTypes] = useState<msgTypeObject>({});
+  const [msgTokens, setMsgTokens] = useState<string[]>([]);
   //Connection Panel
   const [urlValue, setUrlValue] = useState<string>('');
   const [keyValue, setKeyValue] = useState<string>('');
@@ -26,9 +28,8 @@ export const ActionPanel: React.FC = () => {
   const [connectStatus, setConnectStatus] = useState<string>(CONN_STATUS.DISCONNECTED);
   const [config, setConfig] = useState<MLinkConfig>();
   //Display Panel
-  const [limitResults, setLimitResults] = useState<number>(500);
+  const [limitResults, setLimitResults] = useState<number>();
   const [displayResults, setDisplayResults] = useState<string>(DisplayOption.TABLE);
-  const [rawData, setRawData] = useState<string>('');
 
   useEffect(() => {
     if (!config || config.MLINK_ENDPOINT === '' || config.API_KEY === '') {
@@ -38,16 +39,31 @@ export const ActionPanel: React.FC = () => {
     const baseAPIService = new BaseApiService(config);
     baseAPIService.getMsgTypes()
       .then((json) => {
-        let msgTypeArray = [];
+        let msgTypeArray : {[key : string] : string[]} = {};
+        let msgTokenArray : string[] = [];
         // eslint-disable-next-line
         for (const [_key, value] of Object.entries(json)) {
-          let msgType = value['message']['name'];
+          let msgType : string = value['message']['name'];
+          let msgToken : string = value['message']['mToken'];
+
           if (msgType !== null && msgType !== undefined && msgType !== '') {
-            msgTypeArray.push(msgType);
+
+            if (msgToken in msgTypeArray){
+              msgTypeArray[msgToken].push(msgType)
+            }
+            else{
+              msgTypeArray[msgToken] = [msgType]
+            }
+            
+          }
+          if (msgToken !== null && msgToken !== undefined &&
+            msgToken !== '' && msgTokenArray.indexOf(msgToken) === -1){
+            msgTokenArray.push(msgToken)
           }
         }
         setConnectStatus(CONN_STATUS.CONNECTED);
-        setMsgTypes(msgTypeArray.sort());
+        setMsgTypes(msgTypeArray);
+        setMsgTokens(msgTokenArray.sort());
       })
       .catch(error => {
         setConnectStatus(CONN_STATUS.DISCONNECTED);
@@ -65,62 +81,46 @@ export const ActionPanel: React.FC = () => {
     setConfig(config);
   }, [urlValue, keyValue, passValue]);
 
-  const isValidLimit = () => {
-    return limitResults !== undefined && limitResults > 0 && limitResults < 10001;
-  };
-
   const handleClickRequest = async (
     msgType: string,
     whereFilter: string | undefined
   ) => {
-    try {
-      if (!config || connectStatus === CONN_STATUS.DISCONNECTED) {
-        throw new Error('Invalid connection');
-      }
-      if (!isValidLimit()) {
-        throw new Error('Invalid Limit');
-      }
-      const startTime = performance.now();
-      setShowInitialContent(false);
-      setLoading(true);
-      const baseAPIService = new BaseApiService(config);
-      baseAPIService
-        .getMessages(msgType, whereFilter, viewFilter, limitResults)
-        .then((json) => {
-          const mlinkResponse =
-            MLinkJsonParser.parseMLinkDataToFlattenedArray(json);
-          // This block below checks to see if the response
-          // from MLink is actually an error message and will display the error if so
-          if (mlinkResponse.length === 1 && mlinkResponse[0]['result'] === 'Error') {
-            setErrorMessageVisbility(true);
-            setErrorMessage(mlinkResponse[0]['detail']);
-            setLoading(false);
-          }
-          else {
-            setRawData(JSON.stringify(json, null, 2));
-            setMsgData(mlinkResponse);
-            const schemaArray = MLinkJsonParser.parseMLinkResponseToSchemaArray(
-              json,
-              viewFilter
-            );
-            setMsgSchema(schemaArray);
-            setLoading(false);
-          }
-          const endTime = performance.now();
-          console.log('Request time:', Math.trunc(endTime - startTime) + 'ms');
-        })
-        .catch(error => {
-          setErrorMessageVisbility(true);
-          setErrorMessage(error + '');
-          setLoading(false);
-        });
-    } catch (error) {
-      setErrorMessageVisbility(true);
-      setErrorMessage(error + '');
-      setLoading(false);
+    if (!config) {
+      throw Error('Missing connection data');
     }
+    setShowInitialContent(false);
+    setLoading(true);
+    const baseAPIService = new BaseApiService(config);
+    baseAPIService
+      .getMessages(msgType, whereFilter, viewFilter)
+      .then((json) => {
+        const mlinkResponse =
+          MLinkJsonParser.parseMLinkDataToFlattenedArray(json);
 
+        // This block below checks to see if the response
+        // from MLink is actually an error message and will display the error if so
+        if (mlinkResponse.length === 1 && mlinkResponse[0]['result'] === 'Error') {
+          setErrorMessageVisbility(true);
+          setErrorMessage(mlinkResponse[0]['detail']);
+          setLoading(false);
+        }
+        else {
+          setMsgData(mlinkResponse);
 
+          const schemaArray = MLinkJsonParser.parseMLinkResponseToSchemaArray(
+            json,
+            viewFilter
+          );
+          setMsgSchema(schemaArray);
+          setLoading(false);
+
+        }
+      })
+      .catch(error => {
+        setErrorMessageVisbility(true);
+        setErrorMessage(error);
+        setLoading(false);
+      });
   };
 
   const initialContent = () => {
@@ -139,6 +139,7 @@ export const ActionPanel: React.FC = () => {
         setErrorMessage={setErrorMessage}
         setViewFilter={setViewFilter}
         msgTypes={msgTypes}
+        msgTokens={msgTokens}
         urlValue={urlValue}
         setUrlValue={setUrlValue}
         keyValue={keyValue}
@@ -160,12 +161,8 @@ export const ActionPanel: React.FC = () => {
         && <div className="loading">Fetching results...</div>
       }
 
-      {!!!showInitialContent && !!!loading && displayResults === DisplayOption.TABLE
+      {!!!showInitialContent && !!!loading
         && <ResultsTable msgData={msgData} msgSchema={msgSchema} />
-      }
-
-      {!!!showInitialContent && !!!loading && displayResults === DisplayOption.RAW
-        && <div><pre>{rawData}</pre></div>
       }
     </div>
   );
