@@ -10,6 +10,7 @@ import { contentStyle } from './ActionPanel.style';
 import { CONN_STATUS } from '../InputPanel/ConnectionPanel/ConnectionPanel';
 import { DisplayOption } from '../InputPanel/DisplayPanel/DisplayPanel';
 import { msgTypeObject } from '../../types';
+import { isPresent } from '../../utils/ActionPanelValidator';
 
 export const ActionPanel: React.FC = () => {
   const [errorVisibility, setErrorMessageVisbility] = useState<boolean>(false);
@@ -47,19 +48,16 @@ export const ActionPanel: React.FC = () => {
           let msgType : string = value['message']['name'];
           let msgToken : string = value['message']['mToken'];
 
-          if (msgType !== null && msgType !== undefined && msgType !== '') {
+          if (isPresent(msgType) && isPresent(msgToken)) {
 
             if (msgToken in msgTypeArray){
               msgTypeArray[msgToken].push(msgType)
             }
             else{
               msgTypeArray[msgToken] = [msgType]
+              msgTokenArray.push(msgToken)
             }
             
-          }
-          if (msgToken !== null && msgToken !== undefined &&
-            msgToken !== '' && msgTokenArray.indexOf(msgToken) === -1){
-            msgTokenArray.push(msgToken)
           }
         }
         setConnectStatus(CONN_STATUS.CONNECTED);
