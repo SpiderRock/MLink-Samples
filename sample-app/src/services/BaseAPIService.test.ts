@@ -61,4 +61,18 @@ describe('Generate URL', () => {
     );
     expect(result).toBe(expectedURL);
   });
+
+  test('generate get msg url for a msg type and limit condition', () => {
+    const msgType = 'MsgType';
+    const limit = 5;
+    const expectedURL =
+      baseURL + '&cmd=getmsgs&msgtype=' + msgType + '&l=' + limit;
+    const result = fakeBaseAPIService.getMessagesURL(
+      msgType,
+      undefined,
+      undefined,
+      limit
+    );
+    expect(result).toBe(expectedURL);
+  });
 });

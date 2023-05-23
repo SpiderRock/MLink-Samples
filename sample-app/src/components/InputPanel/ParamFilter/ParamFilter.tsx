@@ -1,20 +1,17 @@
 import React from 'react';
 import { ChangeEvent } from 'react';
 import {
-  paramPanelStyle,
-  paramStyle,
-  paramLabelStyle,
   paramSelectStyle,
   paramInputStyle,
-  paramButtonStyle,
 } from './ParamFilter.style';
+import { fieldStyle, labelStyle, sectionStyle } from '../../../helpers/constants';
+import '../placeholder.css';
 
 export interface ParamFilterProps {
   selectableOptions: string[];
   setWhereFilter: (whereFilter: string) => void;
   setViewFilter: (viewFilter: string) => void;
   setSelectedMsgType: (selectedMsgType: string) => void;
-  clickHandler: () => void;
 }
 
 export const ParamFilter: React.FunctionComponent<ParamFilterProps> = ({
@@ -22,7 +19,6 @@ export const ParamFilter: React.FunctionComponent<ParamFilterProps> = ({
   setWhereFilter,
   setViewFilter,
   setSelectedMsgType,
-  clickHandler,
 }) => {
   const handleWhereUpdate = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
@@ -40,9 +36,29 @@ export const ParamFilter: React.FunctionComponent<ParamFilterProps> = ({
   };
 
   return (
-    <div style={paramPanelStyle}>
-      <div style={paramStyle}>
-        <label style={paramLabelStyle}>Message Type</label>
+    <section style={sectionStyle(670)}>
+      <div style={fieldStyle}>
+        <label style={labelStyle}>Message Token/Group</label>
+        <select
+          defaultValue={'default'}
+          style={paramSelectStyle}
+          onChange={(evt) => handleMsgTypeUpdate(evt)}
+        >
+          <option value="default" disabled hidden>
+            Choose Token/Group...
+          </option>
+
+          {selectableOptions.map((item) => {
+            return (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+      <div style={fieldStyle}>
+        <label style={labelStyle}>Message Type</label>
         <select
           defaultValue={'default'}
           style={paramSelectStyle}
@@ -61,25 +77,24 @@ export const ParamFilter: React.FunctionComponent<ParamFilterProps> = ({
           })}
         </select>
       </div>
-      <div style={paramStyle}>
-      <label style={paramLabelStyle}>Where</label>
+      <div style={fieldStyle}>
+        <label style={labelStyle}>Where</label>
         <input
           style={paramInputStyle}
+          placeholder='e.g. bidsize:eq:2'
+          className='withPlaceholder'
           onChange={(evt) => handleWhereUpdate(evt)}
         ></input>
       </div>
-      <div style={paramStyle}>
-      <label style={paramLabelStyle}>View</label>
+      <div style={fieldStyle}>
+        <label style={labelStyle}>View</label>
         <input
           style={paramInputStyle}
+          placeholder='e.g. bidsize|askprice'
+          className='withPlaceholder'
           onChange={(evt) => handleViewUpdate(evt)}
         ></input>
       </div>
-      <div>
-        <button style={paramButtonStyle} onClick={clickHandler}>
-          Send
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };

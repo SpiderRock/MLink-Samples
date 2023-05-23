@@ -7,6 +7,7 @@ export const headerStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   gap: '20px',
+  alignItems: 'center',
 };
 
 export const brandStyle: React.CSSProperties = {
@@ -16,3 +17,8 @@ export const brandStyle: React.CSSProperties = {
   height: '56px',
   backgroundColor: greySlate.grey04,
 };
+
+export const titleStyle: React.CSSProperties = {
+  color: greySlate.grey08,
+  fontSize: '24px',
+}

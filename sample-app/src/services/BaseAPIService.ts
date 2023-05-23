@@ -44,7 +44,6 @@ class BaseApiService {
       console.error(error)
       throw new Error("Something went wrong processing this request. Please ensure your query syntax is valid and try again.");
     });
-
     let jsonResponse;
     //Analyze the URL to know the kind of service requested
     if (this.isFramedJsonURL(url)) {
@@ -58,7 +57,6 @@ class BaseApiService {
        * For Json we use the standard Json parser
        */
       jsonResponse = await response.json();
-
     }
     return jsonResponse;
   }
@@ -72,8 +70,9 @@ class BaseApiService {
     msgType: string,
     whereFilter?: string,
     viewFilter?: string,
+    limit?: number
   ): Promise<jsonObject[]> {
-    const url = this.getMessagesURL(msgType, whereFilter, viewFilter);
+    const url = this.getMessagesURL(msgType, whereFilter, viewFilter, limit);
     return this.get(url);
   }
 
@@ -104,7 +103,8 @@ class BaseApiService {
   getMessagesURL(
     msgType: string,
     whereFilter?: string,
-    viewFilter?: string
+    viewFilter?: string,
+    limit?: number,
   ): string {
     let url = this.getBaseUrl() + '&cmd=getmsgs&msgtype=' + msgType;
     if (whereFilter) {
@@ -115,6 +115,9 @@ class BaseApiService {
       const encodedViewFilter =
         QueryParameterGenerator.parseAndEncodeFilter(viewFilter);
       url = url + '&view=' + encodedViewFilter;
+    }
+    if (limit) {
+      url = url + '&l=' + limit;
     }
     return url;
   }
