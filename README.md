@@ -285,9 +285,9 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | accntFilter     | text1              | (optional) if supplied records must have an x-ray accnt from this set [comma separated]                                    |
 | clientFirmFilter| text1              | (optional) if supplied records must have an x-ray client firm from this set [comma separated]                              |
 | userNameFilter  | text1              | (optional) if supplied records must have an x-ray user name from this set [comma separated]                                |
-| tickerKey       | tickerKey          |                                                                                                                            |
-| expiryKey       | expiryKey          |                                                                                                                            |
-| optionKey       | optionKey          |                                                                                                                            |
+| tickerKey       | tickerKey          | (optional) eg "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"SPX"}}]                                                |
+| expiryKey       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
+| optionKey       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
 | msgType         | ushort             | (optional) if not empty records must have a msgType this set                                                               |
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
 | localMsgType    | ushort             | (optional) if != 0 the msgType number will be translated from msgType to localMsgType in the mlink server (binary messages)|
@@ -304,6 +304,7 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | 2              | IncrQuery          |Return records (with highwatermark > x) from cache and nothing more                                                                       |
 | 3              | FullSubscription   |Return records from cache and also any future updates (per update rules)                                                                       |
 | 4              | IncrSubscription   |Return records from cache (with highwatermark > x) and also any future updates (per update rules)                                                                       |
+
 ### Establishing a connection
 
 After authenticating a websocket connection:
