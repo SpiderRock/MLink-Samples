@@ -27,23 +27,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ inputs.node_version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.node_version }}
           
       - name: Build ${{ inputs.app_name }}
-        run: npm run build
+        run: npm install && npm run build
         working-directory: ${{ inputs.app_path }}
 
-      - uses: shallwefootball/s3-upload-action@master
+      - uses: Noelware/s3-action@v2
         name: Upload Artifact for ${{ inputs.app_name }} to S3
         with:
-          aws_key_id: ${{ secrets.aws_access_key }}
-          aws_secret_access_key: ${{ secrets.aws_secret_key }}
-          aws_bucket: ${{ secrets.s3_bucket }}
-          source_dir: '${{ inputs.app_path }}/build'
-          destination_dir: ${{ inputs.app_name }}
+            directories: | 
+                '${{ inputs.app_path }}build'
+            access-key-id:  ${{ secrets.aws_access_key }}
+            secret-key: ${{ secrets.aws_secret_key }}
+            prefix: /${{ inputs.app_name }}
+
 
       - name: Invalidate CloudFront Distribution path for /${{ inputs.app_name }}
         uses: chetan/invalidate-cloudfront-action@v2
