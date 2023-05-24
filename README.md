@@ -370,7 +370,6 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
                           "queryType": "FullQuery", #you can stream AAPL by changing the queryType to FullSubscription, see examples
-                          "MsgType": [{"msgType": 2960}],
                           "msgNameFilter": "StockBookQuote",
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
@@ -407,7 +406,6 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
                           "queryType": "FullQuery",
-                          "MsgType": [{"msgType": 2960}],
                           "msgNameFilter": "StockBookQuote",
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
@@ -473,7 +471,6 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
             mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
             mlink_query.descriptor.message_type = "MLinkQuery"
             msg_type = mlink_query.msg_type.add()
-            msg_type.msg_type = 2960
             tkey_filter = mlink_query.tkey_filters.add()
             tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
             tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
