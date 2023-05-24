@@ -46,6 +46,8 @@ All MLink messages are generated from a common IDL schema and follow common patt
     - ExpiryKey: `SSSS-TS-AT-YYYY-MM-DD` where YYYY is year, MM is month, and DD is day.
     - OptionKey: `SSSS-TS-AT-YYYY-MM-DD-XXXX-CP` where XXXX is the strike price, and CP is either (Call, Put, or Both).
 
+Note that any message with an optionKey will also have a TickerKey and ExpiryKey. eg: message like OptionNbboQuote can be filtered by TickerKey to get all options for a specific ticker.
+
 3. **Special Data Objects:** 
 
     - Spreads: `#SSSShhhh` where hhhh is a hexadecimal ID number. It is not possible to determine the security being traded without referring to the associated product definition.
@@ -249,6 +251,10 @@ Filtering by an Option Key:
 
 `https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&okey=AA-NMS-EQT-2023-07-23-1-C`
 
+Filtering by a Ticker Key:
+
+`https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&tkey=AAPL-NMS-EQT`
+
 Filtering by a View:
 
 `https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&view=okey|bidprice|askprice`
@@ -285,9 +291,9 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | accntFilter     | text1              | (optional) if supplied records must have an x-ray accnt from this set [comma separated]                                    |
 | clientFirmFilter| text1              | (optional) if supplied records must have an x-ray client firm from this set [comma separated]                              |
 | userNameFilter  | text1              | (optional) if supplied records must have an x-ray user name from this set [comma separated]                                |
-| tickerKey       | tickerKey          | (optional) eg "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"SPX"}}]                                                |
-| expiryKey       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
-| optionKey       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
+| TKeyFilters       | tickerKey          | (optional) eg "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"SPX"}}]                                                |
+| EKeyFilters       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
+| OKeyFilters       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
 | msgType         | ushort             | (optional) if not empty records must have a msgType this set                                                               |
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
 | localMsgType    | ushort             | (optional) if != 0 the msgType number will be translated from msgType to localMsgType in the mlink server (binary messages)|
