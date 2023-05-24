@@ -34,7 +34,7 @@ jobs:
           node-version: ${{ inputs.node_version }}
           
       - name: Build ${{ inputs.app_name }}
-        run: npm run build
+        run: npm install && npm run build
         working-directory: ${{ inputs.app_path }}
 
       - uses: shallwefootball/s3-upload-action@master
