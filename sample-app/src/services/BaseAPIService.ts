@@ -40,7 +40,7 @@ class BaseApiService {
     const response = await fetch(url, {
       method: 'GET',
       headers: this.getHeader(),
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.error(error)
       throw new Error("Something went wrong processing this request. Please ensure your query syntax is valid and try again.");
     });
