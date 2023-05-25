@@ -37,15 +37,14 @@ jobs:
         run: npm install && npm run build
         working-directory: ${{ inputs.app_path }}
 
-      - uses: Noelware/s3-action@v2
+      - uses: jakejarvis/s3-sync-action@master
         name: Upload Artifact for ${{ inputs.app_name }} to S3
-        with:
-            directories: | 
-                '${{ inputs.app_path }}build'
-            access-key-id:  ${{ secrets.aws_access_key }}
-            secret-key: ${{ secrets.aws_secret_key }}
-            prefix: /${{ inputs.app_name }}
-
+        env:
+          AWS_S3_BUCKET: ${{ secrets.s3_bucket }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.aws_secret_key }}
+          SOURCE_DIR: '${{ inputs.app_path }}build'
+          DEST_DIR: ${{ inputs.app_name }}
 
       - name: Invalidate CloudFront Distribution path for /${{ inputs.app_name }}
         uses: chetan/invalidate-cloudfront-action@v2
