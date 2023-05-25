@@ -11,6 +11,7 @@ import { CONN_STATUS } from '../InputPanel/ConnectionPanel/ConnectionPanel';
 import { DisplayOption } from '../InputPanel/DisplayPanel/DisplayPanel';
 import { msgTypeObject } from '../../types';
 import { isPresent } from '../../utils/ActionPanelValidator';
+import { QueryPanel } from '../InputPanel/QueryPanel/QueryPanel';
 
 export const ActionPanel: React.FC = () => {
   const [errorVisibility, setErrorMessageVisbility] = useState<boolean>(false);
@@ -32,6 +33,9 @@ export const ActionPanel: React.FC = () => {
   const [limitResults, setLimitResults] = useState<number>(500);
   const [displayResults, setDisplayResults] = useState<string>(DisplayOption.TABLE);
   const [rawData, setRawData] = useState<string>('');
+  //Query Panel
+  const [queryUrl, setQueryUrl] = useState<string>('');
+  const [queryElapsed, setQueryElapsed] = useState<number>(0);
 
   useEffect(() => {
     if (!config || config.MLINK_ENDPOINT === '' || config.API_KEY === '') {
@@ -41,23 +45,23 @@ export const ActionPanel: React.FC = () => {
     const baseAPIService = new BaseApiService(config);
     baseAPIService.getMsgTypes()
       .then((json) => {
-        let msgTypeArray : {[key : string] : string[]} = {};
-        let msgTokenArray : string[] = [];
+        let msgTypeArray: { [key: string]: string[] } = {};
+        let msgTokenArray: string[] = [];
         // eslint-disable-next-line
         for (const [_key, value] of Object.entries(json)) {
-          let msgType : string = value['message']['name'];
-          let msgToken : string = value['message']['mToken'];
+          let msgType: string = value['message']['name'];
+          let msgToken: string = value['message']['mToken'];
 
           if (isPresent(msgType) && isPresent(msgToken)) {
 
-            if (msgToken in msgTypeArray){
+            if (msgToken in msgTypeArray) {
               msgTypeArray[msgToken].push(msgType)
             }
-            else{
+            else {
               msgTypeArray[msgToken] = [msgType]
               msgTokenArray.push(msgToken)
             }
-            
+
           }
         }
         setConnectStatus(CONN_STATUS.CONNECTED);
@@ -99,6 +103,7 @@ export const ActionPanel: React.FC = () => {
       setShowInitialContent(false);
       setLoading(true);
       const baseAPIService = new BaseApiService(config);
+      setQueryUrl(baseAPIService.getMessagesURL(msgType, whereFilter, viewFilter, limitResults));
       baseAPIService
         .getMessages(msgType, whereFilter, viewFilter, limitResults)
         .then((json) => {
@@ -122,6 +127,7 @@ export const ActionPanel: React.FC = () => {
             setLoading(false);
           }
           const endTime = performance.now();
+          setQueryElapsed(Math.trunc(endTime - startTime))
           console.log('Request time:', Math.trunc(endTime - startTime) + 'ms');
         })
         .catch(error => {
@@ -166,6 +172,10 @@ export const ActionPanel: React.FC = () => {
         setLimitResults={setLimitResults}
         displayResults={displayResults}
         setDisplayResults={setDisplayResults}
+      />
+      <QueryPanel
+        query={queryUrl}
+        queryElapsed={queryElapsed}
       />
 
       <QueryError visible={errorVisibility} message={errorMessage} />
