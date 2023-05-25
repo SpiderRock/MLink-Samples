@@ -22,7 +22,7 @@ export const QueryPanel: FC<QueryPanelProps> = ({
       {isPresentQuery &&
         <section style={queryPanelStyle}>
           <div style={queryStyle}>Request sent: {query}</div>
-          <div style={queryElapsedStyle}>Query Time: {queryElapsed} ms</div>
+          <div style={queryElapsedStyle}>Query Time: {queryElapsed} s</div>
         </section>}
     </>
   );
