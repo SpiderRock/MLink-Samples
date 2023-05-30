@@ -99,16 +99,18 @@ class mlJsonParser {
       params:
           input : mlinkResponse (any) -> The parsed MLink JSON response to data request
   */
-
   parseMLinkDataToFlattenedArray(mlinkResponse: jsonObject[]) {
     let flattenedMessage = []; // For each item in the MLink response
     for (let i = 0; i < mlinkResponse.length; i++) {
       // Set up an empty object for putting this item's data into
       let currentMessage: jsonObject = {}; // Get the current message data into a variable to handle
       let messageData = mlinkResponse[i]['message']; // For every key, value in the message's data headers
-      const flattenedPkey = this.flattenObject(messageData);
-      for (const [pkey, pkeyvalue] of Object.entries(flattenedPkey)) {
-        currentMessage[pkey.toLowerCase()] = pkeyvalue;
+      const flattenedKey = this.flattenObject(messageData);
+      for (let [key, value] of Object.entries(flattenedKey)) {
+        if (Array.isArray(value)) {
+          value = JSON.stringify(value);
+        }
+        currentMessage[key.toLowerCase()] = value;
       }
       // Push that data to the holding array
       flattenedMessage.push(currentMessage);

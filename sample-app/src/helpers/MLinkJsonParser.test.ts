@@ -258,6 +258,42 @@ describe('MLink Parser tests', () => {
       },
     ]);
   });
+
+  test('GIVEN a Json object with a list inside some value WHEN parse the object THEN the list should be stringify', async () => {
+    const result = MLinkJsonParser.parseMLinkDataToFlattenedArray(
+      [{
+        "message": {
+          "pkey": {
+            "ekey": {
+              "at": "EQT",
+              "ts": "NMS",
+              "tk": "VIX",
+              "dt": "2023-09-20"
+            }
+          },
+          "AccountAccessControl": [
+            {
+              "accnt": "T.QVR",
+              "accessType": "FullAccess"
+            },
+            {
+              "accnt": "QVR_OMNI",
+              "accessType": "FullAccess"
+            }]
+        }
+      }]
+    );
+
+    expect(result).toEqual([
+      {
+        "pkey.ekey.at": "EQT",
+        "pkey.ekey.ts": "NMS",
+        "pkey.ekey.tk": "VIX",
+        "pkey.ekey.dt": "2023-09-20",
+        "accountaccesscontrol": "[{\"accnt\":\"T.QVR\",\"accessType\":\"FullAccess\"},{\"accnt\":\"QVR_OMNI\",\"accessType\":\"FullAccess\"}]",
+      }
+    ]);
+  });
 });
 
 describe('Flattening Javacript objects', () => {
