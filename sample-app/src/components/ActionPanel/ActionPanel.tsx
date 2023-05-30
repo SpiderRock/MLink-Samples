@@ -88,6 +88,14 @@ export const ActionPanel: React.FC = () => {
     return limitResults !== undefined && limitResults > 0 && limitResults < 10001;
   };
 
+  const getQueryElapse = (obj: jsonObject) => {
+    let time = obj['queryelapsed'];
+    if (time) {
+      return time;
+    }
+    return 0;
+  }
+
   const handleClickRequest = async (
     msgType: string,
     whereFilter: string | undefined
@@ -99,7 +107,6 @@ export const ActionPanel: React.FC = () => {
       if (!isValidLimit()) {
         throw new Error('Invalid Limit');
       }
-      const startTime = performance.now();
       setShowInitialContent(false);
       setLoading(true);
       const baseAPIService = new BaseApiService(config);
@@ -117,6 +124,8 @@ export const ActionPanel: React.FC = () => {
             setLoading(false);
           }
           else {
+            const time = getQueryElapse(mlinkResponse[mlinkResponse.length - 1]);
+            setQueryElapsed(time);
             setRawData(JSON.stringify(json, null, 2));
             setMsgData(mlinkResponse);
             const schemaArray = MLinkJsonParser.parseMLinkResponseToSchemaArray(
@@ -126,9 +135,6 @@ export const ActionPanel: React.FC = () => {
             setMsgSchema(schemaArray);
             setLoading(false);
           }
-          const endTime = performance.now();
-          setQueryElapsed(Math.trunc(endTime - startTime))
-          console.log('Request time:', Math.trunc(endTime - startTime) + 'ms');
         })
         .catch(error => {
           setErrorMessageVisbility(true);
