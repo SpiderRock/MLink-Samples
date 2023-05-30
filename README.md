@@ -491,7 +491,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               messageTypeNumber = int(msg[2:6])
               if messageTypeNumber == 3315:
                 result = sr_messages.MLinkResponse()
-              elif messageTypeNumber == 2960:
+              elif messageTypeNumber == 3000:
                 result = sr_messages.StockBookQuote()
               result.ParseFromString(msg[12:])
               print(result, '\n')
