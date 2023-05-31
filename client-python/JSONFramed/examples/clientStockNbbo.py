@@ -29,7 +29,7 @@ async def query_mlink(authentication_key):
                     "message": { 
                         "queryLabel":"Example1",
                         "queryType":"FullQuery",
-                        "MsgType":[], 
+                        "MsgType": [{"msgType":3000}], #message number, much be specified to use "views"
                         "msgNameFilter": "StockBookQuote",
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }

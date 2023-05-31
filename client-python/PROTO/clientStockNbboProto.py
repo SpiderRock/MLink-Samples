@@ -6,7 +6,7 @@ import websockets
 import nest_asyncio
 import datetime
 #import <messages needed to query> as sr_messages #these are the compiled messages by token found in proto_files
-import spiderrock_common_pb2 as sr_common
+#import spiderrock_common_pb2 as sr_common #need to compile the files 
 import google
 import requests
 import json
@@ -62,6 +62,7 @@ async def query_mlink(authentication_key):
                 mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
                 mlink_query.descriptor.message_type = "MLinkQuery"
                 msg_type = mlink_query.msg_type.add()
+                msg_type.msg_type = 3000
                 tkey_filter = mlink_query.tkey_filters.add()
                 tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
                 tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
@@ -84,7 +85,7 @@ async def query_mlink(authentication_key):
                             continue
                         cls_factory = msgs[messageTypeNumber][1]
                         if cls_factory == None:
-                            continue;
+                            continue
                         result = cls_factory()
                         result.ParseFromString(msg[12:])
                         notDone = msgs[messageTypeNumber][0] != 'MLinkResponse' or result.state != sr_common.MLINKSTATE_COMPLETE

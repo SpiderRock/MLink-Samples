@@ -471,6 +471,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
             mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
             mlink_query.descriptor.message_type = "MLinkQuery"
             msg_type = mlink_query.msg_type.add()
+            msg_type.msg_type = 3000
             tkey_filter = mlink_query.tkey_filters.add()
             tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
             tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
@@ -489,9 +490,9 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
             for msg in parts:
               # Deserialize the received message using protobuf
               messageTypeNumber = int(msg[2:6])
-              if messageTypeNumber == 3315:
+              if messageTypeNumber == 3385:
                 result = sr_messages.MLinkResponse()
-              elif messageTypeNumber == 2960:
+              elif messageTypeNumber == 3000:
                 result = sr_messages.StockBookQuote()
               result.ParseFromString(msg[12:])
               print(result, '\n')

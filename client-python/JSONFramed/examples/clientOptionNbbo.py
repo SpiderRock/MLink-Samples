@@ -25,7 +25,7 @@ async def query_mlink(authentication_key):
                     "message": { 
                         "queryLabel":"ExampleOptionNbboQuote",
                         "queryType":"FullQuery",
-                        "MsgType":[],
+                        "MsgType": [{"msgType":2785}], #message number, much be specified to use "views"
                         "msgNameFilter": "OptionNbboQuote",
                         "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]
                     }

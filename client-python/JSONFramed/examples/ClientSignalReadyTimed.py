@@ -50,7 +50,7 @@ async def query_mlink(authentication_key):
                         "queryLabel": "SignalReadyExampleTimed",
                         "queryType": "IncrSubscription",
                         "activeLatency": -1,
-                        "MsgType":[], 
+                        "MsgType": [{"msgType":3000}], #message number, much be specified to use "views" 
                         "msgNameFilter": "StockBookQuote",
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }
