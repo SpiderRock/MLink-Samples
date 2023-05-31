@@ -13,7 +13,7 @@ MLink provides the several options:
 # Messages
 Messages are organized into Message Types that are grouped and permissioned by the following Tokens
 
-| Token                 | Description 
+| Token                 | Description |
 |-----------------------|---------------------------------------------------------------------------------|
 | EqtMktData            | Stock quote and prints |
 | FutMktData            | Futures quote and prints |
@@ -491,7 +491,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               messageTypeNumber = int(msg[2:6])
               if messageTypeNumber == 3315:
                 result = sr_messages.MLinkResponse()
-              elif messageTypeNumber == 3000:
+              elif messageTypeNumber == 2960:
                 result = sr_messages.StockBookQuote()
               result.ParseFromString(msg[12:])
               print(result, '\n')
