@@ -1,0 +1,1129 @@
+Message Name,Message ID,Field Number,Field Name,Field Type,Field Description
+LiveAtmVol,1010,10,ekey,ExpiryKey,
+LiveAtmVol,1010,100,ticker,TickerKey,underlying tickerKey (stock or product group) that this option expiration is associated with
+LiveAtmVol,1010,103,uPrc,float,underlier price (effective mid-market) used for fitting
+LiveAtmVol,1010,106,years,float,SR years to expiry metric
+LiveAtmVol,1010,109,rate,float,average expected interest rate to expiry (SR global rate curve)
+LiveAtmVol,1010,112,ddiv,float,(expected) cumulative discrete dividend $ amounts prior to expiration
+LiveAtmVol,1010,113,ddivPv,float,(expected) cumulative npv of discrete dividend $ amounts prior to expiration (SR global rate curve)
+LiveAtmVol,1010,114,ddivSource,enum:DDivSource,Forecast if any of the dividends prior to expiry are forecast rather than announced
+LiveAtmVol,1010,115,atmVol,float,atm vol (xAxis = 0)
+LiveAtmVol,1010,118,atmEMA,float,atm vol exp moving average (5 seconds)
+LiveAtmVol,1010,121,uPrcOffset,float,implied offset for use when fkey is not the natural underlier for this option expiry
+LiveAtmVol,1010,124,uPrcOffsetEMA,float,uPrcOffset exp moving average (half-live ~ 20 seconds)
+LiveAtmVol,1010,127,sdiv,float,stock dividend (borrow rate)
+LiveAtmVol,1010,130,sdivEMA,float,sdiv exp moving average (10 minutes)
+LiveAtmVol,1010,133,axisFUPrc,float,forward underlier price;  also at-the-money (xAxis = 0) synthetic strike
+LiveAtmVol,1010,134,vWidth,float,atm volatility market width (estimated from near expiries)
+LiveAtmVol,1010,136,numAtmStrikes,byte,
+LiveAtmVol,1010,139,tradeableStatus,enum:TradeableStatus,indicates whether the surface is currently tradeable or not (all server surface integrity checks pass)
+LiveAtmVol,1010,142,surfaceResult,enum:SurfaceAdjResult:None,
+LiveAtmVol,1010,145,timestamp,DateTime,
+LiveImpliedQuote,1015,10,okey,OptionKey,
+LiveImpliedQuote,1015,100,ticker,TickerKey,SR Ticker that this option rolls up to
+LiveImpliedQuote,1015,103,uPrc,float,underlier price (usually mid-market)
+LiveImpliedQuote,1015,106,uOff,float,implied underlier price offset (if any)
+LiveImpliedQuote,1015,109,years,float,years to expiration
+LiveImpliedQuote,1015,112,xAxis,float,option moneyness
+LiveImpliedQuote,1015,115,rate,float,discount rate
+LiveImpliedQuote,1015,118,sdiv,float,sdiv (continuous stock dividend) rate
+LiveImpliedQuote,1015,121,ddiv,float,cumulative discrete dividend value
+LiveImpliedQuote,1015,124,oBid,float,option bid price
+LiveImpliedQuote,1015,127,oAsk,float,option ask price
+LiveImpliedQuote,1015,130,oBidIv,float,volatility implied by option bid price
+LiveImpliedQuote,1015,133,oAskIv,float,volatility implied by option ask price
+LiveImpliedQuote,1015,136,atmVol,float,option atm volatility (from SR surface)
+LiveImpliedQuote,1015,139,sVol,float,option surface volatility (SR surface fit model)
+LiveImpliedQuote,1015,142,sPrc,float,"option surface price; ie. PRICE(sVol, uPrc + uOff, years, rate, sDiv, {discrete dividends, if any})"
+LiveImpliedQuote,1015,145,sMark,float,option surface mark (option surface price w/bounding rules; always between bid/ask)
+LiveImpliedQuote,1015,148,veSlope,float,veSlope = dVol / dUprc (assuming vol @ xAxis = 0 remains constant); hedgeDelta = (de + ve * 100 * veSlope) if hedging with this assumption
+LiveImpliedQuote,1015,151,de,float,option delta
+LiveImpliedQuote,1015,154,ga,float,option gamma
+LiveImpliedQuote,1015,157,th,float,option theta
+LiveImpliedQuote,1015,160,ve,float,option vega
+LiveImpliedQuote,1015,163,va,float,option vanna
+LiveImpliedQuote,1015,166,vo,float,option volga
+LiveImpliedQuote,1015,169,ro,float,option rho
+LiveImpliedQuote,1015,172,ph,float,option phi
+LiveImpliedQuote,1015,175,deDecay,float,option delta decay
+LiveImpliedQuote,1015,178,up50,float,underlier up 50% slide
+LiveImpliedQuote,1015,181,dn50,float,underlier dn 50% slide
+LiveImpliedQuote,1015,184,up15,float,underlier up 15% slide
+LiveImpliedQuote,1015,187,dn15,float,underlier dn 15% slide
+LiveImpliedQuote,1015,190,up06,float,underlier up 6% slide
+LiveImpliedQuote,1015,193,dn08,float,underlier dn 8% slide
+LiveImpliedQuote,1015,196,calcErr,enum:ImpliedQuoteError:None,option pricing calculation error (if any)
+LiveImpliedQuote,1015,199,calcSource,enum:CalcSource:None,
+LiveImpliedQuote,1015,202,srcTimestamp,long,OPRA source timestamp (nanoseconds since epoch); will be zero if calcSource != Tick
+LiveImpliedQuote,1015,205,netTimestamp,long,SR timestamp @ publish time
+LiveImpliedQuote,1015,208,timestamp,DateTime,
+LiveImpliedQuoteAdj,1020,10,okey,OptionKey,
+LiveImpliedQuoteAdj,1020,100,ticker,TickerKey,
+LiveImpliedQuoteAdj,1020,103,uprc,float,underlier price (usually mid-market)
+LiveImpliedQuoteAdj,1020,106,years,float,years to expiration
+LiveImpliedQuoteAdj,1020,109,rate,float,interest rate
+LiveImpliedQuoteAdj,1020,112,sdiv,float,sdiv (stock dividend) rate
+LiveImpliedQuoteAdj,1020,115,ddiv,float,cumulative discrete dividend values
+LiveImpliedQuoteAdj,1020,118,obid,float,option bid price
+LiveImpliedQuoteAdj,1020,121,oask,float,option ask price
+LiveImpliedQuoteAdj,1020,124,obiv,float,volatility implied by option bid price
+LiveImpliedQuoteAdj,1020,127,oaiv,float,volatility implied by option ask price
+LiveImpliedQuoteAdj,1020,130,satm,float,option atm volatility (from SR surface)
+LiveImpliedQuoteAdj,1020,133,smny,float,option moneyness
+LiveImpliedQuoteAdj,1020,136,svol,float,option surface volatility
+LiveImpliedQuoteAdj,1020,139,sprc,float,option surface price
+LiveImpliedQuoteAdj,1020,142,smrk,float,option surface price (w/bounding rules)
+LiveImpliedQuoteAdj,1020,145,veSlope,float,veSlope = dVol / dUprc (assuming vol @ xAxis = 0 remains constant);hedgeDelta = (de + ve * 100 * veSlope) if hedging with this assumption
+LiveImpliedQuoteAdj,1020,148,de,float,option delta
+LiveImpliedQuoteAdj,1020,151,ga,float,option gamma
+LiveImpliedQuoteAdj,1020,154,th,float,option theta
+LiveImpliedQuoteAdj,1020,157,ve,float,option vega
+LiveImpliedQuoteAdj,1020,160,va,float,option vanna
+LiveImpliedQuoteAdj,1020,163,vo,float,option volga
+LiveImpliedQuoteAdj,1020,166,ro,float,option rho
+LiveImpliedQuoteAdj,1020,169,ph,float,option phi
+LiveImpliedQuoteAdj,1020,172,deDecay,float,option delta decay
+LiveImpliedQuoteAdj,1020,175,up50,float,underlier up 50% slide
+LiveImpliedQuoteAdj,1020,178,dn50,float,underlier dn 50% slide
+LiveImpliedQuoteAdj,1020,181,up15,float,underlier up 15% slide
+LiveImpliedQuoteAdj,1020,184,dn15,float,underlier dn 15% slide
+LiveImpliedQuoteAdj,1020,187,up06,float,underlier up 6% slide
+LiveImpliedQuoteAdj,1020,190,dn08,float,underlier dn 8% slide
+LiveImpliedQuoteAdj,1020,193,calcErr,string:24,option pricing error (if any)
+LiveImpliedQuoteAdj,1020,196,calcSource,enum:CalcSource,
+LiveImpliedQuoteAdj,1020,199,uPrcAdjResult,enum:AdjResult,
+LiveImpliedQuoteAdj,1020,202,timestamp,DateTime,
+LiveSurfaceCurve,1035,10,ekey,ExpiryKey,
+LiveSurfaceCurve,1035,11,surfaceType,enum:SurfaceCurveType:None,
+LiveSurfaceCurve,1035,100,ticker,TickerKey,underlying stock key that this option expiration attaches to
+LiveSurfaceCurve,1035,103,fkey,ExpiryKey,future that this option expiration month written on (if any)
+LiveSurfaceCurve,1035,106,uPrc,double,underlier price used for surface fit
+LiveSurfaceCurve,1035,109,uBid,float,underlier bid price
+LiveSurfaceCurve,1035,112,uAsk,float,underlier ask price
+LiveSurfaceCurve,1035,115,years,float,time to expiration (in years)
+LiveSurfaceCurve,1035,118,rate,float,average interest rate to expiration (SR global rate curve)
+LiveSurfaceCurve,1035,121,ddiv,float,(expected) cumulative discrete dividend $ amounts prior to expiration
+LiveSurfaceCurve,1035,122,ddivPv,float,(expected) cumulative npv of discrete dividend $ amounts prior to expiration (SR global rate curve)
+LiveSurfaceCurve,1035,123,ddivSource,enum:DDivSource:None,Forecast if any of the dividends prior to expiry are forecast rather than announced
+LiveSurfaceCurve,1035,124,symbolRatio,float,underlier price ratio (usually 1.0 or a multi-hedge option price ratio; if one exists)
+LiveSurfaceCurve,1035,127,exType,enum:ExerciseType,exercise type (American or European)
+LiveSurfaceCurve,1035,130,modelType,enum:CalcModelType,"option pricing model used for price calcs (Normal, LogNormal, etc.)"
+LiveSurfaceCurve,1035,133,priceType,enum:CalcPriceType:None,"Equity has independent sdiv and rate, Future has sdiv = rate"
+LiveSurfaceCurve,1035,136,earnCnt,float,number of qualifying earnings events prior to expiration [can be fractional] (from StockEarningsCalendar)
+LiveSurfaceCurve,1035,139,earnCntAdj,float,number of qualifying earnings events prior to expiration [adjusted] (from StockEarningsCalendar + LiveSurfaceTerm)
+LiveSurfaceCurve,1035,142,axisVolRT,float,axis volatility x sqrt(years) (used to compute xAxis) [usually 4m atm vol]
+LiveSurfaceCurve,1035,145,axisFUPrc,float,axis FwdUPrc (fwd underlying price used to compute xAxis)
+LiveSurfaceCurve,1035,148,atmStrike,float,synthetic strike with cPrice = pPrice
+LiveSurfaceCurve,1035,151,moneynessType,enum:MoneynessType,moneyness (xAxis) convention
+LiveSurfaceCurve,1035,154,underlierMode,enum:UnderlierMode,underlier pricing mode (None=use spot/stock market; FrontMonth=use front month future market + uPrcOffset; Actual = use actual underlier future market)
+LiveSurfaceCurve,1035,157,cpAdjType,enum:CPAdjType:None,adjustment used to align calls/puts (if any)
+LiveSurfaceCurve,1035,160,priceQuoteType,enum:PriceQuoteType,Price or Vol
+LiveSurfaceCurve,1035,163,atmVol,float,atm vol (xAxis = 0)
+LiveSurfaceCurve,1035,166,atmCen,float,atm vol (xAxis = 0) (eMove/earnCntAdj censored)
+LiveSurfaceCurve,1035,169,atmVolHist,float,historical realized volatility (includes eMoveHist x earnCntAdj adjustment).  Note that this is the default atmVol if no implied markets existed previous day.
+LiveSurfaceCurve,1035,172,atmCenHist,float,censored (earnings events removed) historical realized volatility.  Trailing periods is 2x forward time to expiration.  From HistoricalVolatility(windowType=hlCen).mv_nnn
+LiveSurfaceCurve,1035,175,minAtmVol,float,minimum estimated atm vol
+LiveSurfaceCurve,1035,178,maxAtmVol,float,maximum estimated atm vol
+LiveSurfaceCurve,1035,181,minCPAdj,float,minimum CP adjust value (sdiv or uPrcOffset)
+LiveSurfaceCurve,1035,184,maxCPAdj,float,maximum CP adjust value (sdiv or uPrcOffset)
+LiveSurfaceCurve,1035,187,eMove,float,implied earnings move (from LiveSurfaceTerm)
+LiveSurfaceCurve,1035,190,eMoveHist,float,historical earnings move (avg of trailing 8 moves). From StockEarningsCalendar.eMoveHist
+LiveSurfaceCurve,1035,193,uPrcOffsetFit,float,implied offset for use when fkey is not the natural underlier for this option expiry [most recent fit value]
+LiveSurfaceCurve,1035,196,uPrcOffsetEMA,float,time smoothed implied uPrcOffset (half-live ~ 20 seconds)
+LiveSurfaceCurve,1035,199,sdivFit,float,stock dividend (borrow rate) [most recent fit from slow loop]
+LiveSurfaceCurve,1035,202,sdivEMA,float,sdiv bounded exponential moving average
+LiveSurfaceCurve,1035,205,atmFixedMove,float,fixed strike atm move from prior period
+LiveSurfaceCurve,1035,208,atmPhi,float,surface phi @ xAxis = 0
+LiveSurfaceCurve,1035,211,atmVega,float,surface vega @ xAxis = 0
+LiveSurfaceCurve,1035,214,slope,float,volatility surface slope (dVol / dXAxis) @ ATM (xAxis=0)
+LiveSurfaceCurve,1035,217,varSwapFV,float,variance swap fair value (estimated by numerical integration over OTM price surface)
+LiveSurfaceCurve,1035,220,gridType,enum:GridType:None,gridType defines skew curve coeff points + spline type
+LiveSurfaceCurve,1035,223,knotShift,float,constant that should be added to each base knot location [-3.0 - +3.0]
+LiveSurfaceCurve,1035,226,minXAxis,float,minimum xAxis value; xAxis values to the left extrapolate horizontally
+LiveSurfaceCurve,1035,229,maxXAxis,float,maximum xAxis value; xAxis values to the right extrapolate horizontally
+LiveSurfaceCurve,1035,232,minCurvValue,float,minimum curvature (2nd derivative) of skew curve (can be negative if curve is not strictly convex)
+LiveSurfaceCurve,1035,235,minCurvXAxis,float,xAxis of minimum curvature point
+LiveSurfaceCurve,1035,238,maxCurvValue,float,maximum curvature (2nd derivative) of skew curve
+LiveSurfaceCurve,1035,241,maxCurvXAxis,float,xAxis of maximum curvature point
+LiveSurfaceCurve,1035,244,skewMinX,float,xAxis = (effStrike / effAxisFUPrc - 1.0) / axisVolRT; effStrike = strike * strikeRatio; effAxisFUPrc = axisFUPrc * symbolRatio
+LiveSurfaceCurve,1035,247,skewMinY,float,skewMinX / skewMinY are the skew curve minimum point (usually a positive x value and a negative y value)
+LiveSurfaceCurve,1035,250,surfaceFit,enum:SurfaceFit:None,
+LiveSurfaceCurve,1035,253,skewC00,float,curve coeff[0]
+LiveSurfaceCurve,1035,256,skewC01,float,curve coeff[1]
+LiveSurfaceCurve,1035,259,skewC02,float,
+LiveSurfaceCurve,1035,262,skewC03,float,
+LiveSurfaceCurve,1035,265,skewC04,float,
+LiveSurfaceCurve,1035,268,skewC05,float,
+LiveSurfaceCurve,1035,271,skewC06,float,
+LiveSurfaceCurve,1035,274,skewC07,float,
+LiveSurfaceCurve,1035,277,skewC08,float,
+LiveSurfaceCurve,1035,280,skewC09,float,
+LiveSurfaceCurve,1035,283,skewC10,float,
+LiveSurfaceCurve,1035,286,skewC11,float,
+LiveSurfaceCurve,1035,289,skewC12,float,
+LiveSurfaceCurve,1035,292,skewC13,float,
+LiveSurfaceCurve,1035,295,skewC14,float,
+LiveSurfaceCurve,1035,298,skewC15,float,
+LiveSurfaceCurve,1035,301,skewC16,float,
+LiveSurfaceCurve,1035,304,skewC17,float,
+LiveSurfaceCurve,1035,307,skewC18,float,
+LiveSurfaceCurve,1035,310,skewC19,float,
+LiveSurfaceCurve,1035,313,skewC20,float,
+LiveSurfaceCurve,1035,316,skewC21,float,
+LiveSurfaceCurve,1035,319,skewC22,float,
+LiveSurfaceCurve,1035,322,skewC23,float,
+LiveSurfaceCurve,1035,325,skewC24,float,
+LiveSurfaceCurve,1035,328,skewC25,float,
+LiveSurfaceCurve,1035,331,skewC26,float,
+LiveSurfaceCurve,1035,334,skewC27,float,
+LiveSurfaceCurve,1035,337,skewC28,float,
+LiveSurfaceCurve,1035,340,ivAdjD07,float,xAxis = -5.0
+LiveSurfaceCurve,1035,343,ivAdjD06,float,xAxis = -4.0
+LiveSurfaceCurve,1035,346,ivAdjD05,float,xAxis = -3.0
+LiveSurfaceCurve,1035,349,ivAdjD04,float,xAxis = -2.0
+LiveSurfaceCurve,1035,352,ivAdjD03,float,xAxis = -1.5
+LiveSurfaceCurve,1035,355,ivAdjD02,float,xAxis = -1.0
+LiveSurfaceCurve,1035,358,ivAdjD01,float,xAxis = -0.5
+LiveSurfaceCurve,1035,361,ivAdjU01,float,xAxis = +0.5
+LiveSurfaceCurve,1035,364,ivAdjU02,float,xAxis = +1.0
+LiveSurfaceCurve,1035,367,ivAdjU03,float,xAxis = +1.5
+LiveSurfaceCurve,1035,370,ivAdjU04,float,xAxis = +2.0
+LiveSurfaceCurve,1035,373,ivAdjU05,float,xAxis = +3.0
+LiveSurfaceCurve,1035,376,ivAdjU06,float,xAxis = +4.0
+LiveSurfaceCurve,1035,379,ivAdjU07,float,xAxis = +5.0
+LiveSurfaceCurve,1035,382,cpAdjD04,float,xAxis = -4.0
+LiveSurfaceCurve,1035,385,cpAdjD03,float,xAxis = -3.0
+LiveSurfaceCurve,1035,388,cpAdjD02,float,xAxis = -2.0
+LiveSurfaceCurve,1035,391,cpAdjD01,float,xAxis = -1.0
+LiveSurfaceCurve,1035,394,cpAdjU01,float,xAxis = +1.0
+LiveSurfaceCurve,1035,397,cpAdjU02,float,xAxis = +2.0
+LiveSurfaceCurve,1035,400,cpAdjU03,float,xAxis = +3.0
+LiveSurfaceCurve,1035,403,cpAdjU04,float,xAxis = +4.0
+LiveSurfaceCurve,1035,406,pwidth,float,minimum mkt premium width
+LiveSurfaceCurve,1035,409,vwidth,float,minimum mkt volatility width
+LiveSurfaceCurve,1035,412,cCnt,byte,num call strikes in base fit
+LiveSurfaceCurve,1035,415,pCnt,byte,num put strikes in base fit
+LiveSurfaceCurve,1035,418,cBidMiss,byte,number of call bid violations (surface outside the market)
+LiveSurfaceCurve,1035,421,cAskMiss,byte,number of call ask violations (surface outside the market)
+LiveSurfaceCurve,1035,424,pBidMiss,byte,number of put bid violations
+LiveSurfaceCurve,1035,427,pAskMiss,byte,number of put ask violations
+LiveSurfaceCurve,1035,430,fitAvgErr,float,average error (sPrc - midPrc)
+LiveSurfaceCurve,1035,433,fitAvgAbsErr,float,average absolute error (sPrc - midPrc)
+LiveSurfaceCurve,1035,436,fitMaxPrcErr,float,worst case surface premium violation
+LiveSurfaceCurve,1035,439,fitErrXX,float,okey_xx of the option with the largest fit error in this expiration
+LiveSurfaceCurve,1035,442,fitErrCP,enum:CallPut,okey_cp of the option with the largest fit error in this expiration
+LiveSurfaceCurve,1035,445,fitErrDe,float,delta of fixErrXX
+LiveSurfaceCurve,1035,448,fitErrBid,float,bid of the option with the largest fit error
+LiveSurfaceCurve,1035,451,fitErrAsk,float,ask of the option with the largest fit error
+LiveSurfaceCurve,1035,454,fitErrPrc,float,surface prc of the option with the largest fit error
+LiveSurfaceCurve,1035,457,fitErrVol,float,surface vol of the option with the largest fit error
+LiveSurfaceCurve,1035,460,numSaddlePts,byte,number of saddle points
+LiveSurfaceCurve,1035,463,minSaddleSpan,float,smallest distance between saddle points
+LiveSurfaceCurve,1035,466,maxSaddleCurvature,float,maximum saddle point curvature
+LiveSurfaceCurve,1035,469,skewCounter,int,skew surface fit counter
+LiveSurfaceCurve,1035,472,sdivCounter,int,sdiv surface fit counter
+LiveSurfaceCurve,1035,475,marketSession,enum:MarketSession:None,market session this surface is from
+LiveSurfaceCurve,1035,478,tradeableStatus,enum:TradeableStatus:None,indicates whether the surface is currently tradeable or not (all server surface integrity checks pass)
+LiveSurfaceCurve,1035,481,surfaceResult,enum:SurfaceResult:None,
+LiveSurfaceCurve,1035,484,sTimestamp,DateTime,last surface curve fit timestamp
+LiveSurfaceCurve,1035,487,time,TimeSpan,
+LiveSurfaceCurve,1035,490,timestamp,DateTime,
+LiveSurfaceFixedGrid,1040,10,ticker,TickerKey,
+LiveSurfaceFixedGrid,1040,11,days,short,"days to expiration [5, 21, 42, 63, 84, 105, 126, 189, 252, 378, 504]"
+LiveSurfaceFixedGrid,1040,12,surfaceType,enum:SurfaceCurveType,
+LiveSurfaceFixedGrid,1040,100,date,string:10,
+LiveSurfaceFixedGrid,1040,103,time,string:8,
+LiveSurfaceFixedGrid,1040,106,sDiv,float,Interpolated implied sdiv rate (from LiveSurfaceFixedTerm.sDiv_N)
+LiveSurfaceFixedGrid,1040,109,fwdUPrc,float,Interpolated implied forward price (from LiveSurfaceFixedTerm.fwdUPrc_N)
+LiveSurfaceFixedGrid,1040,112,eCnt,int,Number of expected earnings dates (from LiveSurfaceFixedTerm.eCnt_N)
+LiveSurfaceFixedGrid,1040,115,eMove,float,Implied earnings move (from LiveSurfaceFixedTerm.eMove)
+LiveSurfaceFixedGrid,1040,118,eMoveHist,float,Historical earnings move (from LiveSurfaceFixedTerm.eMoveHist)
+LiveSurfaceFixedGrid,1040,121,volD45,float,xde = -45	    (censored volatility)
+LiveSurfaceFixedGrid,1040,124,volD40,float,xde = -40
+LiveSurfaceFixedGrid,1040,127,volD35,float,xde = -35
+LiveSurfaceFixedGrid,1040,130,volD30,float,xde = -30
+LiveSurfaceFixedGrid,1040,133,volD25,float,xde = -25
+LiveSurfaceFixedGrid,1040,136,volD20,float,xde = -20
+LiveSurfaceFixedGrid,1040,139,volD15,float,xde = -15
+LiveSurfaceFixedGrid,1040,142,volD10,float,xde = -10
+LiveSurfaceFixedGrid,1040,145,volD05,float,xde = -5
+LiveSurfaceFixedGrid,1040,148,volA00,float,xde = 0
+LiveSurfaceFixedGrid,1040,151,volU05,float,xde = +5
+LiveSurfaceFixedGrid,1040,154,volU10,float,xde = +10
+LiveSurfaceFixedGrid,1040,157,volU15,float,xde = +15
+LiveSurfaceFixedGrid,1040,160,volU20,float,xde = +20
+LiveSurfaceFixedGrid,1040,163,volU25,float,xde = +25
+LiveSurfaceFixedGrid,1040,166,volU30,float,xde = +30
+LiveSurfaceFixedGrid,1040,169,volU35,float,xde = +35
+LiveSurfaceFixedGrid,1040,172,volU40,float,xde = +40
+LiveSurfaceFixedGrid,1040,175,volU45,float,xde = +45
+LiveSurfaceFixedGrid,1040,178,vWidth,float,atm volatility width (from LiveSurfaceFixedTerm.vWidth_N)
+LiveSurfaceFixedGrid,1040,181,vSlope,float,atm volatility slope (from LiveSurfaceFixedTerm.vSlope_N)
+LiveSurfaceFixedGrid,1040,184,loYears,float,LiveSurfaceCurve.years before days [-1 = none]
+LiveSurfaceFixedGrid,1040,187,hiYears,float,LiveSurfaceCurve.years after days	[-1 = none]
+LiveSurfaceFixedGrid,1040,190,minDelta,float,minimum valid strike delta
+LiveSurfaceFixedGrid,1040,193,maxDelta,float,maximum valid strike delta
+LiveSurfaceFixedGrid,1040,196,timestamp,DateTime,surface fit timestamp
+LiveSurfaceFixedTerm,1045,10,ticker,TickerKey,
+LiveSurfaceFixedTerm,1045,11,surfaceType,enum:SurfaceCurveType,
+LiveSurfaceFixedTerm,1045,100,hEMove,float,expected forward earnings move (average of the last 8-12 underlier earnings moves; w/max clipping)
+LiveSurfaceFixedTerm,1045,103,hEMoveNum,byte,num historical earnings moves in historical window
+LiveSurfaceFixedTerm,1045,106,hEMoveAvg,float,avg historical earnings move (last 8-12 underlier earnings moves)
+LiveSurfaceFixedTerm,1045,109,hEMoveStd,float,std historical earnings move (last 8-12 underlier earnings moves)
+LiveSurfaceFixedTerm,1045,112,hEMoveMin,float,max historical earnings move (last 8-12 underlier earnings moves)
+LiveSurfaceFixedTerm,1045,115,hEMoveMax,float,min historical earnings move (last 8-12 underlier earnings moves)
+LiveSurfaceFixedTerm,1045,118,iEMove,float,implied earnings move (implied move; all earnings events)
+LiveSurfaceFixedTerm,1045,121,iEFitCode,enum:EFitCode,implied EFit Code
+LiveSurfaceFixedTerm,1045,124,iEFitError,float,eMove fit error (term surface fit error)
+LiveSurfaceFixedTerm,1045,127,expiryCount,byte,number of actual expirations involved
+LiveSurfaceFixedTerm,1045,130,iEMoveAvg,float,average eMove today
+LiveSurfaceFixedTerm,1045,133,iEMoveStd,float,eMove std dev today
+LiveSurfaceFixedTerm,1045,136,iEMoveMin,float,eMove min today
+LiveSurfaceFixedTerm,1045,139,iEMoveMax,float,emove max today
+LiveSurfaceFixedTerm,1045,142,iEMoveCnt,int,number of surface term fits today
+LiveSurfaceFixedTerm,1045,145,eMoveExpAdj1,int,number of expirations (+/-) that the next earn date was moved to best fit market term structure (if any)
+LiveSurfaceFixedTerm,1045,148,eMoveYrsAdj1,float,number of trading years (+/-) that the next earn date was moved to best fit market term structure (if any)
+LiveSurfaceFixedTerm,1045,151,eMoveYears1,float,years to expiration from LiveSurfaceCurve.pkey.ekey = eMoveFKey1
+LiveSurfaceFixedTerm,1045,154,eMoveEKey1,ExpiryKey,LiveSurfaceCurve.pkey.ekey immediately after 1st implied earnings move (note: this will not match the base earnings calendar if eMoveDtAdj1 != 0)
+LiveSurfaceFixedTerm,1045,157,eMoveExpAdj2,int,number of expirations (+/-) that the 2nd earn date was moved to best fit market term structure (if any)
+LiveSurfaceFixedTerm,1045,160,eMoveYrsAdj2,float,number of trading years (+/-) that the 2nd earn date was moved to best fit market term structure (if any)
+LiveSurfaceFixedTerm,1045,163,eMoveYears2,float,years to expiration from LiveSurfaceCurve.pkey.fkey = eMoveFKey2
+LiveSurfaceFixedTerm,1045,166,eMoveEKey2,ExpiryKey,LiveSurfaceCurve.pkey.ekey immediately after 2nd implied earnings move (note: this will not match the base earnings calendar if eMoveDtAdj2 != 0)
+LiveSurfaceFixedTerm,1045,169,atmCenI_st,float,short term (5 day) model atm volatility (censored using iEMult)
+LiveSurfaceFixedTerm,1045,172,atmCenI_lt,float,long term (504 day) model atm volatility
+LiveSurfaceFixedTerm,1045,175,atmCenI_decay,float,model decay parameter
+LiveSurfaceFixedTerm,1045,178,atmCenI_5d,float,Interpolated 5 day atm vol (censored using iEMult)
+LiveSurfaceFixedTerm,1045,181,atmCenI_10d,float,Interpolated 10 day atm vol
+LiveSurfaceFixedTerm,1045,184,atmCenI_21d,float,Interpolated 21 day atm vol
+LiveSurfaceFixedTerm,1045,187,atmCenI_42d,float,Interpolated 42 day atm vol
+LiveSurfaceFixedTerm,1045,190,atmCenI_63d,float,Interpolated 63 day atm vol
+LiveSurfaceFixedTerm,1045,193,atmCenI_84d,float,Interpolated 84 day atm vol
+LiveSurfaceFixedTerm,1045,196,atmCenI_105d,float,Interpolated 105 day atm vol
+LiveSurfaceFixedTerm,1045,199,atmCenI_126d,float,Interpolated 126 day atm vol
+LiveSurfaceFixedTerm,1045,202,atmCenI_189d,float,Interpolated 189 day atm vol
+LiveSurfaceFixedTerm,1045,205,atmCenI_252d,float,Interpolated 252 day atm vol
+LiveSurfaceFixedTerm,1045,208,atmCenI_378d,float,Interpolated 378 day atm vol
+LiveSurfaceFixedTerm,1045,211,atmCenI_504d,float,Interpolated 504 day atm vol
+LiveSurfaceFixedTerm,1045,214,atmCenH_st,float,short term (5 day) model atm volatility (censored using hEMult)
+LiveSurfaceFixedTerm,1045,217,atmCenH_lt,float,long term (504 day) model atm volatility
+LiveSurfaceFixedTerm,1045,220,atmCenH_decay,float,model decay parameter
+LiveSurfaceFixedTerm,1045,223,atmCenH_5d,float,Interpolated 5 day atm vol (censored using hEMult)
+LiveSurfaceFixedTerm,1045,226,atmCenH_10d,float,Interpolated 10 day atm vol
+LiveSurfaceFixedTerm,1045,229,atmCenH_21d,float,Interpolated 21 day atm vol
+LiveSurfaceFixedTerm,1045,232,atmCenH_42d,float,Interpolated 42 day atm vol
+LiveSurfaceFixedTerm,1045,235,atmCenH_63d,float,Interpolated 63 day atm vol
+LiveSurfaceFixedTerm,1045,238,atmCenH_84d,float,Interpolated 84 day atm vol
+LiveSurfaceFixedTerm,1045,241,atmCenH_105d,float,Interpolated 105 day atm vol
+LiveSurfaceFixedTerm,1045,244,atmCenH_126d,float,Interpolated 126 day atm vol
+LiveSurfaceFixedTerm,1045,247,atmCenH_189d,float,Interpolated 189 day atm vol
+LiveSurfaceFixedTerm,1045,250,atmCenH_252d,float,Interpolated 252 day atm vol
+LiveSurfaceFixedTerm,1045,253,atmCenH_378d,float,Interpolated 378 day atm vol
+LiveSurfaceFixedTerm,1045,256,atmCenH_504d,float,Interpolated 504 day atm vol
+LiveSurfaceFixedTerm,1045,259,sDiv_5d,float,Interpolated 5 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,262,sDiv_10d,float,Interpolated 10 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,265,sDiv_21d,float,Interpolated 21 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,268,sDiv_42d,float,Interpolated 42 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,271,sDiv_63d,float,Interpolated 63 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,274,sDiv_84d,float,Interpolated 84 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,277,sDiv_105d,float,Interpolated 105 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,280,sDiv_126d,float,Interpolated 126 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,283,sDiv_189d,float,Interpolated 189 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,286,sDiv_252d,float,Interpolated 252 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,289,sDiv_378d,float,Interpolated 378 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,292,sDiv_504d,float,Interpolated 504 day implied sdiv rate
+LiveSurfaceFixedTerm,1045,295,fwdUPrc_5d,float,Interpolated 5 day implied forward price
+LiveSurfaceFixedTerm,1045,298,fwdUPrc_10d,float,Interpolated 10 day implied forward price
+LiveSurfaceFixedTerm,1045,301,fwdUPrc_21d,float,Interpolated 21 day implied forward price
+LiveSurfaceFixedTerm,1045,304,fwdUPrc_42d,float,Interpolated 42 day implied forward price
+LiveSurfaceFixedTerm,1045,307,fwdUPrc_63d,float,Interpolated 63 day implied forward price
+LiveSurfaceFixedTerm,1045,310,fwdUPrc_84d,float,Interpolated 84 day implied forward price
+LiveSurfaceFixedTerm,1045,313,fwdUPrc_105d,float,Interpolated 105 day implied forward price
+LiveSurfaceFixedTerm,1045,316,fwdUPrc_126d,float,Interpolated 126 day implied forward price
+LiveSurfaceFixedTerm,1045,319,fwdUPrc_189d,float,Interpolated 189 day implied forward price
+LiveSurfaceFixedTerm,1045,322,fwdUPrc_252d,float,Interpolated 252 day implied forward price
+LiveSurfaceFixedTerm,1045,325,fwdUPrc_378d,float,Interpolated 378 day implied forward price
+LiveSurfaceFixedTerm,1045,328,fwdUPrc_504d,float,Interpolated 504 day implied forward price
+LiveSurfaceFixedTerm,1045,331,vWidth_5d,float,Interpolated 5 day market vwidth
+LiveSurfaceFixedTerm,1045,334,vWidth_10d,float,Interpolated 10 day market vwidth
+LiveSurfaceFixedTerm,1045,337,vWidth_21d,float,Interpolated 21 day market vwidth
+LiveSurfaceFixedTerm,1045,340,vWidth_42d,float,Interpolated 42 day market vwidth
+LiveSurfaceFixedTerm,1045,343,vWidth_63d,float,Interpolated 63 day market vwidth
+LiveSurfaceFixedTerm,1045,346,vWidth_84d,float,Interpolated 84 day market vwidth
+LiveSurfaceFixedTerm,1045,349,vWidth_105d,float,Interpolated 105 day market vwidth
+LiveSurfaceFixedTerm,1045,352,vWidth_126d,float,Interpolated 126 day market vwidth
+LiveSurfaceFixedTerm,1045,355,vWidth_189d,float,Interpolated 189 day market vwidth
+LiveSurfaceFixedTerm,1045,358,vWidth_252d,float,Interpolated 252 day market vwidth
+LiveSurfaceFixedTerm,1045,361,vWidth_378d,float,Interpolated 378 day market vwidth
+LiveSurfaceFixedTerm,1045,364,vWidth_504d,float,Interpolated 504 day market vwidth
+LiveSurfaceFixedTerm,1045,367,vSlope_5d,float,Interpolated 5 day atm vol slope
+LiveSurfaceFixedTerm,1045,370,vSlope_10d,float,Interpolated 10 day atm vol slope
+LiveSurfaceFixedTerm,1045,373,vSlope_21d,float,Interpolated 21 day atm vol slope
+LiveSurfaceFixedTerm,1045,376,vSlope_42d,float,Interpolated 42 day atm vol slope
+LiveSurfaceFixedTerm,1045,379,vSlope_63d,float,Interpolated 63 day atm vol slope
+LiveSurfaceFixedTerm,1045,382,vSlope_84d,float,Interpolated 84 day atm vol slope
+LiveSurfaceFixedTerm,1045,385,vSlope_105d,float,Interpolated 105 day atm vol slope
+LiveSurfaceFixedTerm,1045,388,vSlope_126d,float,Interpolated 126 day atm vol slope
+LiveSurfaceFixedTerm,1045,391,vSlope_189d,float,Interpolated 189 day atm vol slope
+LiveSurfaceFixedTerm,1045,394,vSlope_252d,float,Interpolated 252 day atm vol slope
+LiveSurfaceFixedTerm,1045,397,vSlope_378d,float,Interpolated 378 day atm vol slope
+LiveSurfaceFixedTerm,1045,400,vSlope_504d,float,Interpolated 504 day atm vol slope
+LiveSurfaceFixedTerm,1045,403,eCnt_5d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,406,eCnt_10d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,409,eCnt_21d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,412,eCnt_42d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,415,eCnt_63d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,418,eCnt_84d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,421,eCnt_105d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,424,eCnt_126d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,427,eCnt_189d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,430,eCnt_252d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,433,eCnt_378d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,436,eCnt_504d,byte,number of expected earnings events
+LiveSurfaceFixedTerm,1045,439,status,enum:CurveStatus:None,
+LiveSurfaceFixedTerm,1045,442,time,TimeSpan,
+LiveSurfaceFixedTerm,1045,445,timestamp,DateTime,update timestamp
+OptionRiskFactor,1095,10,okey,OptionKey,
+OptionRiskFactor,1095,100,ticker,TickerKey,
+OptionRiskFactor,1095,103,svol,float,option surface volatility
+OptionRiskFactor,1095,106,years,float,years to expiration
+OptionRiskFactor,1095,109,up50,float,underlier up 50% slide
+OptionRiskFactor,1095,112,dn50,float,underlier dn 50% slide
+OptionRiskFactor,1095,115,up15,float,underlier up 15% slide
+OptionRiskFactor,1095,118,dn15,float,underlier dn 15% slide
+OptionRiskFactor,1095,121,up12,float,underlier up 12% slide
+OptionRiskFactor,1095,124,dn12,float,underlier dn 12% slide
+OptionRiskFactor,1095,127,up09,float,underlier up 9% slide
+OptionRiskFactor,1095,130,dn09,float,underlier dn 9% slide
+OptionRiskFactor,1095,133,dn08,float,underlier dn 8% slide
+OptionRiskFactor,1095,136,up06,float,underlier up 6% slide
+OptionRiskFactor,1095,139,dn06,float,underlier dn 6% slide
+OptionRiskFactor,1095,142,up03,float,underlier up 3% slide
+OptionRiskFactor,1095,145,dn03,float,underlier dn 3% slide
+OptionRiskFactor,1095,148,calcErr,string:24,"option pricing error, otherwise, an empty string."
+OptionRiskFactor,1095,151,calcSource,enum:CalcSource,
+OptionRiskFactor,1095,154,timestamp,DateTime,
+FutureMinuteBar,1160,10,fkey,ExpiryKey,
+FutureMinuteBar,1160,100,date,string:10,Trade Date
+FutureMinuteBar,1160,103,time,string:8,Trade Time end of period (Bar)
+FutureMinuteBar,1160,106,prtOpen,double,Print at open of period (Bar)
+FutureMinuteBar,1160,109,prtHigh,double,High price during period (Bar)
+FutureMinuteBar,1160,112,prtLow,double,Low price during period (Bar)
+FutureMinuteBar,1160,115,prtLast,double,Print at close of period (Bar)
+FutureMinuteBar,1160,118,prtVWap,double,Period (Bar) VWap
+FutureMinuteBar,1160,121,prtVolume,int,Period (Bar) number of contracts
+FutureMinuteBar,1160,124,prtCount,int,Number of prints during the period
+FutureMinuteBar,1160,127,qteHiBid,double,Quote bid high
+FutureMinuteBar,1160,130,qteLoAsk,double,Quote ask low
+FutureMinuteBar,1160,133,qteTwap,double,Quote Twap
+FutureMinuteBar,1160,136,qteCount,int,Quote number of contracts
+FutureMinuteBar,1160,139,bid,double,Bid at the time of the print
+FutureMinuteBar,1160,142,ask,double,Ask at the time of the print
+FutureMinuteBar,1160,145,bidSz,int,Bid size at the time of print
+FutureMinuteBar,1160,148,askSz,int,Ask size at the time of print
+FutureMinuteBar,1160,151,width,float,reference point for expWidth (SR debug use)
+FutureMinuteBar,1160,154,isEOB,enum:YesNo,is end-of-bar (every 10 minutes)
+FutureMinuteBar,1160,157,isEOH,enum:YesNo,is end-of-hour
+FutureMinuteBar,1160,160,timestamp,DateTime,same as date + time
+StockMinuteBar,1175,10,ticker,TickerKey,
+StockMinuteBar,1175,100,date,string:10,
+StockMinuteBar,1175,103,time,string:8,
+StockMinuteBar,1175,106,prtOpen,double,Open print
+StockMinuteBar,1175,109,prtHigh,double,High print
+StockMinuteBar,1175,112,prtLow,double,Low print
+StockMinuteBar,1175,115,prtLast,double,Last print
+StockMinuteBar,1175,118,prtVWap,double,VWap (print)
+StockMinuteBar,1175,121,prtVolume,int,Print volume
+StockMinuteBar,1175,124,prtCount,int,Print count
+StockMinuteBar,1175,127,qteHiBid,double,Quote high bid
+StockMinuteBar,1175,130,qteLoAsk,double,Quote low ask
+StockMinuteBar,1175,133,qteTwap,double,Quote TWap
+StockMinuteBar,1175,136,qteCount,int,Quote count
+StockMinuteBar,1175,139,bid,double,Bid
+StockMinuteBar,1175,142,ask,double,Ask
+StockMinuteBar,1175,145,bidSz,int,Bid size
+StockMinuteBar,1175,148,askSz,int,Ask size
+StockMinuteBar,1175,151,width,float,Bid/ask spread
+StockMinuteBar,1175,154,isEOB,enum:YesNo,is end-of-bar (every 10 minutes)
+StockMinuteBar,1175,157,isEOH,enum:YesNo,is end-of-hour
+StockMinuteBar,1175,160,timestamp,DateTime,same as date + time
+FutureBookQuote,2580,10,fkey,ExpiryKey,
+FutureBookQuote,2580,100,updateType,enum:UpdateType,
+FutureBookQuote,2580,103,marketStatus,enum:MarketStatus:None,"market status (open, halted, etc)"
+FutureBookQuote,2580,106,bidPrice1,double,bid price
+FutureBookQuote,2580,109,askPrice1,double,ask price
+FutureBookQuote,2580,112,bidSize1,int,bid size in contracts
+FutureBookQuote,2580,115,askSize1,int,ask size in contracts
+FutureBookQuote,2580,118,bidOrders1,ushort,number of participating orders at the bid price
+FutureBookQuote,2580,121,askOrders1,ushort,number of participating orders at the ask price
+FutureBookQuote,2580,124,bidPrice2,double,bid price
+FutureBookQuote,2580,127,askPrice2,double,ask price
+FutureBookQuote,2580,130,bidSize2,int,bid size in contracts
+FutureBookQuote,2580,133,askSize2,int,ask size in contracts
+FutureBookQuote,2580,136,bidOrders2,ushort,number of participating orders at the bid price
+FutureBookQuote,2580,139,askOrders2,ushort,number of participating orders at the ask price
+FutureBookQuote,2580,142,bidPrice3,double,bid price
+FutureBookQuote,2580,145,askPrice3,double,ask price
+FutureBookQuote,2580,148,bidSize3,int,bid size in contracts
+FutureBookQuote,2580,151,askSize3,int,ask size in contracts
+FutureBookQuote,2580,154,bidOrders3,ushort,number of participating orders at the bid price
+FutureBookQuote,2580,157,askOrders3,ushort,number of participating orders at the ask price
+FutureBookQuote,2580,160,bidPrice4,double,bid price
+FutureBookQuote,2580,163,askPrice4,double,ask price
+FutureBookQuote,2580,166,bidSize4,int,bid size in contracts
+FutureBookQuote,2580,169,askSize4,int,ask size in contracts
+FutureBookQuote,2580,172,bidOrders4,ushort,number of participating orders at the bid price
+FutureBookQuote,2580,175,askOrders4,ushort,number of participating orders at the ask price
+FutureBookQuote,2580,178,srcTimestamp,long,source high precision timestamp (if available)
+FutureBookQuote,2580,181,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch;usually syncronized with facility grandfather clock
+FutureMarketSummary,2590,10,fkey,ExpiryKey,
+FutureMarketSummary,2590,100,opnPrice,double,first print price of the day during regular market hours
+FutureMarketSummary,2590,103,mrkPrice,double,last print handled during regular market hours
+FutureMarketSummary,2590,106,clsPrice,double,official exchange closing price
+FutureMarketSummary,2590,109,minPrice,double,minimum print price within market hours
+FutureMarketSummary,2590,112,maxPrice,double,maximum print price within market hours
+FutureMarketSummary,2590,115,openInt,int,open interest
+FutureMarketSummary,2590,118,bidCount,int,num prints <= quote.bid
+FutureMarketSummary,2590,121,bidVolume,int,volume when prtPrice <= quote.bid
+FutureMarketSummary,2590,124,askCount,int,num prints >= quote.ask
+FutureMarketSummary,2590,127,askVolume,int,volume when prtPrice >= quote.ask
+FutureMarketSummary,2590,130,midCount,int,num prints inside quote.bid / quote.ask
+FutureMarketSummary,2590,133,midVolume,int,volume inside quote.bid / quote.ask
+FutureMarketSummary,2590,136,prtCount,int,number of distinct print reports
+FutureMarketSummary,2590,139,prtPrice,double,last print price
+FutureMarketSummary,2590,142,expCount,int,number of updates included in exponential average
+FutureMarketSummary,2590,145,expWidth,double,exponential average market width (10 minute 1/2 life)
+FutureMarketSummary,2590,148,expBidSize,float,exponential average bid size (10 minute 1/2 life)
+FutureMarketSummary,2590,151,expAskSize,float,exponential average ask size (10 minute 1/2 life)
+FutureMarketSummary,2590,154,lastPrint,DateTime,
+FutureMarketSummary,2590,157,timestamp,DateTime,
+FuturePrint,2595,10,fkey,ExpiryKey,
+FuturePrint,2595,100,prtExch,enum:FutExch,print exchange
+FuturePrint,2595,103,prtSize,int,print size [contracts]
+FuturePrint,2595,106,prtPrice,double,print price
+FuturePrint,2595,109,prtClusterNum,int,incremental print cluster counter (one counter per fkey; used to group prints into clusters)
+FuturePrint,2595,112,prtClusterSize,int,cumulative size of prints in this sequence (sequence of prints @ same or better price with less than 25 ms elapsing since first print)
+FuturePrint,2595,115,prtType,byte,print type [exchange specific]
+FuturePrint,2595,118,prtOrders,ushort,number of orders participating in this print
+FuturePrint,2595,121,prtQuan,int,cumulative (electronic) print size at current price level
+FuturePrint,2595,124,prtVolume,int,cumulative day (electronic) print volume in contracts
+FuturePrint,2595,127,bid,float,exchange bid (@ print time)
+FuturePrint,2595,130,ask,float,exchange ask (@ print time)
+FuturePrint,2595,133,bsz,int,cumulative bid size (@ print time)
+FuturePrint,2595,136,asz,int,cumulative ask size (@ print time)
+FuturePrint,2595,139,age,float,age of prevailing quote at time of print
+FuturePrint,2595,142,prtSide,enum:PrtSide,implied print side (from bid/ask)
+FuturePrint,2595,145,prtTimestamp,long,exchange high precision timestamp (if available)
+FuturePrint,2595,148,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch;usually syncronized with facility grandfather clock
+FuturePrint,2595,151,timestamp,DateTime,
+OpraPrintType,2750,10,opraPrintType,byte,
+OpraPrintType,2750,100,printTypeChar,string:1,character value of printType
+OpraPrintType,2750,103,printCode,string:4,"eg, AUTO, CANC"
+OpraPrintType,2750,106,printCodeString,text1,longer string
+OpraPrintType,2750,109,printCodeDescription,text1,full description
+OptionMarketSummary,2780,10,okey,OptionKey,
+OptionMarketSummary,2780,100,opnPrice,double,start of day (SR) open mark
+OptionMarketSummary,2780,103,opnVolatility,double,start of day (SR) open mark (volatility)
+OptionMarketSummary,2780,106,clsPrice,double,end of day (SR) close mark
+OptionMarketSummary,2780,109,clsVolatility,double,end of day (SR) close mark (volatility)
+OptionMarketSummary,2780,112,minPrtPrc,double,minimum print price within market hours
+OptionMarketSummary,2780,115,minPrtVol,double,minimum print volatility within market hours
+OptionMarketSummary,2780,118,maxPrtPrc,double,maximum print price within market hours
+OptionMarketSummary,2780,121,maxPrtVol,double,maximum print volatility within market hours
+OptionMarketSummary,2780,124,openInterest,int,
+OptionMarketSummary,2780,127,bidCount,int,num prints <= SR surface mark
+OptionMarketSummary,2780,130,bidVolume,int,volume when prtPrice <= quote.bid
+OptionMarketSummary,2780,133,askCount,int,num prints >= SR surface mark
+OptionMarketSummary,2780,136,askVolume,int,volume when prtPrice >= quote.ask
+OptionMarketSummary,2780,139,midCount,int,num prints inside quote.ebid / quote.eask
+OptionMarketSummary,2780,142,midVolume,int,volume inside quote.ebid / quote.eask
+OptionMarketSummary,2780,145,prtCount,int,number of distinct print reports
+OptionMarketSummary,2780,148,lastPrtPrice,double,last print price
+OptionMarketSummary,2780,151,lastPrtVolatility,float,last print volatility
+OptionMarketSummary,2780,154,avgWidth,double,average market width (time weighted)
+OptionMarketSummary,2780,157,avgBidSize,float,average bid size (time weighted)
+OptionMarketSummary,2780,160,avgAskSize,float,average ask size (time weighted)
+OptionMarketSummary,2780,163,lastPrint,DateTime,
+OptionMarketSummary,2780,166,timestamp,DateTime,
+OptionNbboQuote,2785,10,okey,OptionKey,
+OptionNbboQuote,2785,100,updateType,enum:UpdateType,
+OptionNbboQuote,2785,103,bidPrice,float,bid price
+OptionNbboQuote,2785,106,askPrice,float,ask price
+OptionNbboQuote,2785,109,bidSize,int,bid size in contracts (largest exch quote)
+OptionNbboQuote,2785,112,askSize,int,ask size in contracts (largest exch quote)
+OptionNbboQuote,2785,115,cumBidSize,int,bid size in contracts (total nbbo size)
+OptionNbboQuote,2785,118,cumAskSize,int,ask size in contracts (total nbbo size)
+OptionNbboQuote,2785,121,bidExch,enum:OptExch,first (or largest remaining) exchange at bid price
+OptionNbboQuote,2785,124,askExch,enum:OptExch,first (or largest remaining) exchange at ask price
+OptionNbboQuote,2785,127,bidMask,uint,exchange bid bit mask
+OptionNbboQuote,2785,130,askMask,uint,exchange ask bit mask
+OptionNbboQuote,2785,133,bidMktType,flag:OpraMktType,bid side quote flags (if any)
+OptionNbboQuote,2785,136,askMktType,flag:OpraMktType,ask side quote flags (if any)
+OptionNbboQuote,2785,139,bidPrice2,float,2nd best bid price
+OptionNbboQuote,2785,142,askPrice2,float,2nd best ask price
+OptionNbboQuote,2785,145,cumBidSize2,int,cumulative size at 2nd price
+OptionNbboQuote,2785,148,cumAskSize2,int,cumulative size at 2nd price
+OptionNbboQuote,2785,151,bidTime,int,last bid price change (milliseconds since midnight) calculated from the srcTimestamp
+OptionNbboQuote,2785,154,askTime,int,last ask price change (milliseconds since midnight) calculated from the srcTimestamp
+OptionNbboQuote,2785,157,srcTimestamp,long,source high precision timestamp (if available)
+OptionNbboQuote,2785,160,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch;usually syncronized with facility grandfather clock
+OptionPrint,2800,10,okey,OptionKey,
+OptionPrint,2800,100,prtExch,enum:OptExch,
+OptionPrint,2800,103,prtSize,int,print size [contracts]
+OptionPrint,2800,106,prtPrice,float,print price
+OptionPrint,2800,109,prtClusterNum,int,incremental print cluster counter (one counter per okey; used to group prints into clusters)
+OptionPrint,2800,112,prtClusterSize,int,cumulative size of prints in this sequence (sequence of prints @ same or more aggressive price with less than 25 ms elapsing since first print; can span exchanges)
+OptionPrint,2800,115,prtType,byte,print type
+OptionPrint,2800,118,prtOrders,ushort,number of participating orders
+OptionPrint,2800,121,prtVolume,int,day print volume in contracts [this exchange]
+OptionPrint,2800,124,cxlVolume,int,day print/cancel volume (num of contracts printed and then cancelled)
+OptionPrint,2800,127,bidCount,ushort,number of bid prints
+OptionPrint,2800,130,askCount,ushort,number of ask prints
+OptionPrint,2800,133,bidVolume,int,bid print volume in contracts
+OptionPrint,2800,136,askVolume,int,ask print volume in contracts
+OptionPrint,2800,139,ebid,float,exchange bid (@ print time)
+OptionPrint,2800,142,eask,float,exchange ask (@ print time)
+OptionPrint,2800,145,ebsz,int,exchange bid size
+OptionPrint,2800,148,easz,int,exchange ask size
+OptionPrint,2800,151,eage,float,age of prevailing quote at time of print
+OptionPrint,2800,154,prtSide,enum:PrtSide,implied print side (based on ebid/eask and nbbo market)
+OptionPrint,2800,157,prtTimestamp,long,exchange high precision timestamp (if available)
+OptionPrint,2800,160,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch;usually syncronized with facility grandfather clock
+OptionPrint,2800,163,timestamp,DateTime,
+OptionPrintSet,2815,10,okey,OptionKey,
+OptionPrintSet,2815,11,prtNumber,long,"Unique print set identifier, will increment but not guaranteed to be sequential"
+OptionPrintSet,2815,100,fkey,ExpiryKey,underlying fkey (if any)
+OptionPrintSet,2815,103,ticker,TickerKey,underlying ticker
+OptionPrintSet,2815,106,prtExch,enum:OptExch,Exchange on which print took place
+OptionPrintSet,2815,109,prtSize,int,print size [contracts]
+OptionPrintSet,2815,112,prtPrice,float,print price
+OptionPrintSet,2815,115,prtType,byte,print type
+OptionPrintSet,2815,118,prtOrders,ushort,number of participating orders
+OptionPrintSet,2815,121,prtClusterNum,int,incremental print cluster counter (one counter per okey; used to group prints into clusters)
+OptionPrintSet,2815,124,prtClusterSize,int,cumulative size of prints in this sequence (prints @ same or more aggressive price with less than 25 ms elapsing since first print; can span exchanges)
+OptionPrintSet,2815,127,prtVolume,int,day print volume in contracts
+OptionPrintSet,2815,130,cxlVolume,int,day print/cancel volume (num of contracts printed and then cancelled)
+OptionPrintSet,2815,133,bidCount,ushort,number of bid prints
+OptionPrintSet,2815,136,askCount,ushort,number of ask prints
+OptionPrintSet,2815,139,bidVolume,int,bid print volume in contracts
+OptionPrintSet,2815,142,askVolume,int,ask print volume in contracts
+OptionPrintSet,2815,145,ebid,float,exchange bid (@ print time)
+OptionPrintSet,2815,148,eask,float,exchange ask (@ print time)
+OptionPrintSet,2815,151,ebsz,int,exchange bid size
+OptionPrintSet,2815,154,easz,int,exchange ask size
+OptionPrintSet,2815,157,eage,float,age of prevailing quote at time of print
+OptionPrintSet,2815,160,prtSide,enum:PrtSide,
+OptionPrintSet,2815,163,prtTimestamp,long,exchange high precision timestamp (if available)
+OptionPrintSet,2815,166,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch; usually syncronized with facility grandfather clock
+OptionPrintSet,2815,169,timestamp,DateTime,
+OptionPrintSet,2815,172,oBid,float,Option NBBO bid a the time the print was received
+OptionPrintSet,2815,175,oAsk,float,Option NBBO ask a the time the print was received
+OptionPrintSet,2815,178,oBidSz,int,Option NBBO cumulative bid size at the time the print was received
+OptionPrintSet,2815,181,oAskSz,int,Option NBBO cumulative ask size at the time the print was received
+OptionPrintSet,2815,184,oBidEx,enum:OptExch,First (or largest) option exchange on the bid
+OptionPrintSet,2815,187,oAskEx,enum:OptExch,First (or largest) option exchange on the ask
+OptionPrintSet,2815,190,oBidExSz,int,Option bid size of the largest exchange on the bid at the time the print was received
+OptionPrintSet,2815,193,oAskExSz,int,Option ask size of the largest exchange on the ask at the time the print was received
+OptionPrintSet,2815,196,oBidCnt,byte,Number of exchanges on the NBBO bid
+OptionPrintSet,2815,199,oAskCnt,byte,Number of exchanges on the NBBO ask
+OptionPrintSet,2815,202,oBid2,float,Second level bid price
+OptionPrintSet,2815,205,oAsk2,float,Second level ask price
+OptionPrintSet,2815,208,oBidSz2,int,Cumulative size on the second level bid price
+OptionPrintSet,2815,211,oAskSz2,int,Cumulative size on the second level ask price
+OptionPrintSet,2815,214,uBid,double,underlier bid
+OptionPrintSet,2815,217,uAsk,double,underlier ask
+OptionPrintSet,2815,220,uPrc,double,underlier price
+OptionPrintSet,2815,223,yrs,float,years to expiry
+OptionPrintSet,2815,226,rate,float,interest rate
+OptionPrintSet,2815,229,sdiv,float,continuous stock dividend
+OptionPrintSet,2815,232,ddiv,float,discrete stock dividend value (sum of dividends <= expiration)
+OptionPrintSet,2815,235,xDe,float,xDelta
+OptionPrintSet,2815,238,xAxis,float,SR surface xAxis value
+OptionPrintSet,2815,241,multihedge,enum:Multihedge,"Distinguishes options that have a single underlying security from those that are more complex:  multiple securities,cash components, binary options,etc:  'None','Simple','Complex','AllCash','Binary'"
+OptionPrintSet,2815,244,prtIv,float,print implied vol
+OptionPrintSet,2815,247,prtDe,float,print delta
+OptionPrintSet,2815,250,prtGa,float,print gamma
+OptionPrintSet,2815,253,prtTh,float,print theta
+OptionPrintSet,2815,256,prtVe,float,print vega
+OptionPrintSet,2815,259,prtRo,float,print rho
+OptionPrintSet,2815,262,calcErr,string:24,calc error flag
+OptionPrintSet,2815,265,surfVol,float,SR surface volatility
+OptionPrintSet,2815,268,surfOpx,float,SR surface price
+OptionPrintSet,2815,271,surfAtm,float,SR surface ATM vol
+OptionPrintSet,2815,274,prtProbability,float,[M1] probability that buying prtSize contracts @ prtPrice will have positive m10 pnl (prtPriceM10 >= prtPrice) [recorded at time of print]
+OptionPrintSet,2815,277,prtProbabilityM2,float,alternate probability model
+OptionPrintSet,2815,280,prtProbabilityM3,float,alternate probability model
+OptionPrintSet,2815,283,oBidM1,float,NBBO option bid 1 minute after print was received
+OptionPrintSet,2815,286,oAskM1,float,NBBO option ask 1 minute after print was received
+OptionPrintSet,2815,289,uBidM1,double,NBBO underlying bid 1 minute after print was received
+OptionPrintSet,2815,292,uAskM1,double,NBBO underlying ask 1 minute after print was received
+OptionPrintSet,2815,295,uPrcM1,double,Underlying price 1 minute after print was received
+OptionPrintSet,2815,298,sVolM1,float,Suface volatility 1 minute after print was received
+OptionPrintSet,2815,301,sOpxM1,float,Surface option price 1 minute after print was received
+OptionPrintSet,2815,304,sDivM1,float,sDiv 1 minute after print was received
+OptionPrintSet,2815,307,sErrM1,string:12,Surface error condition (if any) 1 minute after print was received
+OptionPrintSet,2815,310,pnlM1,float,pnl after 1 minute
+OptionPrintSet,2815,313,pnlM1Err,enum:YesNo,Error condition for PnL calculated over the first 1 minute after the print was received
+OptionPrintSet,2815,316,oBidM10,float,NBBO option bid 10 minutes after print was received
+OptionPrintSet,2815,319,oAskM10,float,NBBO option ask 10 minutes after print was received
+OptionPrintSet,2815,322,uBidM10,double,NBBO underlying bid 10 minutes after print was received
+OptionPrintSet,2815,325,uAskM10,double,NBBO underlying ask 10 minutes after print was received
+OptionPrintSet,2815,328,uPrcM10,double,Underlying price 10 minutes after print was received
+OptionPrintSet,2815,331,sVolM10,float,Suface volatility 10 minutes after print was received
+OptionPrintSet,2815,334,sOpxM10,float,Surface option price 10 minutes after print was received
+OptionPrintSet,2815,337,sDivM10,float,sDiv 10 minutes after print was received
+OptionPrintSet,2815,340,sErrM10,string:12,Surface error condition (if any) 10 minutes after print was received
+OptionPrintSet,2815,343,pnlM10,float,pnl after 10 minutes
+OptionPrintSet,2815,346,pnlM10Err,enum:YesNo,Error condition for PnL calculated 10 minutes after the print was received
+StockBookQuote,3000,10,ticker,TickerKey,
+StockBookQuote,3000,100,updateType,enum:UpdateType:None,
+StockBookQuote,3000,103,marketStatus,enum:MarketStatus,"market status (open, halted, etc)"
+StockBookQuote,3000,106,bidPrice1,float,bid price for best price level
+StockBookQuote,3000,109,bidSize1,int,bid size for best price level
+StockBookQuote,3000,112,bidExch1,enum:StkExch:None,
+StockBookQuote,3000,115,bidMask1,uint,bid exchange bit mask for best bid price level
+StockBookQuote,3000,118,askPrice1,float,ask price for best price level
+StockBookQuote,3000,121,askSize1,int,ask size for best price level
+StockBookQuote,3000,124,askExch1,enum:StkExch,exchange
+StockBookQuote,3000,127,askMask1,uint,ask exchange bit mask for best ask price level
+StockBookQuote,3000,130,bidPrice2,float,bid price for next best price level
+StockBookQuote,3000,133,bidSize2,int,bid size for next best price level
+StockBookQuote,3000,136,bidExch2,enum:StkExch,exchange
+StockBookQuote,3000,139,bidMask2,uint,bid exchange bit mask for next best bid price level
+StockBookQuote,3000,142,askPrice2,float,ask price for next best price level
+StockBookQuote,3000,145,askSize2,int,ask size for next best price level
+StockBookQuote,3000,148,askExch2,enum:StkExch,exchange
+StockBookQuote,3000,151,askMask2,uint,ask exchange bit mask for next best ask price level
+StockBookQuote,3000,154,haltMask,uint,bit mask of halted exchanges
+StockBookQuote,3000,157,srcTimestamp,long,source high precision timestamp (if available)
+StockBookQuote,3000,160,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch;usually syncronized with facility grandfather clock
+StockExchImbalanceV2,3020,10,ticker,TickerKey,
+StockExchImbalanceV2,3020,11,auctionTime,DateTime,Projected Auction Time (hhmm).
+StockExchImbalanceV2,3020,12,auctionType,enum:AuctionReason,
+StockExchImbalanceV2,3020,13,exchange,enum:PrimaryExchange,
+StockExchImbalanceV2,3020,100,referencePx,float,"For Pillar-powered markets, the Reference Price is used to calculate the Indicative Match Price."
+StockExchImbalanceV2,3020,103,pairedQty,int,"For Pillar-powered markets, the number of shares paired off at the Indicative Match Price."
+StockExchImbalanceV2,3020,106,totalImbalanceQty,int,"For Pillar-powered markets, the total imbalance quantity at the Indicative Match Price."
+StockExchImbalanceV2,3020,109,marketImbalanceQty,int,"For Pillar-powered markets, the total market order imbalance quantity at the Indicative Match Price."
+StockExchImbalanceV2,3020,112,imbalanceSide,enum:ImbalanceSide,The side of the TotalImbalanceQty.
+StockExchImbalanceV2,3020,115,continuousBookClrPx,float,"For Pillar-powered markets, the price at which all interest on the book can trade, including auction and imbalance offset interest, and disregarding auction collars."
+StockExchImbalanceV2,3020,118,closingOnlyClrPx,float,"For Pillar-powered markets, the price at which all eligible auction-only interest would trade, subject to auction collars."
+StockExchImbalanceV2,3020,121,ssrFillingPx,float,"For Pillar-powered markets, not supported and defaulted to 0."
+StockExchImbalanceV2,3020,124,indicativeMatchPx,float,"For Pillar-powered markets, the price that has the highest executable volume of auction-eligible shares, subject to auction collars. It includes the non-displayed quantity of Reserve Orders."
+StockExchImbalanceV2,3020,127,upperCollar,float,"If the IndicativeMatchPrice is not strictly between the UpperCollar and the LowerCollar, special auction rules apply. See Rule 7.35P for details."
+StockExchImbalanceV2,3020,130,lowerCollar,float,"If the IndicativeMatchPrice is not strictly between the UpperCollar and the LowerCollar, special auction rules apply. See Rule 7.35P for details."
+StockExchImbalanceV2,3020,133,auctionStatus,enum:AuctionStatus,Indicates whether the auction will run.
+StockExchImbalanceV2,3020,136,freezeStatus,enum:YesNo,
+StockExchImbalanceV2,3020,139,numExtensions,byte,Number of times the halt period has been extended.
+StockExchImbalanceV2,3020,142,netTimestamp,long,PTP timestamp
+StockMarketSummary,3040,10,ticker,TickerKey,
+StockMarketSummary,3040,100,opnPrice,double,first print price of the day during regular market hours
+StockMarketSummary,3040,103,mrkPrice,double,last print handled during regular market hours
+StockMarketSummary,3040,106,clsPrice,double,official exchange closing price
+StockMarketSummary,3040,109,minPrice,double,minimum print price within market hours
+StockMarketSummary,3040,112,maxPrice,double,maximum print price within market hours
+StockMarketSummary,3040,115,sharesOutstanding,int,shares outstanding
+StockMarketSummary,3040,118,bidCount,int,num prints <= quote.bid
+StockMarketSummary,3040,121,bidVolume,int,volume when prtPrice <= quote.bid
+StockMarketSummary,3040,124,askCount,int,num prints >= quote.ask
+StockMarketSummary,3040,127,askVolume,int,volume when prtPrice >= quote.ask
+StockMarketSummary,3040,130,midCount,int,num prints inside quote.bid / quote.ask
+StockMarketSummary,3040,133,midVolume,int,volume inside quote.bid / quote.ask
+StockMarketSummary,3040,136,prtCount,int,number of distinct print reports
+StockMarketSummary,3040,139,prtPrice,double,last print price
+StockMarketSummary,3040,142,expCount,int,number of updates included in exponential average
+StockMarketSummary,3040,145,expWidth,double,exponential average market width (10 minute 1/2 life)
+StockMarketSummary,3040,148,expBidSize,float,exponential average bid size (10 minute 1/2 life)
+StockMarketSummary,3040,151,expAskSize,float,exponential average ask size (10 minute 1/2 life)
+StockMarketSummary,3040,154,lastPrint,DateTime,
+StockMarketSummary,3040,157,timestamp,DateTime,
+StockPrint,3045,10,ticker,TickerKey,
+StockPrint,3045,100,prtExch,enum:StkExch,print exch
+StockPrint,3045,103,prtSize,int,print size
+StockPrint,3045,106,prtPrice,float,print price level
+StockPrint,3045,109,prtClusterNum,int,incremental print cluster counter (one counter per ticker; used to group prints into clusters)
+StockPrint,3045,112,prtClusterSize,int,cumulative size of prints in this sequence (prints @ same or more aggressive price with less than 25 ms elapsing since first print; can span exchanges)
+StockPrint,3045,115,prtVolume,int,cumulative print size today
+StockPrint,3045,118,mrkPrice,float,last regular market print price
+StockPrint,3045,121,clsPrice,float,official closing price (if available)
+StockPrint,3045,124,prtType,enum:StkPrintType:None,
+StockPrint,3045,127,prtCond1,byte,print condition (from SIP feed)
+StockPrint,3045,130,prtCond2,byte,
+StockPrint,3045,133,prtCond3,byte,
+StockPrint,3045,136,prtCond4,byte,
+StockPrint,3045,139,ebid,float,exchange bid (@ print time) [SIP feed]
+StockPrint,3045,142,eask,float,exchange ask (@ print time) [SIP feed]
+StockPrint,3045,145,ebsz,int,exchange bid size
+StockPrint,3045,148,easz,int,exchange ask size
+StockPrint,3045,151,eage,float,age of prevailing quote at time of print
+StockPrint,3045,154,prtSide,enum:PrtSide:None,
+StockPrint,3045,157,prtTimestamp,long,exchange high precision timestamp (if available)
+StockPrint,3045,160,netTimestamp,long,inbound packet PTP timestamp from SR gateway switch; usually syncronized with facility grandfather clock
+StockPrint,3045,163,timestamp,DateTime,
+FutureCloseMark,3120,10,fkey,ExpiryKey,
+FutureCloseMark,3120,100,tradeDate,DateKey,
+FutureCloseMark,3120,103,clsMarkState,enum:ClsMarkState,Close mark state: None; LastPrt; SRClose; ExchClose; Final
+FutureCloseMark,3120,106,opnPrc,double,Opening price
+FutureCloseMark,3120,109,minPrc,double,Low price
+FutureCloseMark,3120,112,maxPrc,double,High Price
+FutureCloseMark,3120,115,openInterest,int,Open interest
+FutureCloseMark,3120,118,prtCount,int,print count
+FutureCloseMark,3120,121,prtVolume,int,print volume
+FutureCloseMark,3120,124,realizedCnt,int,number of minute bar segments used in realizedVar calc
+FutureCloseMark,3120,127,realizedVar,float,realizedVar = SUM[ LOG( qteTwap(T) / qteTwap(T+1) ) ^ 2 ] / realizedCnt @ 1 minute intervals during market hours
+FutureCloseMark,3120,130,avgMktSize,float,MEAN[0.5 * (bidSize + askSize) ] @ 1 minute intervals during market hours
+FutureCloseMark,3120,133,avgMktWidth,float,MEAN[ askPrice - bidPrice ] @ 1 minute intervals during market hours
+FutureCloseMark,3120,136,bidPrc,double,bid price (close - 1min)
+FutureCloseMark,3120,139,askPrc,double,ask price (close - 1min)
+FutureCloseMark,3120,142,srClsPrc,double,sr close mark (close - 1min)
+FutureCloseMark,3120,145,closePrc,double,official exchange closing mark (last print;then official close)
+FutureCloseMark,3120,148,hasSRClsPrc,enum:YesNo,
+FutureCloseMark,3120,151,hasClosePrc,enum:YesNo,
+FutureCloseMark,3120,154,srCloseMarkDttm,DateTime,from MarketCloseQuote.srCloseMarkDttm
+FutureCloseMark,3120,157,timestamp,DateTime,
+FutureSettlementMark,3130,10,fkey,ExpiryKey,
+FutureSettlementMark,3130,100,settleDate,DateKey,
+FutureSettlementMark,3130,103,settlePx,double,Exchange settlement price
+FutureSettlementMark,3130,106,lowLmtPx,double,Exchange low limit price
+FutureSettlementMark,3130,109,highLmtPx,double,Exchange high limit price
+FutureSettlementMark,3130,112,openInt,int,Exchange open interest (date prior to settle date)
+FutureSettlementMark,3130,115,volume,int,Exchange volume (date prior to settle date)
+FutureSettlementMark,3130,118,early,enum:YesNo,
+FutureSettlementMark,3130,121,timestamp,DateTime,
+OptionCloseMark,3140,10,okey,OptionKey,
+OptionCloseMark,3140,100,tradeDate,DateKey,
+OptionCloseMark,3140,103,clsMarkState,enum:ClsMarkState,LastPrt = last print received; SRClose = SpiderRock snapshot; ExchClose = official exchange close price; Final = Final close mark
+OptionCloseMark,3140,106,uBid,double,SpiderRock closing underlier bid (C - 1m)
+OptionCloseMark,3140,109,uAsk,double,SpiderRock closing underlier ask (C - 1m)
+OptionCloseMark,3140,112,uSrCls,double,SpiderRock underlier closing mark (C - 1m)
+OptionCloseMark,3140,115,uClose,double,exchange underlier closing mark
+OptionCloseMark,3140,118,bidPrc,float,SpiderRock closing option bid (C - 1m)
+OptionCloseMark,3140,121,askPrc,float,SpiderRock closing option ask (C - 1m)
+OptionCloseMark,3140,124,srClsPrc,double,SpiderRock close mark (close - 1min)
+OptionCloseMark,3140,127,closePrc,double,official exchange closing mark (last print;then official close)
+OptionCloseMark,3140,130,hasSRClsPrc,enum:YesNo,
+OptionCloseMark,3140,133,hasClosePrc,enum:YesNo,
+OptionCloseMark,3140,136,bidIV,float,implied vol of SpiderRock closing bid price (C - 1m)
+OptionCloseMark,3140,139,askIV,float,implied vol of SpiderRock closing ask price (C - 1m)
+OptionCloseMark,3140,142,srPrc,float,SpiderRock surface price (always within bidPx/askPx) (C - 1m)
+OptionCloseMark,3140,145,srVol,float,SpiderRock surface volatility (C - 1m)
+OptionCloseMark,3140,148,srSrc,enum:MarkSource:None,"SpiderRock price source [NbboMid, SRVol, LoBound, HiBound, SRPricer, SRQuote, CloseMark]"
+OptionCloseMark,3140,151,de,float,delta (SR surface)
+OptionCloseMark,3140,154,ga,float,gamma (SR surface)
+OptionCloseMark,3140,157,th,float,theta (SR surface)
+OptionCloseMark,3140,160,ve,float,vega (SR surface)
+OptionCloseMark,3140,163,vo,float,volga (SR surface)
+OptionCloseMark,3140,166,va,float,vanna (SR surface)
+OptionCloseMark,3140,169,rh,float,rho (SR surrface)
+OptionCloseMark,3140,172,ph,float,phi (SR surface)
+OptionCloseMark,3140,175,srSlope,float,surface slope (SR surface)
+OptionCloseMark,3140,178,deDecay,float,delta decay (SR surface)
+OptionCloseMark,3140,181,sdiv,float,SpiderRock sdiv rate
+OptionCloseMark,3140,184,ddiv,float,SpiderRock ddiv rate (sum of discrete dividend amounts)
+OptionCloseMark,3140,187,rate,float,SpiderRock interest rate
+OptionCloseMark,3140,190,years,float,years to expiration
+OptionCloseMark,3140,193,error,byte,SpiderRock pricing library calculation error code
+OptionCloseMark,3140,196,openInterest,int,Open Interest
+OptionCloseMark,3140,199,prtCount,int,print count
+OptionCloseMark,3140,202,prtVolume,int,total printed volume
+OptionCloseMark,3140,205,srCloseMarkDttm,DateTime,from MarketCloseQuote.srCloseMarkDttm
+OptionCloseMark,3140,208,timestamp,DateTime,record timestamp
+OptionOpenMark,3145,10,okey,OptionKey,
+OptionOpenMark,3145,100,tradeDate,DateKey,
+OptionOpenMark,3145,103,uBid,double,SR open uBid; (SR close uBid overnight adjusted)
+OptionOpenMark,3145,106,uAsk,double,SR open uAsk; (SR close uAsk overnight adjusted)
+OptionOpenMark,3145,109,uSrCls,double,SR open uMark; [SR close uMark (C - 1m) overnight adjusted]
+OptionOpenMark,3145,112,uClose,double,exchange open uMark; [exchange close uMark overnight adjusted]
+OptionOpenMark,3145,115,bidPrc,float,SR open bid; [SR close bid overnight adjusted]
+OptionOpenMark,3145,118,askPrc,float,SR open ask; [SR close ask overnight adjusted]
+OptionOpenMark,3145,121,srClsPrc,double,SR open mark; [SR close mark (close - 1min) overnight adjusted]
+OptionOpenMark,3145,124,closePrc,double,exchange open mark; [exchange close mark overnight adjusted] [if available]
+OptionOpenMark,3145,127,bidIV,float,implied vol of SR closing bid price
+OptionOpenMark,3145,130,askIV,float,implied vol of SR closing ask price
+OptionOpenMark,3145,133,srPrc,float,SR open surface price; [SR close surface price overnight adjusted]
+OptionOpenMark,3145,136,srVol,float,SR surface volatility
+OptionOpenMark,3145,139,srSrc,enum:MarkSource,
+OptionOpenMark,3145,142,de,float,greeks from SR surface volatility
+OptionOpenMark,3145,145,ga,float,
+OptionOpenMark,3145,148,th,float,
+OptionOpenMark,3145,151,ve,float,
+OptionOpenMark,3145,154,vo,float,volga (SR surface)
+OptionOpenMark,3145,157,va,float,vanna (SR surface)
+OptionOpenMark,3145,160,rh,float,
+OptionOpenMark,3145,163,ph,float,
+OptionOpenMark,3145,166,srSlope,float,surface slope (SR surface)
+OptionOpenMark,3145,169,deDecay,float,
+OptionOpenMark,3145,172,sdiv,float,SR live sdiv rate
+OptionOpenMark,3145,175,ddiv,float,SR live ddiv rate
+OptionOpenMark,3145,178,rate,float,SR live int rate
+OptionOpenMark,3145,181,years,float,years to expiration
+OptionOpenMark,3145,184,error,byte,SRPricingLib.CalcError
+OptionOpenMark,3145,187,corpAction,text1,
+OptionOpenMark,3145,190,timestamp,DateTime,
+StockCloseMark,3165,10,ticker,TickerKey,
+StockCloseMark,3165,100,tradeDate,DateKey,
+StockCloseMark,3165,103,clsMarkState,enum:ClsMarkState:None,Close mark state. None; LastPrt; SRClose; ExchClose; Final
+StockCloseMark,3165,106,opnPrc,float,Open price
+StockCloseMark,3165,109,minPrc,float,Low price
+StockCloseMark,3165,112,maxPrc,float,High price
+StockCloseMark,3165,115,sharesOutstanding,int,Shares outstanding
+StockCloseMark,3165,118,prtCount,int,Print count
+StockCloseMark,3165,121,prtVolume,int,Print volume
+StockCloseMark,3165,124,realizedVol,float,Realized vol
+StockCloseMark,3165,127,avgMktSize,float,Average market size
+StockCloseMark,3165,130,avgMktWidth,float,Average market width
+StockCloseMark,3165,133,bidPrc,float,bid price (close - 1min)
+StockCloseMark,3165,136,askPrc,float,ask price (close - 1min)
+StockCloseMark,3165,139,srClsPrc,float,SR close mark (close - 1min)
+StockCloseMark,3165,142,closePrc,float,official exchange closing mark (last print; then official close)
+StockCloseMark,3165,145,hasSRClsPrc,enum:YesNo,
+StockCloseMark,3165,148,hasClosePrc,enum:YesNo,
+StockCloseMark,3165,151,srCloseMarkDttm,DateTime,from MarketCloseQuote.srCloseMarkDttm
+StockCloseMark,3165,154,timestamp,DateTime,record publish/update timestamp
+StockOpenMark,3170,10,ticker,TickerKey,
+StockOpenMark,3170,100,tradeDate,DateKey,
+StockOpenMark,3170,103,srClsPrc,float,SR open mark; [SR close market (close - 1 min) from previous day; overnight adjusted]
+StockOpenMark,3170,106,closePrc,float,exchange open mark; [exchange close mark from previous day; overnight adjusted]
+StockOpenMark,3170,109,bidPrc,float,bid price [SR closing bid (close - 1 min) from previous day; overnight adjusted]
+StockOpenMark,3170,112,askPrc,float,ask price [SR closing ask (close - 1 min) from previous day; overnight adjusted]
+StockOpenMark,3170,115,corpAction,text1,
+StockOpenMark,3170,118,timestamp,DateTime,
+HistoricalVolatilities,3225,10,ticker,TickerKey,
+HistoricalVolatilities,3225,11,windowType,string:12,"eg. cc, ccCen, ccClCen, hl, hlCen, iv63, iv126, etc"
+HistoricalVolatilities,3225,100,date,string:10,most recent closing date
+HistoricalVolatilities,3225,103,securityID,int,
+HistoricalVolatilities,3225,106,value,float,most recent historical value
+HistoricalVolatilities,3225,109,mv_5d,float,historical mean value (5 day window)
+HistoricalVolatilities,3225,112,sd_5d,float,historical std dev (5 day window)
+HistoricalVolatilities,3225,115,mv_10d,float,
+HistoricalVolatilities,3225,118,sd_10d,float,
+HistoricalVolatilities,3225,121,mv_21d,float,
+HistoricalVolatilities,3225,124,sd_21d,float,
+HistoricalVolatilities,3225,127,mv_42d,float,
+HistoricalVolatilities,3225,130,sd_42d,float,
+HistoricalVolatilities,3225,133,mv_63d,float,
+HistoricalVolatilities,3225,136,sd_63d,float,
+HistoricalVolatilities,3225,139,mv_84d,float,
+HistoricalVolatilities,3225,142,sd_84d,float,
+HistoricalVolatilities,3225,145,mv_105d,float,
+HistoricalVolatilities,3225,148,sd_105d,float,
+HistoricalVolatilities,3225,151,mv_126d,float,
+HistoricalVolatilities,3225,154,sd_126d,float,
+HistoricalVolatilities,3225,157,mv_189d,float,
+HistoricalVolatilities,3225,160,sd_189d,float,
+HistoricalVolatilities,3225,163,mv_252d,float,
+HistoricalVolatilities,3225,166,sd_252d,float,
+HistoricalVolatilities,3225,169,mv_378d,float,
+HistoricalVolatilities,3225,172,sd_378d,float,
+HistoricalVolatilities,3225,175,mv_504d,float,
+HistoricalVolatilities,3225,178,sd_504d,float,
+HistoricalVolatilities,3225,181,timestamp,DateTime,record update timestamp
+CCodeDefinition,4335,10,ccode,TickerKey,
+CCodeDefinition,4335,100,futexch,enum:FutExch,listing exchange
+CCodeDefinition,4335,103,ticker,TickerKey,master underlying
+CCodeDefinition,4335,106,settleTime,enum:SettleTime:None,Settlement time: None; PM; AM
+CCodeDefinition,4335,109,positionLimit,int,max contract limit
+CCodeDefinition,4335,112,tickValue,float,$NLV value of a single tick change in display premium	(pointValue = tickValue / tickSize)
+CCodeDefinition,4335,115,pointValue,float,$NLV value of a single point change in display premium (pointValue = tickValue / tickSize)
+CCodeDefinition,4335,118,pointCurrency,enum:Currency,
+CCodeDefinition,4335,121,priceScaling,float,underlying price scale factor - products where the underlying quotes in cents will have 0.01
+CCodeDefinition,4335,124,underliersPerCn,int,"shares, bond, or index units underlying the future (contract size)"
+CCodeDefinition,4335,127,underlierType,enum:UnderlierType:None,Underlying type; None; Equity; Other; FX
+CCodeDefinition,4335,130,clearingCode,string:6,GMI/Clearing code
+CCodeDefinition,4335,133,ricCode,string:6,RIC Code
+CCodeDefinition,4335,136,bbgRoot,string:6,Bloomberg root
+CCodeDefinition,4335,139,bbgGroup,enum:YellowKey:None,Bloomberg Yellow Key
+CCodeDefinition,4335,142,gmiExchange,string:3,GMI (Sungard) exchange code
+CCodeDefinition,4335,145,gmiProduct,string:3,GMI (Sungard) product code
+CCodeDefinition,4335,148,gmiSubType,string:3,GMI (Sungard) subtype code
+CCodeDefinition,4335,151,displayPriceScaling,float,internal display price scale factor override
+CCodeDefinition,4335,154,strikeScaling,float,internal strike price scale factor override
+CCodeDefinition,4335,157,description,string:48,product description
+CCodeDefinition,4335,160,marketCenter,string:48,"market center, eg ""ICE Market Type"", ""CME MarketGroup"""
+CCodeDefinition,4335,163,timestamp,DateTime,
+OptExpiryDefinition,4355,10,ekey,ExpiryKey,option root+expiration
+OptExpiryDefinition,4355,100,ticker,TickerKey,master ticker
+OptExpiryDefinition,4355,103,fkey,ExpiryKey,future key of the option deliverable
+OptExpiryDefinition,4355,106,expiration,DateTime,option expiration date and time
+OptExpiryDefinition,4355,109,maturityDate,DateTime,
+OptExpiryDefinition,4355,112,displayFactor,double,
+OptExpiryDefinition,4355,115,cabPrice,double,
+OptExpiryDefinition,4355,118,priceFormat,enum:PriceFormat,
+OptExpiryDefinition,4355,121,minTickSize,double,
+OptExpiryDefinition,4355,124,timestamp,DateTime,
+ProductDefinitionV2,4360,10,secKey,OptionKey,SR Security Key [can be partially filled in (look at secType)]
+ProductDefinitionV2,4360,11,secType,enum:SpdrKeyType,"Security Type [Stock, Future, Option]"
+ProductDefinitionV2,4360,100,securityID,string:24,unique exchange id (exch assigned)
+ProductDefinitionV2,4360,103,ticker,TickerKey,master underlier
+ProductDefinitionV2,4360,106,productClass,enum:ProductClass:None,
+ProductDefinitionV2,4360,109,underlierID,long,underlier product id (option only) [securityID of undKey/undType product]
+ProductDefinitionV2,4360,112,undKey,ExpiryKey,SR Underlier Security Key [can be partially filled in (look at undType)] (option only)
+ProductDefinitionV2,4360,115,undType,enum:SpdrKeyType,"Underlier Security Type [Stock, Future] (option only)"
+ProductDefinitionV2,4360,118,productGroup,string:6,"Underlying product code.  I.E. All GE (Eurodollar) spreads, options, futures will be in the same productGroup - This is the Asset field from the SecurityDefinition message"
+ProductDefinitionV2,4360,121,securityGroup,string:6,Exchange specific code for a group of related securities that are all affected by market events.  I.E. All E-mini weekly options (EW) - This is SecurityGroup field from the SecurityDefinition messages
+ProductDefinitionV2,4360,124,marketSegmentID,int,Exchange specific market segment identifier
+ProductDefinitionV2,4360,127,securityDesc,string:80,full exchange symbol
+ProductDefinitionV2,4360,130,exchange,string:8,listing exchange
+ProductDefinitionV2,4360,133,productType,enum:ProductType:None,
+ProductDefinitionV2,4360,136,productTerm,enum:ProductTerm:None,
+ProductDefinitionV2,4360,139,productIndexType,enum:ProductIndexType:None,
+ProductDefinitionV2,4360,142,productRate,float,
+ProductDefinitionV2,4360,145,contractSize,float,
+ProductDefinitionV2,4360,148,contractUnit,enum:ContractUnit:None,
+ProductDefinitionV2,4360,151,priceFormat,enum:PriceFormat:None,
+ProductDefinitionV2,4360,154,minTickSize,double,
+ProductDefinitionV2,4360,157,displayFactor,double,
+ProductDefinitionV2,4360,160,strikeScale,double,"manual strike price adjustment multiplier (used for some CME products if set, otherwise displayFactor is used) (okey_xx = strikePrice * manualStrikeScale)"
+ProductDefinitionV2,4360,163,minLotSize,short,minimum lot size
+ProductDefinitionV2,4360,166,bookDepth,short,levels in the Globex quote book
+ProductDefinitionV2,4360,169,impliedBookDepth,short,levels in the globex implied quote book (0 if no implied depth)
+ProductDefinitionV2,4360,172,impMarketInd,short,"implied market type (0 = no implied, 1 = implied in, 2 = implied out, 3 = implied in & out)"
+ProductDefinitionV2,4360,175,minPriceIncrementAmount,float,(depricate) minimum price amount (points per handle)
+ProductDefinitionV2,4360,178,parValue,float,per contract par value
+ProductDefinitionV2,4360,181,contMultiplier,float,contract deliverable multipler
+ProductDefinitionV2,4360,184,cabPrice,double,(depricate) cabinet price (minimum closing price for OOM options)
+ProductDefinitionV2,4360,187,tradeCurr,enum:Currency:None,
+ProductDefinitionV2,4360,190,settleCurr,enum:Currency,
+ProductDefinitionV2,4360,193,strikeCurr,enum:Currency,
+ProductDefinitionV2,4360,196,expiration,DateTime,future expiration or option expiration (if product is an option). we use the last TRADING day as the expiration date.
+ProductDefinitionV2,4360,199,maturity,DateKey,future maturity date or option maturity date.  this is the delivery month.
+ProductDefinitionV2,4360,202,exerciseType,enum:ExerciseType,(depricate; in RootDefinition) Exercise style
+ProductDefinitionV2,4360,205,userDefined,enum:YesNo,
+ProductDefinitionV2,4360,208,decayStartYear,short,
+ProductDefinitionV2,4360,211,decayStartMonth,byte,
+ProductDefinitionV2,4360,214,decayStartDay,byte,
+ProductDefinitionV2,4360,217,decayQty,int,daily decay quantity
+ProductDefinitionV2,4360,220,priceRatio,double,price ratio for interest rate intercommodity spreads
+ProductDefinitionV2,4360,226,legID,string:24,leg SecurityId (exch assigned)
+ProductDefinitionV2,4360,229,secKey,OptionKey,
+ProductDefinitionV2,4360,232,secType,enum:SpdrKeyType,
+ProductDefinitionV2,4360,235,side,enum:BuySell,
+ProductDefinitionV2,4360,238,ratio,ushort,
+ProductDefinitionV2,4360,241,refDelta,float,
+ProductDefinitionV2,4360,244,refPrc,double,
+ProductDefinitionV2,4360,247,timestamp,DateTime,
+RootDefinition,4365,10,root,TickerKey,
+RootDefinition,4365,100,ticker,TickerKey,master underlying
+RootDefinition,4365,103,osiRoot,string:8,"long version of the root.  the short version is used in the TickerKey (for example RYAAY1, not RYAA1)"
+RootDefinition,4365,106,ccode,TickerKey,
+RootDefinition,4365,109,expirationMap,enum:ExpirationMap:None,
+RootDefinition,4365,112,underlierMode,enum:UnderlierMode:None,
+RootDefinition,4365,115,pricingSource,enum:PricingSource:None,note: synthetics are priced by root + expiry (from the SyntheticQuote/SyntheticPrint messages)
+RootDefinition,4365,118,optionType,enum:OptionType:None,indicator for option type
+RootDefinition,4365,121,multihedge,enum:Multihedge:None,indicates type of multihedge
+RootDefinition,4365,124,exerciseTime,enum:ExerciseTime:None,Exercise time type
+RootDefinition,4365,127,exerciseType,enum:ExerciseType:None,Exercise style
+RootDefinition,4365,130,timeMetric,enum:TimeMetric:None,trading time metric - 252 or 365 trading days or a weekly cycle type
+RootDefinition,4365,133,pricingModel,enum:PricingModel:None,
+RootDefinition,4365,136,moneynessType,enum:MoneynessType:None,"moneyness (xAxis) convention: PctStd = (K / fUPrc - 1) / (axisVol * RT), LogStd = LOG(K/fUPrc) / (axisVol * RT), NormStd = (K - fUPrc) / (axisVol * RT)"
+RootDefinition,4365,139,priceQuoteType,enum:PriceQuoteType:None,"quoting style for the option series on the exchange, price (standard price quote) or volatility quoted (vol points)"
+RootDefinition,4365,142,volumeTier,enum:VolumeTier:None,
+RootDefinition,4365,145,positionLimit,int,max contract limit
+RootDefinition,4365,148,exchanges,string:24,exchange codes
+RootDefinition,4365,151,tickValue,float,$NLV value of a single tick change in display premium	(pointValue = tickValue / tickSize)
+RootDefinition,4365,154,pointValue,float,$NLV value of a single point change in display premium (pointValue = tickValue / tickSize)
+RootDefinition,4365,157,pointCurrency,enum:Currency,
+RootDefinition,4365,160,strikeScale,double,"manual strike price adjustment multiplier (used for some CME products if set, otherwise displayFactor is used) (okey_xx = strikePrice * manualStrikeScale)"
+RootDefinition,4365,163,strikeRatio,float,note: effective strike = strike * strikeRatio - cashOnExercise
+RootDefinition,4365,166,cashOnExercise,float,note: cashOnExercise is positive if it decreases the effective strike price
+RootDefinition,4365,169,underliersPerCn,int,note: always 100 if underlying list is in use
+RootDefinition,4365,172,premiumMult,double,note: OCC premium/strike multiplier (usually 100)
+RootDefinition,4365,175,adjConvention,enum:AdjConvention:None,
+RootDefinition,4365,178,optPriceInc,enum:OptPriceInc:None,
+RootDefinition,4365,181,priceFormat,enum:PriceFormat,price display format
+RootDefinition,4365,184,tradeCurr,enum:Currency,
+RootDefinition,4365,187,settleCurr,enum:Currency,
+RootDefinition,4365,190,strikeCurr,enum:Currency,
+RootDefinition,4365,193,defaultSurfaceRoot,TickerKey,fallback ticker to use for option surfaces if no native surfaces are available
+RootDefinition,4365,196,timestamp,DateTime,
+RootDefinition,4365,202,ticker,TickerKey,
+RootDefinition,4365,205,spc,float,note: _root basket = sum(spc * ticker) / 100
+TickerDefinition,4375,10,ticker,TickerKey,
+TickerDefinition,4375,100,securityID,int,"Security ID number from the source - Vendor, SR, Feed"
+TickerDefinition,4375,103,symbolType,enum:SymbolType,
+TickerDefinition,4375,106,name,string:72,Symbol name
+TickerDefinition,4375,109,country,string:2,ISO Issuer Country Code
+TickerDefinition,4375,112,parValue,float,Security Parvalue
+TickerDefinition,4375,115,parValueCurrency,string:3,Security Parvalue currency
+TickerDefinition,4375,121,mic,string:4,ISO Market Identification Code
+TickerDefinition,4375,124,micSeg,string:4,ISO Market Indentification Segment Code
+TickerDefinition,4375,127,symbol,string:12,trading symbol (w/o dot notation)
+TickerDefinition,4375,130,issueClass,string:1,issue class of stock symbol.  if no issue class field will be blank.
+TickerDefinition,4375,133,sharesOutstanding,int,"symbol shares outstanding, represented in thousands (actualsharesoutstanding = sharesoutstanding * 1000)"
+TickerDefinition,4375,136,cusip,string:10,cusip code
+TickerDefinition,4375,139,indNum,int,IND (2 digits)
+TickerDefinition,4375,142,subNum,int,SUB (4 digits)
+TickerDefinition,4375,145,grpNum,int,GRP (6 digits)
+TickerDefinition,4375,148,nbrNum,int,NBR (8 digits)
+TickerDefinition,4375,151,sic,string:4,SIC (Standard Industrial Classification) code
+TickerDefinition,4375,154,cik,string:10,Central Index Key (US specific)
+TickerDefinition,4375,157,gics,string:8,Global Industry Classification Standard
+TickerDefinition,4375,160,lei,string:20,Legal Entity Identifier
+TickerDefinition,4375,163,naics,string:6,North American Industry Classification System
+TickerDefinition,4375,166,cfi,string:6,ISO Classification of Financial Instruments
+TickerDefinition,4375,169,cic,string:4,Complementay Identification Code
+TickerDefinition,4375,172,fisn,string:40,Financial Instrument Short Name
+TickerDefinition,4375,175,isin,string:12,ISIN code
+TickerDefinition,4375,178,figi,string:16,FIGI code
+TickerDefinition,4375,181,bbgCompositeTicker,string:12,Bloomberg Composite Ticker
+TickerDefinition,4375,184,bbgExchangeTicker,string:28,Bloomberg Exchange Ticker
+TickerDefinition,4375,187,bbgCompositeGlobalID,string:12,Bloomberg Composite Global ID
+TickerDefinition,4375,190,bbgGlobalID,string:12,Bloomberg Global ID
+TickerDefinition,4375,193,bbgCurrency,string:3,Bloomberg Trading Currency
+TickerDefinition,4375,196,otcPrimaryMarket,enum:OTCPrimaryMarket:None,
+TickerDefinition,4375,199,otcTier,enum:OTCTier:None,
+TickerDefinition,4375,202,otcReportingStatus,string:1,
+TickerDefinition,4375,205,otcDisclosureStatus,int,
+TickerDefinition,4375,208,otcFlags,int,
+TickerDefinition,4375,211,stkPriceInc,enum:StkPriceInc:None,Price increment: None; FullPenny; Nickle
+TickerDefinition,4375,214,tkDefSource,enum:TkDefSource:None,Ticker definition source: None; Vendor; OTC; SR; Exchange
+TickerDefinition,4375,217,statusFlag,enum:TkStatusFlag:None,
+TickerDefinition,4375,220,tapeCode,enum:TapeCode:None,SIP Tape Code
+TickerDefinition,4375,223,stkVolume,float,trailing average 20D daily stock volume
+TickerDefinition,4375,226,futVolume,float,trailing average 20D daily future volume
+TickerDefinition,4375,229,optVolume,float,trailing average 20D daily option volume
+TickerDefinition,4375,232,exchString,string:8,exchanges listing any options on this underlying
+TickerDefinition,4375,235,numOptions,int,total number of listed options
+TickerDefinition,4375,238,timeMetric,enum:TimeMetric,trading time metric - 252 or 365 trading days or a weekly cycle type
+TickerDefinition,4375,241,timestamp,DateTime,
+TickerDefinition,4375,244,hasOptions,enum:YesNo,Has Options flag
+TickerDefinition,4375,247,altID,int,Alt Security ID number
+OptionAtmMinuteBarData,6820,10,ekey,ExpiryKey,
+OptionAtmMinuteBarData,6820,11,tradingDate,DateTime,
+OptionAtmMinuteBarData,6820,12,minute,int,minutes since 2000-01-01
+OptionAtmMinuteBarData,6820,100,ticker,TickerKey,
+OptionAtmMinuteBarData,6820,103,startTime,DateTime,Start of trading period for this product (note: this field will only be populated in the first message sent)
+OptionAtmMinuteBarData,6820,106,startTimeMinute,string:8,Minute representation of startTime (note: this field will only be populated in the first message sent)
+OptionAtmMinuteBarData,6820,109,endTime,DateTime,End of trading period for this product (note: this field will only be populated in the first message sent)
+OptionAtmMinuteBarData,6820,112,endTimeMinute,string:8,Minute representation of endTime (note: this field will only be populated in the first message sent)
+OptionAtmMinuteBarData,6820,115,uPrc,float,Underlying price
+OptionAtmMinuteBarData,6820,118,years,float,Years to expiry
+OptionAtmMinuteBarData,6820,121,rate,float,Interest rate
+OptionAtmMinuteBarData,6820,124,sdiv,float,Continuous stock dividend
+OptionAtmMinuteBarData,6820,127,ddiv,float,Discrete stock dividend value
+OptionAtmMinuteBarData,6820,130,uPrcOffset,float,"Implied underlying price offset. For options with futures underlyings, this is like sDiv for futures."
+OptionAtmMinuteBarData,6820,133,ivol,float,atm ivol (atm: strike = fUPrc)
+OptionAtmMinuteBarData,6820,136,ivxx,float,fixed strike ivol (ivol @ refStrike)
+OptionAtmMinuteBarData,6820,139,ivCen,float,atm ivol (atm: strike = fUPrc) [eMove/earnings censored]
+OptionAtmMinuteBarData,6820,142,slope,float,dVol / dXAxis
+OptionAtmMinuteBarData,6820,145,vWidth,float,implied volatility width (best market)
+OptionAtmMinuteBarData,6820,148,refStrike,float,reference strike (usually prior day closing uPrc)
+OptionAtmMinuteBarData,6820,151,ivolHi,float,Implied Volatility high value (during bar)
+OptionAtmMinuteBarData,6820,154,ivolLo,float,Implied Volatility low value (during bar)
+OptionAtmMinuteBarData,6820,157,ivxxHi,float,"Implied Volatility of Previous Day's ATM strike, high value (during bar)"
+OptionAtmMinuteBarData,6820,160,ivxxLo,float,"Implied Volatility of Previous Day's ATM strike, low value (during bar)"
+OptionAtmMinuteBarData,6820,163,ivCenHi,float,Censored implied volatility high value (during bar)
+OptionAtmMinuteBarData,6820,166,ivCenLo,float,Censored implied volatility low value (during bar)
+OptionAtmMinuteBarData,6820,169,sdivHi,float,"Continuous carry rate, high value (during bar)"
+OptionAtmMinuteBarData,6820,172,sdivLo,float,"Continuous carry rate, low value (during bar)"
+OptionAtmMinuteBarData,6820,175,uPrcOffHi,float,"Underlying price offset value, high value (during bar)"
+OptionAtmMinuteBarData,6820,178,uPrcOffLo,float,"Underlying price offset value, low value (during bar)"
+OptionAtmMinuteBarData,6820,181,slopeHi,float,Slope high value (during bar).  The difference between the put and call at 1/2 standard deviation from the ATM point.
+OptionAtmMinuteBarData,6820,184,slopeLo,float,Slope low value (during bar).  The difference between the put and call at 1/2 standard deviation from the ATM point.
+OptionAtmMinuteBarData,6820,187,varSwapFV,float,variance swap fair value (estimated by numerical integration over OTM price surface)
+OptionAtmMinuteBarData,6820,190,maxDIVol,float,maximum change in IVol (between LSA rec publishes)
+OptionAtmMinuteBarData,6820,193,maxDSDiv,float,maximum change is SDiv (between LSA rec publishes)
+OptionAtmMinuteBarData,6820,196,uPrcSPY,float,SPY underlying price
+OptionAtmMinuteBarData,6820,199,ivolSPY,float,SPY atm ivol
+OptionAtmMinuteBarData,6820,202,ivxxSPY,float,SPY fixed strike ivol
+OptionAtmMinuteBarData,6820,205,marketSegment,enum:MarketSegment,
+OptionAtmMinuteBarData,6820,208,ts,DateTime,last update time (Date)
