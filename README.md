@@ -296,7 +296,7 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | TKeyFilters       | tickerKey          | (optional) eg "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"SPX"}}]                                                |
 | EKeyFilters       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
 | OKeyFilters       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
-| msgTypes         | repeating list             | (optional) if not empty records must have a msgTypes this set All elements after are in repeating list                                                              |
+| MsgTypes         | repeating list             | (optional) if not empty records must have a msgTypes this set. All elements after are in repeating list                                                              |
 | msgType         | ushort             | (optional) message code                                                               |
 | msgName       | MessageTypeName            | (optional) message name                                                              |
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
