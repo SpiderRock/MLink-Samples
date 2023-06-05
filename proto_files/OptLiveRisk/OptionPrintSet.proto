@@ -26,7 +26,7 @@ message OptionPrintSet {
     OptExch prt_exch = 106; // Exchange on which print took place
     int32 prt_size = 109; // print size [contracts]
     float prt_price = 112; // print price
-    int32 prt_type = 115; // print type
+    PrtType prt_type = 115; // print type
     uint32 prt_orders = 118; // number of participating orders
     int32 prt_cluster_num = 121; // incremental print cluster counter (one counter per okey; used to group prints into clusters)
     int32 prt_cluster_size = 124; // cumulative size of prints in this sequence (prints @ same or more aggressive price with less than 25 ms elapsing since first print; can span exchanges)

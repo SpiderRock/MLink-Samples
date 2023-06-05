@@ -25,8 +25,7 @@ async def query_mlink(authentication_key):
                     "message": { 
                         "queryLabel":"ExampleImpliedQuote",
                         "queryType":"FullQuery",
-                       "MsgType": [{"msgType":1015}], #message number, much be specified to use "views"
-                        "msgNameFilter": "LiveImpliedQuote",
+                        "MsgTypes": [{"msgType":1015},{"msgName":"LiveImpliedQuote"}], 
                         "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"SPY","dt":"2023-06-23","xx":400,"cp":"Put"}}]
                     }
                 }

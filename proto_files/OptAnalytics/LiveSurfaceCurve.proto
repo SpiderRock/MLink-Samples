@@ -29,8 +29,10 @@ message LiveSurfaceCurve {
     float u_bid = 109; // underlier bid price
     float u_ask = 112; // underlier ask price
     float years = 115; // time to expiration (in years)
-    float rate = 118; // current discount rate
-    float ddiv = 121; // present value of discrete dividend stream
+    float rate = 118; // average interest rate to expiration (SR global rate curve)
+    float ddiv = 121; // (expected) cumulative discrete dividend $ amounts prior to expiration
+    float ddiv_pv = 122; // (expected) cumulative npv of discrete dividend $ amounts prior to expiration (SR global rate curve)
+    DDivSource ddiv_source = 123; // Forecast if any of the dividends prior to expiry are forecast rather than announced
     float symbol_ratio = 124; // underlier price ratio (usually 1.0 or a multi-hedge option price ratio; if one exists)
     ExerciseType ex_type = 127; // exercise type (American or European)
     CalcModelType model_type = 130; // option pricing model used for price calcs (Normal, LogNormal, etc.)

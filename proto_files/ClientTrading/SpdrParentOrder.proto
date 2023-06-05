@@ -216,8 +216,8 @@ message SpdrParentOrder {
     ParentOrderHandling parent_order_handling = 301;
     ParentBalanceHandling parent_balance_handling = 304;
     SpdrLimitType order_limit_type = 307;
-    SpdrLimitClass take_limit_class = 310; // Simple = LimitPrice, Surface = BEST(LimitPrice, SurfLimit), Probability = BEST(LimitPrice, ProbLimit), SurfProb  = BEST(LimitPrice, SurfLimit, ProbLimit)
-    SpdrLimitClass make_limit_class = 313; // Simple = LimitPrice, Surface = BEST(LimitPrice, SurfLimit), Probability = BEST(LimitPrice, ProbLimit), SurfProb  = BEST(LimitPrice, SurfLimit, ProbLimit)
+    SpdrLimitClass take_limit_class = 310; // Simple = LimitPrice +/- offset, Surface = BEST(LimitPrice, SurfLimit), Probability = BEST(LimitPrice, ProbLimit), SurfProb  = BEST(LimitPrice, SurfLimit, ProbLimit)
+    SpdrLimitClass make_limit_class = 313; // Simple = LimitPrice +/- offset, Surface = BEST(LimitPrice, SurfLimit), Probability = BEST(LimitPrice, ProbLimit), SurfProb  = BEST(LimitPrice, SurfLimit, ProbLimit)
     ReachRule take_reach_rule = 316; // Immediate = reach room immediately available; Delayed = available after [1-3] seconds; Passive = available if contra side aggresses; WeakOnly = only take if available size < avgMarketSize; ISOSweep = Intermarket Sweep [requires WaitTrigger]
     double order_prc_limit = 319; // Applies if LimitType = Prc[]
     double order_ref_uPrc = 322; // default=underlier.mid

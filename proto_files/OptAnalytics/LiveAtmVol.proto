@@ -22,9 +22,11 @@ message LiveAtmVol {
     PKey pkey = 2;
     TickerKey ticker = 100; // underlying tickerKey (stock or product group) that this option expiration is associated with
     float u_prc = 103; // underlier price (effective mid-market) used for fitting
-    float years = 106;
-    float rate = 109;
-    float ddiv = 112;
+    float years = 106; // SR years to expiry metric
+    float rate = 109; // average expected interest rate to expiry (SR global rate curve)
+    float ddiv = 112; // (expected) cumulative discrete dividend $ amounts prior to expiration
+    float ddiv_pv = 113; // (expected) cumulative npv of discrete dividend $ amounts prior to expiration (SR global rate curve)
+    DDivSource ddiv_source = 114; // Forecast if any of the dividends prior to expiry are forecast rather than announced
     float atm_vol = 115; // atm vol (xAxis = 0)
     float atm_eMA = 118; // atm vol exp moving average (5 seconds)
     float u_prc_offset = 121; // implied offset for use when fkey is not the natural underlier for this option expiry
@@ -32,6 +34,7 @@ message LiveAtmVol {
     float sdiv = 127; // stock dividend (borrow rate)
     float sdiv_eMA = 130; // sdiv exp moving average (10 minutes)
     float axis_fUPrc = 133; // forward underlier price;  also at-the-money (xAxis = 0) synthetic strike
+    float v_width = 134; // atm volatility market width (estimated from near expiries)
     int32 num_atm_strikes = 136;
     TradeableStatus tradeable_status = 139; // indicates whether the surface is currently tradeable or not (all server surface integrity checks pass)
     SurfaceAdjResult surface_result = 142;

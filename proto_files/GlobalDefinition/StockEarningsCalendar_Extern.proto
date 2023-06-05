@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+/*
+    StockEarningsCalendar records contain a historical (prior 12) earnings dates and future (next 12) projected dates.
+*/    
+message StockEarningsCalendar_Extern {
+    message PKey {
+        
+        TickerKey ticker = 10;
+        EventSource source = 11; // Live=currentEarningsDate; priorDay=previousEarningsDate
+    }
+
+    message Event {
+        
+        DateKey event_date = 109;
+        string event_time = 112;
+        EarnStatus earn_status = 115;
+        GuidanceIssued guidance_issued = 118;
+        DateKey earn_fiscal_qtr = 121;
+        earnChange earn_change = 124;
+        float earn_pct_move = 127; // underlying move in the trading period including the event (only available when eventStatus = 'Actual')
+        float prv_close = 130; // closing price prior to earnings announcement
+        float open = 133; // opening price (on moveDate)
+        float high = 136; // high price (on moveDate)
+        float low = 139; // low price (on moveDate)
+        float close = 142; // close price (on moveDate)
+        DateKey move_date = 145; // date corresponding to larger daily change (OHLC data taken from the same date or the date following each earnings announcement)
+        float h_eMove = 148; // historical average (trailing 8) earnings moves prior to announcement (historical only)
+    }
+
+
+    MessageMetadata _meta = 1;
+    
+    PKey pkey = 2;
+    float e_move_hist = 100; // historical average (trailing 8) earnings moves prior to today
+    google.protobuf.Timestamp timestamp = 103; // timestamp of record
+    repeated Event event = 106;
+}
+
+

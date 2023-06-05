@@ -21,9 +21,8 @@ async def send_signal(websocket):
                 "mTyp": "MLinkSignalReady"
             },
             "message": {
-                "queryLabel": "SignalReadyExampleTimed",
-                "MsgType": [],
-                "msgNameFilter": "MLinkSignalReady",
+                "queryLabel": "SignalReadyExample",
+                "MsgTypes": [{"msgName":"MLinkSignalReady"}]
             }
         }
         t = time.time_ns()
@@ -47,11 +46,10 @@ async def query_mlink(authentication_key):
                         "mTyp": "MLinkQuery"
                     },
                     "message": {
-                        "queryLabel": "SignalReadyExampleTimed",
+                        "queryLabel": "SignalReadyExample",
                         "queryType": "IncrSubscription",
                         "activeLatency": -1,
-                        "MsgType": [{"msgType":3000}], #message number, much be specified to use "views" 
-                        "msgNameFilter": "StockBookQuote",
+                        "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}],
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }
                 }

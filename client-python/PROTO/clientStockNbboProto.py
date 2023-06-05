@@ -61,8 +61,8 @@ async def query_mlink(authentication_key):
                 mlink_query.query_label = "Example1"
                 mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
                 mlink_query.descriptor.message_type = "MLinkQuery"
-                msg_type = mlink_query.msg_type.add()
-                msg_type.msg_type = 3000
+                msg_types = mlink_query.msg_types.add()
+                msg_types.msg_type = 3000
                 tkey_filter = mlink_query.tkey_filters.add()
                 tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
                 tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS

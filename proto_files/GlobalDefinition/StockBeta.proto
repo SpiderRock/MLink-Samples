@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+/*
+    Beta values are computed weekly for a few different ETFs.
+*/    
+message StockBeta {
+    message PKey {
+        
+        TickerKey ticker = 10;
+    }
+
+
+    MessageMetadata _meta = 1;
+    
+    PKey pkey = 2;
+    BetaStatus status = 100;
+    float beta = 103; // (depricate)
+    float beta_ind = 106; // SR beta to IND
+    float beta_sub = 109; // SR beta to SUB
+    float beta_grp = 112; // SR beta to GRP
+    float beta_qQQ = 115; // SR beta to QQQ [2 year; weekly (fri - fri)]
+    float beta_sPY = 118; // SR beta to SPY [2 year; weekly (fri - fri)]
+    float beta_iWM = 121; // SR beta to IWM [2 year; weekly (fri - fri)]
+    google.protobuf.Timestamp timestamp = 124; // record update timestamp
+}
+
+

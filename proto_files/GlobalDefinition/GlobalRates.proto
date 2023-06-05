@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+import "google/protobuf/timestamp.proto";
+
+    
+message GlobalRates {
+    message PKey {
+        
+        RateSource rate_source = 10;
+    }
+
+    message Curve {
+        
+        int32 days = 106; // calendar days to expiration (actual/365 days per year)
+        float rate = 109;
+    }
+
+
+    MessageMetadata _meta = 1;
+    
+    PKey pkey = 2;
+    google.protobuf.Timestamp timestamp = 100;
+    repeated Curve curve = 103;
+}
+
+

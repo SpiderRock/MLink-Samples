@@ -25,7 +25,7 @@ message OptionPrint {
     float prt_price = 106; // print price
     int32 prt_cluster_num = 109; // incremental print cluster counter (one counter per okey; used to group prints into clusters)
     int32 prt_cluster_size = 112; // cumulative size of prints in this sequence (sequence of prints @ same or more aggressive price with less than 25 ms elapsing since first print; can span exchanges)
-    int32 prt_type = 115; // print type
+    PrtType prt_type = 115; // print type
     uint32 prt_orders = 118; // number of participating orders
     int32 prt_volume = 121; // day print volume in contracts [this exchange]
     int32 cxl_volume = 124; // day print/cancel volume (num of contracts printed and then cancelled)

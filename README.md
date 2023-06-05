@@ -4,7 +4,7 @@ The SpiderRock MLink API provides access to live-data objects (Real-Time and del
 
 MLink provides the several options:
 * 6 product categories each with associated tokens to stream or query SR data
-* 23 tokens for scoped access to message types
+* 18 tokens for scoped access to message types
 * 3 message delivery protocols: JSON, Framed JSON or Protobuf
 * Query-based (REST) or streaming (Websocket) connections
 * Real-time or delayed data
@@ -27,7 +27,10 @@ Messages are organized into Message Types that are grouped and permissioned by t
 | EqtExchImbalance      | Stock market auction imbalances |
 | OptAnalytics          | Options surfaces, at-the-money volatility and related |
 | OptLiveRisk           | Options implied quotes and risk slides |
-| ProductDefinition     | Production definitions for all instruments |
+| OptionDefinition     | Production definitions for options |
+| FutureDefinition     | Production definitions for futures |
+| EquityDefinition     | Production definitions for equities |
+| GLobalDefinition     | Dividends, EarningsCalendars, Rates, StockBetas |
 | MLinkWs               | MLink WebSocket admin messages |
 | MLinkRest             | MLink HTTP/REST admin messages |
 
@@ -287,14 +290,15 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | sysRealm        | enum               |                                                                                                                            |
 | highwaterTs     | long               | (optional) records must have a header.sentTs that is later than this value (ns after the UNIX epoch)                       |
 | stripeFilter    | text1              | (optional) if supplied records must be within the specified stripe                                                         |
-| msgNameFilter   | text2              | (optional) if supplied records must have a message name from this set                                                      |
 | accntFilter     | text1              | (optional) if supplied records must have an x-ray accnt from this set [comma separated]                                    |
 | clientFirmFilter| text1              | (optional) if supplied records must have an x-ray client firm from this set [comma separated]                              |
 | userNameFilter  | text1              | (optional) if supplied records must have an x-ray user name from this set [comma separated]                                |
 | TKeyFilters       | tickerKey          | (optional) eg "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"SPX"}}]                                                |
 | EKeyFilters       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
 | OKeyFilters       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
-| msgType         | ushort             | (optional) if not empty records must have a msgType this set                                                               |
+| msgTypes         | repeating list             | (optional) if not empty records must have a msgTypes this set All elements after are in repeating list                                                              |
+| msgType         | ushort             | (optional) message code                                                               |
+| msgName       | MessageTypeName            | (optional) message name                                                              |
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
 | localMsgType    | ushort             | (optional) if != 0 the msgType number will be translated from msgType to localMsgType in the mlink server (binary messages)|
 | localMsgName    | MessageTypeName    | (optional) if exists the message name will be translated from msgName to localMsgName in the mlink server (json and protobuf messages)|
@@ -370,7 +374,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
                           "queryType": "FullQuery", #you can stream AAPL by changing the queryType to FullSubscription, see examples
-                          "msgNameFilter": "StockBookQuote",
+                          "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}], 
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
             }
@@ -406,7 +410,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
                           "queryType": "FullQuery",
-                          "msgNameFilter": "StockBookQuote",
+                          "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}], 
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
             }
