@@ -33,7 +33,7 @@ namespace MLinkExamples
             using (ClientWebSocket ws = new ClientWebSocket())
             {
                 // connect to MLink
-                Uri serverUri = new Uri("ws://mlink-http-nms.saturn.srplatform.net:6700/mlink/json");
+                Uri serverUri = new Uri("wss://mlink.spiderrockconnect.com/mlink/json");
                 ws.Options.SetRequestHeader("Authorization", $"Bearer {authenticationKey}");
                 ws.Options.KeepAliveInterval = TimeSpan.Zero;
 
