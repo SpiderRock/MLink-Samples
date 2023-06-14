@@ -452,7 +452,7 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
 
     import spiderrock_common_pb2 as sr_common 
     import your_message_file_pb2 as sr_messages
-    import msg_types_pb2 as msg_types
+
     
     ```
     Authentication:
