@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "spiderrock_common.proto";
+
+
+package spiderrock.protobuf;
+
+
+    
+message AggregateString {
+    message Value {
+        
+        string value = 127;
+        int32 cnt = 130;
+    }
+
+
+    MessageMetadata _meta = 1;
+    
+    string key1 = 100;
+    string key2 = 103;
+    string key3 = 106;
+    string key4 = 109;
+    string name = 112;
+    uint32 f_num = 115;
+    int32 rec_count = 118;
+    string error = 121;
+    repeated Value value = 124;
+}
+
+
