@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiderrockLib", "SpiderrockLib\SpiderrockLib.csproj", "{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MlinkExample1_JsonRq_JsonRx", "JSON\MlinkExample1_JsonRq\MlinkExample1_JsonRq_JsonRx.csproj", "{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Linux-Debug|Any CPU = Linux-Debug|Any CPU
+		Linux-Release|Any CPU = Linux-Release|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ReleaseRunLocal|Any CPU = ReleaseRunLocal|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Linux-Debug|Any CPU.ActiveCfg = Linux-Debug|x64
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Linux-Debug|Any CPU.Build.0 = Linux-Debug|x64
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Linux-Release|Any CPU.ActiveCfg = Linux-Release|x64
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Linux-Release|Any CPU.Build.0 = Linux-Release|x64
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.ReleaseRunLocal|Any CPU.ActiveCfg = ReleaseRunLocal|x64
+		{E4F032F5-A55A-49EB-B069-C9FD70F6B91A}.ReleaseRunLocal|Any CPU.Build.0 = ReleaseRunLocal|x64
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Linux-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Linux-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Linux-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Linux-Release|Any CPU.Build.0 = Release|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.ReleaseRunLocal|Any CPU.ActiveCfg = Release|Any CPU
+		{E62D00DD-66DD-4EF5-BDF4-E65DB1F1FFDA}.ReleaseRunLocal|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B84B1614-0565-4580-BEF6-AB4EB54958F9}
+	EndGlobalSection
+EndGlobal

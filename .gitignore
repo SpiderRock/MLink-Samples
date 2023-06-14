@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/MLink-Samples
+/.vs
+/client-csharp/.vs/MlinkClientpoc
+/client-csharp/JSON/MlinkExample1_JsonRq/bin/Debug/net6.0
+/client-csharp/JSON/MlinkExample1_JsonRq/bin/x64/Debug
+/client-csharp/JSON/MlinkExample1_JsonRq/obj
+/client-csharp/SpiderrockLib/obj
+/client-csharp/SpiderrockLib/bin/Debug/net6.0
