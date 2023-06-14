@@ -302,7 +302,7 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
 | localMsgType    | ushort             | (optional) if != 0 the msgType number will be translated from msgType to localMsgType in the mlink server (binary messages)|
 | localMsgName    | MessageTypeName    | (optional) if exists the message name will be translated from msgName to localMsgName in the mlink server (json and protobuf messages)|
-| view            | string             | (optional) list (subset) of field names to return with this message (eg. bidprice,askprice,bidsize,asksize) (default is all names)|
+| view            | string             | (optional) list (subset) of field names to return with this message (eg. bidprice\|askprice\|bidsize\|asksize) (default is all names)|
 | where           | string             | (optional) where clause for this message type; eg. "(bidexch:eq:CBOE) & bidsize:ge:100"  (default is all records)|
 
 
