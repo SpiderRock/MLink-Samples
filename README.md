@@ -440,13 +440,20 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
 
     ```Python 
     import asyncio
-    import json
     import time
+    from pycognito import Cognito
+    from pycognito.exceptions import SoftwareTokenMFAChallengeException
     import websockets
     import nest_asyncio
-    import threading
     import datetime
-    nest_asyncio.apply()
+    import google
+    import requests
+    import json
+
+    import spiderrock_common_pb2 as sr_common 
+    import your_message_file_pb2 as sr_messages
+    import msg_types_pb2 as msg_types
+    
     ```
     Authentication:
 
@@ -460,50 +467,55 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
     Asynchronously query AAPL:
 
     ```Python
-    async def query_mlink(api_key_token):
-      retry = True
-      while retry:
+    async def query_mlink(authentication_key):
+    retry = True
+    while retry:
         try:
-          async with websockets.connect(
-            uriProto,
-            extra_headers={"Authorization": f"Bearer {api_key_token}"},
-            ping_timeout=None
-          ) as websocket:
-            # Create the protobuf message
-            mlink_query = sr_messages.MLinkQuery()
-            mlink_query.query_label = "Example1"
-            mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
-            mlink_query.descriptor.message_type = "MLinkQuery"
-            msg_type = mlink_query.msg_type.add()
-            msg_type.msg_type = 3000
-            tkey_filter = mlink_query.tkey_filters.add()
-            tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
-            tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
-            tkey_filter.ticker_key.ticker = "AAPL"
+            async with websockets.connect(uriProto,
+                                          extra_headers={"Authorization": f"Bearer {authentication_key}"},
+                                           ping_timeout=None) as websocket:
 
-            # Serialize the protobuf message
-            serialized_msg = mlink_query.SerializeToString()
-               
-            # Send the serialized message with the header
-            header = b'\r\nP03310' + b'%06d' % len(serialized_msg)
-            await websocket.send(header + serialized_msg)
-            notDone = True
-            while notDone:
-              buffer = await websocket.recv()
-              parts = list(filter(None,buffer.split(b'\r\n')))
-            for msg in parts:
-              # Deserialize the received message using protobuf
-              messageTypeNumber = int(msg[2:6])
-              if messageTypeNumber == 3385:
-                result = sr_messages.MLinkResponse()
-              elif messageTypeNumber == 3000:
-                result = sr_messages.StockBookQuote()
-              result.ParseFromString(msg[12:])
-              print(result, '\n')
-              notDone = messageTypeNumber != 3315 or result.state != sr_common.MLINKSTATE_COMPLETE
-              retry = False
-            except asyncio.exceptions.TimeoutError:
-              print("timeout occurred, retrying...")
+                # Create the protobuf message
+                mlink_query = sr_messages.MLinkQuery()
+                mlink_query.query_label = "Example1"
+                mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
+                mlink_query.descriptor.message_type = "MLinkQuery"
+                msg_types = mlink_query.msg_types.add()
+                msg_types.msg_type = 3000
+                tkey_filter = mlink_query.tkey_filters.add()
+                tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
+                tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
+                tkey_filter.ticker_key.ticker = "AAPL"
+
+                # Serialize the protobuf message
+                serialized_msg = mlink_query.SerializeToString()
+                # Send the serialized message with the header
+                header = b'\r\nP03310' + b'%06d' % len(serialized_msg)
+                await websocket.send(header + serialized_msg)
+
+                notDone = True
+                while notDone:
+                    buffer = await websocket.recv()
+                    parts = list(filter(None,buffer.split(b'\r\n')))
+                    for msg in parts:
+                        # Deserialize the received message using protobuf
+                        messageTypeNumber = int(msg[2:6])
+                        if messageTypeNumber not in msgs:
+                            continue
+                        cls_factory = msgs[messageTypeNumber][1]
+                        if cls_factory == None:
+                            continue
+                        result = cls_factory()
+                        result.ParseFromString(msg[12:])
+                        notDone = msgs[messageTypeNumber][0] != 'MLinkResponse' or result.state != sr_common.MLINKSTATE_COMPLETE
+                        print(result, '\n')
+                retry = False
+        except asyncio.exceptions.TimeoutError:
+            print("timeout occurred, retrying...")
+
+    if __name__ == "__main__":
+        asyncio.run(query_mlink(authentication_key))
+
 
 
 ### Websocket Active Latency
