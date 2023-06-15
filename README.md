@@ -25,8 +25,8 @@ Messages are organized into Message Types that are grouped and permissioned by t
 | FutMarkData           | Futures open and close (settlement) marks |
 | OptMarkData           | Options open and close marks (includes surface marks and closing greeks) |
 | EqtExchImbalance      | Stock market auction imbalances |
-| OptAnalytics          | Options surfaces, at-the-money volatility and related |
-| OptLiveRisk           | Options implied quotes and risk slides |
+| OptSurface       | Options surfaces, at-the-money volatility and related |
+| OptAnalytics           | Options implied quotes and risk slides |
 | OptionDefinition     | Production definitions for options |
 | FutureDefinition     | Production definitions for futures |
 | EquityDefinition     | Production definitions for equities |
