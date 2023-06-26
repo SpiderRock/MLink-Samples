@@ -283,9 +283,10 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 
 | Field Name      | Field Type         | Description                                                                                                                |
 |-----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------|
+| sessionID| short| (optional) actions below apply only to the sessionID virtual session; should be zero for non-multiplexed web-socket connections.|
+|queryID|GroupingCode|(optional) queryID will be reflected back in the corresponding MLinkQueryAck message; nothing is assumed about structure of this number|
 | queryLabel      | AppNameString      |  query label                                                                                                               |
-| queryType       | enum               | None=0,FullQuery=1,IncrQuery=2,FullSubscription=3,IncrSubscription=4                                                       |
-| activeLatency   | int                | milliseconds between active query refreshes (0 = no delay, -1 = wait for SignalReady) [default = -1]                       |
+| activeLatency   | int                | (optional) number of milliseconds between active send attempts (1 = minimum delay, 0 = wait for SignalReady) [default = 0]                        |
 | sysEnvironment  | enum               | (optional) records cannot have [sysEnvironment + sysRealm] in their route history (no loops)                               |
 | sysRealm        | enum               |                                                                                                                            |
 | highwaterTs     | long               | (optional) records must have a header.sentTs that is later than this value (ns after the UNIX epoch)                       |
@@ -297,23 +298,15 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | EKeyFilters       | expiryKey          | (optional) eg "EKeyFilters":[{"expiryKey":{"at":"FUT","ts":"NYMEX","tk":"@CL","dt":"2023-06-16"}}]                                                                                                                          |
 | OKeyFilters       | optionKey          | (optional) eg "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]                                                                                                                         |
 | MsgTypes         | repeating list             | (optional) if not empty records must have a msgTypes this set. All elements after are in repeating list                                                              |
-| msgType         | ushort             | (optional) message code                                                               |
 | msgName       | MessageTypeName            | (optional) message name                                                              |
 | schemaHash      | long               | (optional) message schema hash [if supplied and matches server schema hash for this message binary encoding will be used]  |
 | localMsgType    | ushort             | (optional) if != 0 the msgType number will be translated from msgType to localMsgType in the mlink server (binary messages)|
 | localMsgName    | MessageTypeName    | (optional) if exists the message name will be translated from msgName to localMsgName in the mlink server (json and protobuf messages)|
 | view            | string             | (optional) list (subset) of field names to return with this message (eg. bidprice\|askprice\|bidsize\|asksize) (default is all names)|
 | where           | string             | (optional) where clause for this message type; eg. "(bidexch:eq:CBOE) & bidsize:ge:100"  (default is all records)|
+|order|string|(optional) order clause (applies only the the initial scan); eg. "(bidsize:DESC \| bidexch:ASC \| bidprice:DESC:ABS \| askprice:ASC:ABS"  (default is unordered; default is faster)|
+|limit|int|(optional) limits clause (applies only to the initial scan); ie., scan and return up to N messages before sending the first checkPt message; 0 means unlimited; default is 0|
 
-
-### Websocket Query Types:
-
-| queryType:enum | Name               | Description                                                           |
-|----------------|--------------------|-----------------------------------------------------------------------|
-| 1              | FullQuery          |Return records from cache and nothing more                                                                       |
-| 2              | IncrQuery          |Return records (with highwatermark > x) from cache and nothing more                                                                       |
-| 3              | FullSubscription   |Return records from cache and also any future updates (per update rules)                                                                       |
-| 4              | IncrSubscription   |Return records from cache (with highwatermark > x) and also any future updates (per update rules)                                                                       |
 
 ### Establishing a connection
 
@@ -373,8 +366,8 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
             msg = {
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
-                          "queryType": "FullQuery", #you can stream AAPL by changing the queryType to FullSubscription, see examples
-                          "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}], 
+                          "activeLatency": 1, #you can stream AAPL with minimum latency
+                          "MsgTypes": [{"msgName":"StockBookQuote"}], 
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
             }
@@ -409,8 +402,8 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
             msg = {
               "header":  {"mTyp": "MLinkQuery"},
               "message": {"queryLabel": "ExampleStockNbbo",
-                          "queryType": "FullQuery",
-                          "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}], 
+                          "activeLatency": 1, #you can stream AAPL with minimum latency
+                          "MsgTypes": [{"msgName":"StockBookQuote"}], 
                           "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                          }
             }
@@ -481,7 +474,6 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
                 mlink_query.query_type = sr_common.MLINKQUERYTYPE_FULL_QUERY
                 mlink_query.descriptor.message_type = "MLinkQuery"
                 msg_types = mlink_query.msg_types.add()
-                msg_types.msg_type = 3000
                 tkey_filter = mlink_query.tkey_filters.add()
                 tkey_filter.ticker_key.asset_type = sr_common.ASSETTYPE_EQT
                 tkey_filter.ticker_key.ticker_src = sr_common.TICKERSRC_NMS
