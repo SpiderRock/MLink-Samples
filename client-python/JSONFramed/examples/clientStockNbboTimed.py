@@ -26,8 +26,8 @@ async def query_mlink(authentication_key):
                     },
                     "message": { 
                         "queryLabel":"Example1",
-                        "queryType":"FullSubscription",
-                        "MsgTypes": [{"msgType":3000},{"msgName":"StockBookQuote"}],
+                        "activeLatency": 1, #you can stream with minimum latency
+                        "MsgTypes": [{"msgName":"StockBookQuote"}],
                         "TKeyFilters":[{"tickerKey":{"at":"EQT","ts":"NMS","tk":"AAPL"}}]
                     }
                 }

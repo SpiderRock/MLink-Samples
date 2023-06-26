@@ -37,8 +37,8 @@ async def query_mlink(authentication_key):
                     },
                     "message": {
                         "queryLabel": "ExampleStockNbbo",
-                        "queryType": "FullSubscription",
-                        "MsgTypes": [{"msgType":3000},{"msgName": "StockBookQuote","view":"bidprice1|askprice1", "where":"bidprice1:lt:40 & askprice1:lt:40"}],
+                        "activeLatency": 1, #you can stream AAPL with minimum latency
+                        "MsgTypes": [{"msgName": "StockBookQuote","view":"bidprice1|askprice1", "where":"bidprice1:lt:40 & askprice1:lt:40"}],
                         "msgNameFilter": "StockBookQuote"
                     }
                 }

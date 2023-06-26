@@ -24,9 +24,9 @@ async def query_mlink(authentication_key):
                     },
                     "message": { 
                         "queryLabel":"ExampleOptionNbboQuote",
-                        "queryType":"FullQuery",
-                        "MsgTypes": [{"msgType":2785},{"msgName":"OptionNbboQuote"}],
-                        "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-23","xx":23,"cp":"Put"}}]
+                        "activeLatency": 1, #you can stream with minimum latency
+                        "MsgTypes": [{"msgName":"OptionNbboQuote"}],
+                        "OKeyFilters":[{"optionKey":{"at":"EQT","ts":"NMS","tk":"VIXW","dt":"2023-06-30","xx":23,"cp":"Put"}}]
                     }
                 }
                 t = time.time_ns()
