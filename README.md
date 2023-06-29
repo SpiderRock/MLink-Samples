@@ -84,9 +84,14 @@ Note that any message with an optionKey will also have a TickerKey and ExpiryKey
     | MLinkAdmin         | Sent in response to a WebSocket connect attempt and also in response to an MLinkLogon message |
     | MLinkLogon         | Used to logon (authenticate) (only required if credentials were not supplied in initial HTTP connect) |
     | MLinkQuery         | Set or update the active subscription query for this session |
+    | MLinkQueryAck      | Sent in repsponse to an MLinkQuery attempt |
+    | MLinkQueryCheckPt  | Query HeartBeat (None=0,Begin=1,Active=2,Complete=3,Replaced=4,Terminated=5) |
     | MLinkResponse      | Sent in response to an MLinkQuery |
     | MLinkSignalReady   | Used to signal that the client is ready for more messages (live subscriptions w/o an active latency) |
     | MLinkDataAck       | Sent in response to an message upload attempt|
+    | MLinkSubscribe     | Set or update an active subscription for a session by msgPKey |
+    | MLinkSubscribeAck  | Sent in reponse to an MLinkSubscribe attempt |
+    | MLinkSubscribeCheckPt  | Subscription HeartBeat (None=0,Begin=1,Active=2,Terminated=3)  |
 
 # Authentication Methods
 
@@ -226,8 +231,7 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 | getapikey   | creates/updates MLink API Key |
 | getmsgtypes | returns all available message types |
 | getschema   | returns a single message schema |
-| getlayout   | returns msgLayour and FieldLayout |
-| getsummary  | returns message type summmary |
+| getlayout   | returns msgLayout and FieldLayout |
 | gettkeyset  | returns all available TickerKeys for a message type |
 | getekeyset  | returns all available ExpiryKeys for a message type and TickerKey |
 | getokeyset  | returns all available Option Keys for a message type and ExpiryKey |
@@ -266,10 +270,6 @@ Complex filtering:
 
 `https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&where=(bidsize:eq:1%26asksize:eq:1)|(bidsize:eq:10%26asksize:eq:1)&view=okey|bidprice|askprice|asksize|bidsize`
 
-Get summary:
-
-`https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getsummary&msgtype=OptionNbboQuote&view=bidprice|askprice|bidsize|asksize`
-
 ## 2. Websocket API
 
 The MLink Websocket API is implemented as a standard HTTP WebSocket service accessible at:
@@ -279,7 +279,7 @@ The MLink Websocket API is implemented as a standard HTTP WebSocket service acce
 
 Query parameters are URL-encoded and passed in the querystring. If successful, responses are sent back via the HTTP request body section. The URL also determines the protocol.
 
-### Websocket Parameters:
+### Websocket Parameters - MLinkQuery:
 
 | Field Name      | Field Type         | Description                                                                                                                |
 |-----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -306,6 +306,25 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | where           | string             | (optional) where clause for this message type; eg. "(bidexch:eq:CBOE) & bidsize:ge:100"  (default is all records)|
 |order|string|(optional) order clause (applies only the the initial scan); eg. "(bidsize:DESC \| bidexch:ASC \| bidprice:DESC:ABS \| askprice:ASC:ABS"  (default is unordered; default is faster)|
 |limit|int|(optional) limits clause (applies only to the initial scan); ie., scan and return up to N messages before sending the first checkPt message; 0 means unlimited; default is 0|
+
+### Websocket Parameters - MLinkSubscribe:
+
+| Field Name      | Field Type         | Description                                                                                                                |
+|-----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------|
+| sessionID| short| (optional) actions below apply only to the sessionID virtual session; should be zero for non-multiplexed web-socket connections.|
+|SubscribeID|GroupingCode|(optional) subscribeD will be reflected back in the corresponding MLinkSubscribeAck message; nothing is assumed about structure of this number|
+| activeLatency   | int                | (optional) number of milliseconds between active send attempts (1 = minimum delay, 0 = wait for SignalReady) [default = 0]                        |
+| compression  | enum               | (optional) FieldChangesOnly will supress fields in messages that have not changed since the previous send (resets automatically after every subscription) None=0,FieldChangesOnly=1                              |
+| doReset        | enum:YesNo               |   if Yes all current subscriptions will be removed prior to applying the actions below                                                                                                                         |
+| {View}     |                |                       |
+| msgName    | msgTypeName              | a SpiderRock message name (topic channel) (can be string name or protobuf message number)                                                         |
+| view     | string              | list (subset) of field names to return with this message type (eg. bidprice\|askprice\|bidsize\|asksize)                                    |
+| {Unsubscribe}|               |                               |
+| msgName    | msgTypeName              | a SpiderRock message name (topic channel) (can be string name or protobuf message number)                                                         |
+| msgPKey       | string         | an existing message.pkey; can be in either flat string or JSON format; if missing/empty all active msgName subscriptions will be removed                                                |
+| {Unsubscribe}|               |                               |
+| msgName    | msgTypeName              | a SpiderRock message name (topic channel) (can be string name or protobuf message number)                                                         |
+| msgPKey       | string         | an existing message.pkey; can be in either flat string or JSON format; if missing/empty all active msgName subscriptions will be removed         |                                                                                                                        
 
 
 ### Establishing a connection
