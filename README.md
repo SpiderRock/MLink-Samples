@@ -262,6 +262,10 @@ Filtering by a Ticker Key:
 
 `https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&tkey=AAPL-NMS-EQT`
 
+or 
+
+`https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&where=okey.tk:eq:AAPL`
+
 Filtering by a View:
 
 `https://mlink.spiderrockconnect.com/rest/json?apikey="your_api_key_token"&cmd=getmsgs&msgtype=OptionNbboQuote&view=okey|bidprice|askprice`
