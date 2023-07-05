@@ -38,10 +38,11 @@ async def query_mlink(authentication_key):
                     "message": {
                         "queryLabel": "ExampleStockNbbo",
                         "activeLatency": 1, #you can stream AAPL with minimum latency
-                        "MsgTypes": [{"msgName": "StockBookQuote","view":"bidprice1|askprice1", "where":"bidprice1:lt:40 & askprice1:lt:40"}],
+                        "MsgTypes": [{"msgName": "OptionNbboQuote","view":"bidprice|askprice", "where":"okey.tk:eq:SPX & okey.xx:gt:3500 & okey.xx:lt:4500"}],
                         "msgNameFilter": "StockBookQuote"
                     }
                 }
+                
                 t = time.time_ns()
                 tstr = '.'.join([time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(t / 1000000000)), "%06d" % ((t / 1000) % 1000000)])
                 msg['header']['sTim'] = tstr

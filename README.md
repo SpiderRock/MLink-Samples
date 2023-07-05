@@ -311,6 +311,7 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 |order|string|(optional) order clause (applies only the the initial scan); eg. "(bidsize:DESC \| bidexch:ASC \| bidprice:DESC:ABS \| askprice:ASC:ABS"  (default is unordered; default is faster)|
 |limit|int|(optional) limits clause (applies only to the initial scan); ie., scan and return up to N messages before sending the first checkPt message; 0 means unlimited; default is 0|
 
+
 ### Websocket Parameters - MLinkSubscribe:
 
 | Field Name      | Field Type         | Description                                                                                                                |
@@ -330,6 +331,7 @@ Query parameters are URL-encoded and passed in the querystring. If successful, r
 | msgName    | msgTypeName              | a SpiderRock message name (topic channel) (can be string name or protobuf message number)                                                         |
 | msgPKey       | string         | an existing message.pkey; can be in either flat string or JSON format; if missing/empty all active msgName subscriptions will be removed         |                                                                                                                        
 
+Note: MLinkQuery also allow to stream, this feature is not limited to MLinkSubscribe
 
 ### Establishing a connection
 
@@ -465,7 +467,6 @@ If at any time during a session, a user sends an MLinkLogon message, the server 
     import google
     import requests
     import json
-
     import spiderrock_common_pb2 as sr_common 
     import your_message_file_pb2 as sr_messages
 
