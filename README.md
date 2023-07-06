@@ -209,6 +209,7 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 | secret  | secret    | secret="secret" - the client-supplied API Password (if any) [only used with getapikey] |
 | view    | v         | v="view clause" - a string in the form of "field1  field2  field3" |
 | where   | w         | w= "where clause" - a string in the form "field1:eq:value" or "(field1:ne:value1 & field1:ne:value2) |
+|order    | order     |(optional) order clause eg. "(bidsize:DESC \| bidexch:ASC \| bidprice:DESC:ABS \| askprice:ASC:ABS"  (default is unordered; default is faster)|
 
 "WHERE" clauses can contain the following comparison symbols:
 - :gt: is greater than
