@@ -86,7 +86,6 @@ Note that any message with an optionKey will also have a TickerKey and ExpiryKey
     | MLinkQuery         | Set or update the active subscription query for this session |
     | MLinkQueryAck      | Sent in repsponse to an MLinkQuery attempt |
     | MLinkQueryCheckPt  | Query HeartBeat (None=0,Begin=1,Active=2,Complete=3,Replaced=4,Terminated=5) |
-    | MLinkResponse      | Sent in response to an MLinkQuery |
     | MLinkSignalReady   | Used to signal that the client is ready for more messages (live subscriptions w/o an active latency) |
     | MLinkDataAck       | Sent in response to an message upload attempt|
     | MLinkSubscribe     | Set or update an active subscription for a session by msgPKey |
@@ -209,6 +208,7 @@ Query parameters are a set of key/value pairs (not case-sensitive):
 | secret  | secret    | secret="secret" - the client-supplied API Password (if any) [only used with getapikey] |
 | view    | v         | v="view clause" - a string in the form of "field1  field2  field3" |
 | where   | w         | w= "where clause" - a string in the form "field1:eq:value" or "(field1:ne:value1 & field1:ne:value2) |
+|order    | order     |(optional) order clause eg. "(bidsize:DESC \| bidexch:ASC \| bidprice:DESC:ABS \| askprice:ASC:ABS"  (default is unordered; default is faster)|
 
 "WHERE" clauses can contain the following comparison symbols:
 - :gt: is greater than
